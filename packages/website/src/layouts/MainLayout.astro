@@ -61,13 +61,13 @@ const theme = getTheme()
     </script>
   </head>
   <body class="flex flex-col min-h-screen">
-    <Navbar />
-    <main class="flex-1">
-      <LanguageProvider client:load>
+    <LanguageProvider client:load>
+      <Navbar />
+      <main class="flex-1">
         <slot />
-      </LanguageProvider>
-    </main>
-    <Footer />
+      </main>
+      <Footer />
+    </LanguageProvider>
     
     <script>
       import { initThemeToggle } from '../scripts/theme-toggle'

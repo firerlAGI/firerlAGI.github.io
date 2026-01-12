@@ -1,12 +1,11 @@
 ---
-import LanguageSwitcher from './LanguageSwitcher.astro'
+import LanguageSwitcher from '../react/LanguageSwitcher'
 
 interface Props {
   class?: string
 }
 
 const { class: className = '' } = Astro.props
----
 
 <nav class={`navbar ${className}`}>
   <a href="#" class="navbar-logo">F<span class="logo-accent">IR</span>ER<span class="logo-accent">LA</span>GI</a>
@@ -21,7 +20,7 @@ const { class: className = '' } = Astro.props
   
   <div class="nav-actions">
     <div class="language-toggle">
-      <LanguageSwitcher client:load />
+      <LanguageSwitcher client:idle />
     </div>
     <button class="mobile-menu-toggle" aria-label="打开菜单" aria-expanded="false">
       <span></span>
