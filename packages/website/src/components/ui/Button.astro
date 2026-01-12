@@ -18,23 +18,17 @@ const {
 } = Astro.props
 
 const buttonContent = children
-
-if (href) {
-  // 渲染为链接
 ---
+
+{href ? (
   <a href={href} target={target} class={`btn btn-${variant} ${className}`}>
     <slot>{buttonContent}</slot>
   </a>
----
-} else {
-  // 渲染为按钮
----
+) : (
   <button type={type} class={`btn btn-${variant} ${className}`}>
     <slot>{buttonContent}</slot>
   </button>
----
-}
----
+)}
 
 <style>
   :global(.btn) {
