@@ -1,0 +1,150 @@
+---
+import CyberCard from '../ui/CyberCard.astro'
+import GlitchText from '../ui/GlitchText.astro'
+
+const skills = [
+  { name: 'React / TypeScript', level: 95, category: 'frontend' },
+  { name: 'Node.js / Express', level: 85, category: 'backend' },
+  { name: 'Gemini AI API', level: 90, category: 'ai' },
+  { name: 'Tailwind CSS', level: 98, category: 'frontend' },
+  { name: 'Three.js / WebGL', level: 75, category: 'frontend' },
+  { name: 'Python / PyTorch', level: 70, category: 'ai' },
+  { name: 'Docker / K8s', level: 80, category: 'tools' },
+  { name: 'PostgreSQL', level: 85, category: 'backend' },
+]
+---
+
+<section id="skills" class="skills-section">
+  <div class="skills-header">
+    <GlitchText text="TECH ARSENAL" as="h2" className="skills-title" />
+    <div class="skills-divider"></div>
+  </div>
+
+  <div class="skills-grid">
+    {skills.map((skill, index) => (
+      <CyberCard glowColor={index % 2 === 0 ? 'cyan' : 'pink'} className="skill-card border-l-4">
+        <div class="skill-header">
+          <span class="skill-name">{skill.name}</span>
+          <span class="skill-level">{skill.level}% SYNCHRONIZED</span>
+        </div>
+        <div class="skill-bar">
+          <div 
+            class={`skill-bar-fill ${index % 2 === 0 ? 'skill-bar-cyan' : 'skill-bar-pink'}`}
+            style={`width: ${skill.level}%`}
+          />
+          <div class="skill-bar-shimmer"></div>
+        </div>
+      </CyberCard>
+    ))}
+  </div>
+</section>
+
+<style>
+  :global(.skills-section) {
+    padding: 80px 16px;
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+  
+  :global(.skills-header) {
+    margin-bottom: 48px;
+  }
+  
+  :global(.skills-title) {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 16px;
+  }
+  
+  :global(.skills-divider) {
+    height: 4px;
+    width: 96px;
+    background: linear-gradient(90deg, #d946ef 0%, #d946ef 100%);
+  }
+  
+  :global(.skills-grid) {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 32px;
+  }
+  
+  @media (min-width: 768px) {
+    :global(.skills-grid) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  :global(.skill-card) {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  :global(.skill-header) {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 8px;
+  }
+  
+  :global(.skill-name) {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.125rem;
+    color: #ffffff;
+  }
+  
+  :global(.skill-level) {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: #9ca3af;
+  }
+  
+  :global(.skill-bar) {
+    width: 100%;
+    height: 8px;
+    background: #1f2937;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  
+  :global(.skill-bar-fill) {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: width 1s ease-out;
+    border-radius: 4px;
+  }
+  
+  :global(.skill-bar-cyan) {
+    background: #00ffff;
+  }
+  
+  :global(.skill-bar-pink) {
+    background: #ff00ff;
+  }
+  
+  :global(.skill-bar-shimmer) {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
+    width: 100%;
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    :global(.skills-title) {
+      font-size: 2rem;
+    }
+  }
+</style>

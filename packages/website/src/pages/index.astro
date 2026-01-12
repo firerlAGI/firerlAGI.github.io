@@ -2,15 +2,17 @@
 import MainLayout from '../layouts/MainLayout.astro'
 import HeroSection from '../components/sections/HeroSection.astro'
 import ProjectsSection from '../components/sections/ProjectsSection.astro'
-import GithubSection from '../components/sections/GithubSection.astro'
-import AboutSection from '../components/sections/AboutSection.astro'
+import SkillsSection from '../components/sections/SkillsSection.astro'
 import ContactSection from '../components/sections/ContactSection.astro'
+import ParticleBackground from '../components/react/ParticleBackground'
+import AiAssistant from '../components/react/AiAssistant'
 ---
 
 <MainLayout>
+  <ParticleBackground client:load />
   <HeroSection />
+  <SkillsSection />
   <ProjectsSection />
-  <GithubSection />
-  <AboutSection />
   <ContactSection />
+  <AiAssistant client:load />
 </MainLayout>

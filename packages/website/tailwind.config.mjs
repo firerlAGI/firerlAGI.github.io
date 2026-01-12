@@ -27,9 +27,18 @@ export default {
         'divider-color': 'var(--divider-color)',
         'card-bg': 'var(--card-bg)',
         'nav-bg': 'var(--nav-bg)',
+        cyber: {
+          neon: '#0ff',
+          pink: '#f0f',
+          yellow: '#ff0',
+          dark: '#050505',
+          panel: '#0a0a0a',
+        },
       },
       fontFamily: {
         sans: ['var(--font-family)', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
+        cyber: ['"Orbitron"', 'sans-serif'],
       },
       boxShadow: {
         sm: 'var(--shadow-sm)',
@@ -51,6 +60,22 @@ export default {
         exit: 'var(--ease-exit)',
         spring: 'var(--ease-spring)',
         minimal: 'var(--ease-minimal)',
+      },
+      animation: {
+        'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'glitch': 'glitch 1s linear infinite',
+        'shimmer': 'shimmer 2s infinite',
+      },
+      keyframes: {
+        glitch: {
+          '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
+          '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
+          '62%': { transform: 'translate(0,0) skew(5deg)' },
+        },
+        shimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
       },
     },
   },

@@ -5,6 +5,7 @@ const MAX_EVENTS = 20;
 const DISPLAY_LIMIT = 15;
 const REQUEST_TIMEOUT = 10000;
 const MAX_CACHE_SIZE = 50000;
+const DEBOUNCE_DELAY = 300;
 
 const MONTHS_TO_DISPLAY = 12;
 
@@ -15,10 +16,21 @@ function escapeHtml(text) {
 }
 
 const MOBILE_BREAKPOINT = 768;
-const ANIMATION_FRAME_MS = 16;
 const ANIMATION_DURATION_MS = 1000;
 const CONTRIBUTION_LEVEL_LOW = 3;
 const CONTRIBUTION_LEVEL_MEDIUM = 9;
+
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
 
 const storage = (function() {
   try {
@@ -395,24 +407,28 @@ function animateValue(elementId, start, end, duration) {
   if (!element) return;
   
   if (animationTimers[elementId]) {
-    clearInterval(animationTimers[elementId]);
+    cancelAnimationFrame(animationTimers[elementId]);
   }
   
+  const startTime = performance.now();
   const range = end - start;
-  const increment = range / (duration / ANIMATION_FRAME_MS);
-  let current = start;
   
-  const timer = setInterval(() => {
-    current += increment;
-    if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
-      current = end;
-      clearInterval(timer);
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const easedProgress = 1 - Math.pow(1 - progress, 3);
+    const current = start + range * easedProgress;
+    
+    element.textContent = Math.floor(current);
+    
+    if (progress < 1) {
+      animationTimers[elementId] = requestAnimationFrame(update);
+    } else {
       delete animationTimers[elementId];
     }
-    element.textContent = Math.floor(current);
-  }, ANIMATION_FRAME_MS);
+  }
   
-  animationTimers[elementId] = timer;
+  animationTimers[elementId] = requestAnimationFrame(update);
 }
 
 function generateHeatmapData(activities) {
@@ -719,11 +735,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     showError(error.message);
   }
   
-  filterSelect.addEventListener('change', handleFilterChange);
+  filterSelect.addEventListener('change', debounce(handleFilterChange, DEBOUNCE_DELAY));
 });
 
 function cleanup() {
-  Object.values(animationTimers).forEach(timer => clearInterval(timer));
+  Object.values(animationTimers).forEach(timer => cancelAnimationFrame(timer));
 }
 
 window.addEventListener('beforeunload', cleanup);

@@ -9,27 +9,15 @@ const { class: className = '' } = Astro.props
 ---
 
 <nav class={`navbar ${className}`}>
-  <a href="#" class="navbar-logo">firerlAGI</a>
+  <a href="#" class="navbar-logo">F<span class="logo-accent">IR</span>ER<span class="logo-accent">LA</span>GI</a>
   
   <div class="nav-links">
-    <a href="#projects" class="nav-link">个人项目</a>
-    <a href="#github" class="nav-link">技术足迹</a>
-    <a href="#about" class="nav-link">关于我</a>
-    <a href="#contact" class="nav-link">联系我</a>
+    <a href="#skills" class="nav-link">/SKILLS</a>
+    <a href="#projects" class="nav-link">/PROJECTS</a>
+    <a href="#contact" class="nav-link">/CONTACT</a>
   </div>
   
   <div class="nav-actions">
-    <button class="lang-toggle" aria-label="切换语言">
-      <span class="lang-current">中</span>
-      <span class="lang-separator">/</span>
-      <span class="lang-next">EN</span>
-    </button>
-    
-    <button id="themeToggle" class="theme-toggle" aria-label="切换主题">
-      <span class="icon-sun">☀️</span>
-      <span class="icon-moon">🌙</span>
-    </button>
-    
     <button class="mobile-menu-toggle" aria-label="打开菜单" aria-expanded="false">
       <span></span>
       <span></span>
@@ -40,32 +28,13 @@ const { class: className = '' } = Astro.props
 
 <div class="mobile-menu">
   <div class="mobile-menu-content">
-    <a href="#projects" class="mobile-nav-link">个人项目</a>
-    <a href="#github" class="mobile-nav-link">技术足迹</a>
-    <a href="#about" class="mobile-nav-link">关于我</a>
-    <a href="#contact" class="mobile-nav-link">联系我</a>
+    <a href="#skills" class="mobile-nav-link">/SKILLS</a>
+    <a href="#projects" class="mobile-nav-link">/PROJECTS</a>
+    <a href="#contact" class="mobile-nav-link">/CONTACT</a>
   </div>
 </div>
 
 <script>
-  // 主题切换
-  const themeToggle = document.getElementById('themeToggle');
-  const html = document.documentElement;
-  
-  function toggleTheme() {
-    const currentTheme = html.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', newTheme);
-    try {
-      localStorage.setItem('theme', newTheme);
-    } catch (e) {
-      console.warn('无法保存主题设置');
-    }
-  }
-  
-  themeToggle?.addEventListener('click', toggleTheme);
-  
-  // 移动端菜单
   const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
   const mobileMenu = document.querySelector('.mobile-menu');
   const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
@@ -84,10 +53,8 @@ const { class: className = '' } = Astro.props
     link.addEventListener('click', toggleMobileMenu);
   });
   
-  // 滚动时添加阴影
-  const navbar = document.querySelector('.navbar');
-  
   window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
     if (window.scrollY > 10) {
       navbar?.classList.add('scrolled');
     } else {
@@ -95,7 +62,6 @@ const { class: className = '' } = Astro.props
     }
   });
   
-  // 平滑滚动
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
@@ -116,207 +82,63 @@ const { class: className = '' } = Astro.props
     top: 0;
     left: 0;
     right: 0;
-    height: 52px;
-    background: rgba(255, 255, 255, 0.72);
+    height: 64px;
+    background: rgba(5, 5, 5, 0.5);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 max(48px, 5vw);
+    padding: 0 24px;
     z-index: 1000;
-    transition: background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  :global(html[data-theme="dark"] .navbar) {
-    background: rgba(28, 28, 30, 0.72);
-    border-bottom-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   :global(.navbar.scrolled) {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  }
-  
-  :global(html[data-theme="dark"] .navbar.scrolled) {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    background: rgba(5, 5, 5, 0.9);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
   }
   
   :global(.navbar-logo) {
-    font-size: 1.9rem;
-    font-weight: 600;
-    color: #1D1D1F;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
     text-decoration: none;
-    transition: color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.1em;
+    transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
   
-  :global(html[data-theme="dark"] .navbar-logo) {
-    color: #F5F5F7;
-  }
-  
-  :global(.navbar-logo:hover) {
-    color: #007AFF;
-  }
-  
-  :global(html[data-theme="dark"] .navbar-logo:hover) {
-    color: #0A84FF;
+  :global(.logo-accent) {
+    color: #00ffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
   }
   
   :global(.nav-links) {
     display: flex;
-    gap: 48px;
+    gap: 32px;
   }
   
   :global(.nav-link) {
-    font-size: 1.2rem;
-    color: #1D1D1F;
+    font-size: 0.875rem;
+    color: #9ca3af;
     text-decoration: none;
     position: relative;
-    transition: color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
-  }
-  
-  :global(html[data-theme="dark"] .nav-link) {
-    color: #F5F5F7;
-  }
-  
-  :global(.nav-link::after) {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: #007AFF;
-    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateX(-50%);
-  }
-  
-  :global(html[data-theme="dark"] .nav-link::after) {
-    background: #0A84FF;
+    transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.1em;
   }
   
   :global(.nav-link:hover) {
-    color: #007AFF;
-  }
-  
-  :global(html[data-theme="dark"] .nav-link:hover) {
-    color: #0A84FF;
-  }
-  
-  :global(.nav-link:hover::after) {
-    width: 100%;
+    color: #00ffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
   }
   
   :global(.nav-actions) {
     display: flex;
     gap: 16px;
     align-items: center;
-  }
-  
-  :global(.lang-toggle) {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2px;
-    transition: background-color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
-                transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-    color: #1D1D1F;
-    font-size: 0.9rem;
-    font-weight: 500;
-    padding: 0;
-  }
-  
-  :global(html[data-theme="dark"] .lang-toggle) {
-    color: #F5F5F7;
-  }
-  
-  :global(.lang-toggle:hover) {
-    background: rgba(0, 0, 0, 0.05);
-  }
-  
-  :global(html[data-theme="dark"] .lang-toggle:hover) {
-    background: rgba(255, 255, 255, 0.1);
-  }
-  
-  :global(.lang-toggle:active) {
-    transform: scale(0.96);
-    transition-duration: 0.15s;
-  }
-  
-  :global(.lang-current) {
-    color: #007AFF;
-    font-weight: 600;
-  }
-  
-  :global(html[data-theme="dark"] .lang-current) {
-    color: #0A84FF;
-  }
-  
-  :global(.lang-separator) {
-    color: #C7C7CC;
-    opacity: 0.6;
-  }
-  
-  :global(.lang-next) {
-    color: #86868B;
-  }
-  
-  :global(.theme-toggle) {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
-                transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-    color: #1D1D1F;
-    font-size: 1.4rem;
-  }
-  
-  :global(html[data-theme="dark"] .theme-toggle) {
-    color: #F5F5F7;
-  }
-  
-  :global(.theme-toggle:hover) {
-    background: rgba(0, 0, 0, 0.05);
-  }
-  
-  :global(html[data-theme="dark"] .theme-toggle:hover) {
-    background: rgba(255, 255, 255, 0.1);
-  }
-  
-  :global(.theme-toggle:active) {
-    transform: scale(0.96);
-    transition-duration: 0.15s;
-  }
-  
-  :global(.theme-toggle .icon-sun) {
-    display: block;
-  }
-  
-  :global(.theme-toggle .icon-moon) {
-    display: none;
-  }
-  
-  :global(html[data-theme="dark"] .theme-toggle .icon-sun) {
-    display: none;
-  }
-  
-  :global(html[data-theme="dark"] .theme-toggle .icon-moon) {
-    display: block;
   }
   
   :global(.mobile-menu-toggle) {
@@ -335,17 +157,16 @@ const { class: className = '' } = Astro.props
   :global(.mobile-menu-toggle span) {
     width: 100%;
     height: 2px;
-    background: #1D1D1F;
+    background: #00ffff;
     border-radius: 2px;
-    transition: transform 0.3s, opacity 0.3s;
-  }
-  
-  :global(html[data-theme="dark"] .mobile-menu-toggle span) {
-    background: #F5F5F7;
+    transition: all 0.3s;
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
   }
   
   :global(.mobile-menu-toggle.active span:nth-child(1)) {
     transform: rotate(45deg) translate(5px, 5px);
+    background: #ff00ff;
+    box-shadow: 0 0 5px rgba(255, 0, 255, 0.3);
   }
   
   :global(.mobile-menu-toggle.active span:nth-child(2)) {
@@ -354,6 +175,8 @@ const { class: className = '' } = Astro.props
   
   :global(.mobile-menu-toggle.active span:nth-child(3)) {
     transform: rotate(-45deg) translate(5px, -5px);
+    background: #ff00ff;
+    box-shadow: 0 0 5px rgba(255, 0, 255, 0.3);
   }
   
   :global(.mobile-menu) {
@@ -362,17 +185,15 @@ const { class: className = '' } = Astro.props
     left: 0;
     width: 100%;
     height: 100vh;
-    background: #FFFFFF;
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(20px);
     transform: translateX(100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 999;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  :global(html[data-theme="dark"] .mobile-menu) {
-    background: #000000;
+    border-left: 1px solid rgba(0, 255, 255, 0.3);
   }
   
   :global(.mobile-menu.open) {
@@ -382,27 +203,22 @@ const { class: className = '' } = Astro.props
   :global(.mobile-menu-content) {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 48px;
     align-items: center;
   }
   
   :global(.mobile-nav-link) {
     font-size: 2rem;
-    color: #1D1D1F;
+    color: #ffffff;
     text-decoration: none;
-    transition: color 0.2s;
-  }
-  
-  :global(html[data-theme="dark"] .mobile-nav-link) {
-    color: #F5F5F7;
+    transition: all 0.2s;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.1em;
   }
   
   :global(.mobile-nav-link:hover) {
-    color: #007AFF;
-  }
-  
-  :global(html[data-theme="dark"] .mobile-nav-link:hover) {
-    color: #0A84FF;
+    color: #00ffff;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
   }
   
   @media (max-width: 768px) {

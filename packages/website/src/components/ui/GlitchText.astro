@@ -1,0 +1,20 @@
+---
+interface Props {
+  text: string
+  as?: 'h1' | 'h2' | 'h3' | 'p' | 'span'
+  className?: string
+}
+
+const { 
+  text, 
+  as: Component = 'span', 
+  className = '' 
+} = Astro.props
+---
+
+<Component 
+  class={`cyber-glitch-effect font-cyber uppercase tracking-widest ${className}`} 
+  data-text={text}
+>
+  {text}
+</Component>

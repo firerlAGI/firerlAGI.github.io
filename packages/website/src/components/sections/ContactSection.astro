@@ -1,63 +1,71 @@
 ---
 import Container from '../ui/Container.astro'
 import Section from '../ui/Section.astro'
+import CyberCard from '../ui/CyberCard.astro'
+import GlitchText from '../ui/GlitchText.astro'
+import { Mail, Github, Twitter, MapPin } from 'lucide-react'
 ---
 
 <Section id="contact" alt={true}>
   <Container>
-    <h2 class="section-title animate-on-scroll">联系我</h2>
+    <div class="contact-header animate-on-scroll">
+      <GlitchText text="INITIATE UPLINK" as="h2" className="section-title" />
+      <p class="contact-subtitle">Available for freelance contracts and classified missions.</p>
+    </div>
     
     <div class="contact-wrapper animate-on-scroll">
-      <div class="contact-info">
-        <p class="contact-description">
-          有项目合作意向，或者只是想聊聊？欢迎随时联系我！
-        </p>
-        
+      <CyberCard glowColor="pink" title="TRANSMISSION CHANNELS" className="contact-info">
         <div class="contact-links">
           <a href="mailto:hello@firerlAGI.com" class="contact-link">
-            <span class="contact-icon">📧</span>
-            <div class="contact-text">
-              <span class="contact-label">Email</span>
-              <span class="contact-value">hello@firerlAGI.com</span>
+            <div class="icon-wrapper">
+              <Mail size={20} />
             </div>
+            <span class="contact-value font-mono">hello@firerlAGI.com</span>
           </a>
           
           <a href="https://github.com/firerlAGI" target="_blank" rel="noopener noreferrer" class="contact-link">
-            <span class="contact-icon">🐙</span>
-            <div class="contact-text">
-              <span class="contact-label">GitHub</span>
-              <span class="contact-value">@firerlAGI</span>
+            <div class="icon-wrapper">
+              <Github size={20} />
             </div>
+            <span class="contact-value font-mono">@firerlAGI</span>
           </a>
           
           <a href="https://twitter.com/firerlAGI" target="_blank" rel="noopener noreferrer" class="contact-link">
-            <span class="contact-icon">🐦</span>
-            <div class="contact-text">
-              <span class="contact-label">Twitter</span>
-              <span class="contact-value">@firerlAGI</span>
+            <div class="icon-wrapper">
+              <Twitter size={20} />
             </div>
+            <span class="contact-value font-mono">@firerlAGI</span>
           </a>
+          
+          <div class="contact-link">
+            <div class="icon-wrapper">
+              <MapPin size={20} />
+            </div>
+            <span class="contact-value font-mono">Silicon Valley, Sector 7</span>
+          </div>
         </div>
-      </div>
+      </CyberCard>
       
       <div class="contact-form-wrapper">
-        <form class="contact-form" onsubmit="event.preventDefault(); alert('表单功能开发中，请通过邮箱联系我。');">
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Transmission failed. Please use direct frequency: hello@firerlAGI.com');">
           <div class="form-group">
-            <label for="name">姓名</label>
-            <input type="text" id="name" name="name" required />
+            <label for="name">IDENTITY</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your identity" />
           </div>
           
           <div class="form-group">
-            <label for="email">邮箱</label>
-            <input type="email" id="email" name="email" required />
+            <label for="email">FREQUENCY (EMAIL)</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your frequency" />
           </div>
           
           <div class="form-group">
-            <label for="message">留言</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
+            <label for="message">ENCRYPTED MESSAGE</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Enter encrypted message"></textarea>
           </div>
           
-          <button type="submit" class="btn btn-primary">发送消息</button>
+          <button type="submit" class="cyber-button">
+            <span class="button-text">SEND TRANSMISSION</span>
+          </button>
         </form>
       </div>
     </div>
@@ -65,220 +73,279 @@ import Section from '../ui/Section.astro'
 </Section>
 
 <style>
-  :global(.section-title) {
-    font-size: 3.2rem;
-    font-weight: 600;
+  :global(.contact-header) {
     text-align: center;
-    margin-bottom: 48px;
-    letter-spacing: -0.015em;
+    margin-bottom: 64px;
+  }
+
+  :global(.section-title) {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 0.1em;
     line-height: 1.2;
-    color: #1D1D1F;
+    color: #00ffff;
+    text-shadow: 
+      0 0 10px rgba(0, 255, 255, 0.5),
+      0 0 20px rgba(0, 255, 255, 0.3),
+      0 0 30px rgba(0, 255, 255, 0.2);
   }
-  
-  :global(html[data-theme="dark"] .section-title) {
-    color: #F5F5F7;
+
+  :global(.contact-subtitle) {
+    font-size: 1.1rem;
+    color: #22d3ee;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+    margin: 0;
   }
-  
+
   :global(.contact-wrapper) {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
-    gap: 48px;
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
-  
+
   :global(.contact-info) {
     display: flex;
     flex-direction: column;
     gap: 24px;
   }
-  
-  :global(.contact-description) {
-    font-size: 1.6rem;
-    color: #86868B;
-    line-height: 1.6;
-    margin: 0;
-  }
-  
+
   :global(.contact-links) {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-  }
-  
-  :global(.contact-link) {
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 20px;
-    padding: 32px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  :global(html[data-theme="dark"] .contact-link) {
-    background: rgba(28, 28, 30, 0.8);
-    border-color: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  :global(.contact-link:hover) {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  }
-  
-  :global(html[data-theme="dark"] .contact-link:hover) {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-  }
-  
-  :global(.contact-icon) {
-    font-size: 3.2rem;
-    flex-shrink: 0;
-    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-  
-  :global(.contact-link:hover .contact-icon) {
-    transform: scale(1.1);
-  }
-  
-  :global(.contact-text) {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 16px;
   }
-  
-  :global(.contact-label) {
-    font-size: 1.3rem;
-    color: #86868B;
+
+  :global(.contact-link) {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    text-decoration: none;
+    border: 1px solid rgba(217, 70, 239, 0.3);
+    background: rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
   }
-  
+
+  :global(.contact-link::before) {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(217, 70, 239, 0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  :global(.contact-link:hover::before) {
+    left: 100%;
+  }
+
+  :global(.contact-link:hover) {
+    border-color: #d946ef;
+    box-shadow: 0 0 20px rgba(217, 70, 239, 0.3);
+    transform: translateX(4px);
+  }
+
+  :global(.contact-link:hover .icon-wrapper) {
+    border-color: #d946ef;
+    color: #d946ef;
+    box-shadow: 0 0 15px rgba(217, 70, 239, 0.4);
+  }
+
+  :global(.icon-wrapper) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(217, 70, 239, 0.5);
+    border-radius: 4px;
+    background: rgba(217, 70, 239, 0.1);
+    color: #d946ef;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   :global(.contact-value) {
-    font-size: 1.7rem;
-    color: #1D1D1F;
-    font-weight: 500;
+    font-size: 1rem;
+    color: #e2e8f0;
+    transition: color 0.3s;
   }
-  
-  :global(html[data-theme="dark"] .contact-value) {
-    color: #F5F5F7;
+
+  :global(.contact-link:hover .contact-value) {
+    color: #d946ef;
   }
-  
+
   :global(.contact-form-wrapper) {
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    border-radius: 4px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
   }
-  
-  :global(html[data-theme="dark"] .contact-form-wrapper) {
-    background: rgba(28, 28, 30, 0.8);
-    border-color: rgba(255, 255, 255, 0.05);
+
+  :global(.contact-form-wrapper::before) {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
   }
-  
+
   :global(.contact-form) {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
   }
-  
+
   :global(.form-group) {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
-  
+
   :global(.form-group label) {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: #1D1D1F;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #22d3ee;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'Courier New', monospace;
   }
-  
-  :global(html[data-theme="dark"] .form-group label) {
-    color: #F5F5F7;
-  }
-  
+
   :global(.form-group input),
   :global(.form-group textarea) {
-    padding: 16px;
-    font-size: 1.6rem;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    background: #FFFFFF;
-    color: #1D1D1F;
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    padding: 14px 16px;
+    font-size: 1rem;
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    background: rgba(0, 0, 0, 0.5);
+    color: #e2e8f0;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
   }
-  
-  :global(html[data-theme="dark"] .form-group input),
-  :global(html[data-theme="dark"] .form-group textarea) {
-    background: #000000;
-    border-color: rgba(255, 255, 255, 0.1);
-    color: #F5F5F7;
-  }
-  
+
   :global(.form-group input:focus),
   :global(.form-group textarea:focus) {
     outline: none;
-    border-color: #007AFF;
-    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+    border-color: #22d3ee;
+    box-shadow: 
+      0 0 20px rgba(34, 211, 238, 0.3),
+      inset 0 0 10px rgba(34, 211, 238, 0.1);
   }
-  
-  :global(html[data-theme="dark"] .form-group input:focus),
-  :global(html[data-theme="dark"] .form-group textarea:focus) {
-    border-color: #0A84FF;
-    box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.1);
+
+  :global(.form-group input::placeholder),
+  :global(.form-group textarea::placeholder) {
+    color: rgba(148, 163, 184, 0.6);
   }
-  
+
   :global(.form-group textarea) {
     resize: vertical;
     min-height: 120px;
   }
-  
-  :global(.btn) {
-    display: inline-flex;
+
+  :global(.cyber-button) {
+    position: relative;
+    padding: 16px 32px;
+    background: rgba(34, 211, 238, 0.1);
+    border: 1px solid #22d3ee;
+    color: #22d3ee;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 16px 32px;
-    font-size: 1.7rem;
-    font-weight: 500;
-    text-decoration: none;
-    border-radius: 12px;
-    transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
-    cursor: pointer;
-    border: none;
   }
-  
-  :global(.btn-primary) {
-    background: #007AFF;
-    color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+  :global(.cyber-button::before) {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.3), transparent);
+    transition: left 0.5s;
   }
-  
-  :global(html[data-theme="dark"] .btn-primary) {
-    background: #0A84FF;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+  :global(.cyber-button:hover::before) {
+    left: 100%;
   }
-  
-  :global(.btn-primary:hover) {
-    background: #0056b3;
+
+  :global(.cyber-button:hover) {
+    background: #22d3ee;
+    color: #000;
+    box-shadow: 
+      0 0 20px rgba(34, 211, 238, 0.5),
+      0 0 40px rgba(34, 211, 238, 0.3);
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   }
-  
-  :global(html[data-theme="dark"] .btn-primary:hover) {
-    background: #409CFF;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+
+  :global(.cyber-button:active) {
+    transform: translateY(0);
   }
-  
-  @media (max-width: 768px) {
-    :global(.contact-links) {
-      grid-template-columns: 1fr;
+
+  :global(.button-text) {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Cyber glitch effect for section title */
+  @keyframes cyberGlitch {
+    0%, 100% {
+      text-shadow: 
+        0 0 10px rgba(0, 255, 255, 0.5),
+        0 0 20px rgba(0, 255, 255, 0.3);
     }
-    
+    25% {
+      text-shadow: 
+        -2px 0 10px rgba(255, 0, 255, 0.5),
+        2px 0 10px rgba(0, 255, 255, 0.5);
+    }
+    50% {
+      text-shadow: 
+        2px 0 10px rgba(0, 255, 255, 0.5),
+        -2px 0 10px rgba(255, 0, 255, 0.5);
+    }
+    75% {
+      text-shadow: 
+        -1px 0 10px rgba(255, 0, 255, 0.5),
+        1px 0 10px rgba(0, 255, 255, 0.5);
+    }
+  }
+
+  :global(.section-title:hover) {
+    animation: cyberGlitch 0.5s infinite;
+  }
+
+  @media (max-width: 768px) {
     :global(.contact-wrapper) {
       grid-template-columns: 1fr;
+    }
+
+    :global(.section-title) {
+      font-size: 2rem;
     }
   }
 </style>

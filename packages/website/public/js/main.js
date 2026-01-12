@@ -1,6 +1,29 @@
 const themeToggle = document.getElementById('themeToggle');
 const html = document.documentElement;
 
+function throttle(func, wait) {
+  let timeout;
+  let previous = 0;
+  return function executedFunction(...args) {
+    const now = Date.now();
+    const remaining = wait - (now - previous);
+    if (remaining <= 0 || remaining > wait) {
+      if (timeout) {
+        clearTimeout(timeout);
+        timeout = null;
+      }
+      previous = now;
+      func.apply(this, args);
+    } else if (!timeout) {
+      timeout = setTimeout(() => {
+        previous = Date.now();
+        timeout = null;
+        func.apply(this, args);
+      }, remaining);
+    }
+  };
+}
+
 const storage = (function() {
   try {
     const test = '__storage_test__';
@@ -170,7 +193,7 @@ const navbar = document.querySelector('.navbar');
 
 let lastScrollY = window.scrollY;
 
-window.addEventListener('scroll', () => {
+window.addEventListener('scroll', throttle(() => {
   const scrollY = window.scrollY;
 
   if (scrollY > 20) {
@@ -180,7 +203,7 @@ window.addEventListener('scroll', () => {
   }
 
   lastScrollY = scrollY;
-});
+}, 100));
 
 const navLinks = document.querySelectorAll('.nav-link');
 
@@ -202,8 +225,8 @@ navLinks.forEach(link => {
 
 const observerOptions = {
   root: null,
-  rootMargin: '0px',
-  threshold: 0.1
+  rootMargin: '50px 0px -50px 0px',
+  threshold: 0.05
 };
 
 const observer = new IntersectionObserver((entries) => {

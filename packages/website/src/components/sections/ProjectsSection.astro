@@ -1,50 +1,60 @@
 ---
 import Container from '../ui/Container.astro'
-import Card from '../ui/Card.astro'
 import Section from '../ui/Section.astro'
+import CyberCard from '../ui/CyberCard.astro'
+import GlitchText from '../ui/GlitchText.astro'
 import { projects } from '../../data/projects'
+import { Github, ExternalLink } from 'lucide-astro'
 ---
 
-<Section id="projects" alt={true}>
-  <Container>
-    <h2 class="section-title animate-on-scroll">精选项目</h2>
-    
-    <div class="projects-grid">
-      {projects.map(project => (
-        <Card
-          size={project.size}
-          icon={project.icon}
-          title={project.title}
-          description={project.description}
-          image={project.image}
-          techBadges={project.techBadges}
-          cta={project.cta}
-          ctaHref={project.ctaHref}
-          class="animate-on-scroll"
-        />
+<Section id="projects" class="py-20 px-4">
+  <Container class="max-w-7xl mx-auto">
+    <div class="mb-12 flex flex-col items-end text-right">
+      <GlitchText text="DEPLOYED MODULES" as="h2" className="text-4xl md:text-5xl font-bold text-white mb-4" />
+      <div class="h-1 w-24 bg-cyan-500" />
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects.map((project, index) => (
+        <CyberCard key={project.title} className="h-full flex flex-col" glowColor={index % 2 === 0 ? 'pink' : 'cyan'}>
+          {project.image && (
+            <div class="relative mb-4 overflow-hidden group-hover:border-b border-cyan-500/50">
+              <img 
+                src={project.image} 
+                alt={project.title} 
+                class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110 filter grayscale group-hover:grayscale-0"
+              />
+              <div class="absolute inset-0 bg-cyan-500/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
+          )}
+          
+          <h3 class={`text-2xl font-cyber ${index % 2 === 0 ? 'text-fuchsia-400' : 'text-cyan-400'} mb-2`}>{project.title}</h3>
+          <p class="text-gray-400 mb-4 flex-grow text-sm leading-relaxed">{project.description}</p>
+          
+          {project.techBadges && (
+            <div class="flex flex-wrap gap-2 mb-6">
+              {project.techBadges.map(tech => (
+                <span key={tech} class="px-2 py-1 text-xs border border-gray-600 text-gray-300 font-mono bg-black/50">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <div class="flex gap-4 mt-auto pt-4 border-t border-gray-800">
+            {project.ctaHref && (
+              <a href={project.ctaHref} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-cyan-400 hover:text-white transition-colors text-sm font-mono">
+                <Github size={16} /> CODE
+              </a>
+            )}
+            {project.cta && (
+              <a href={project.ctaHref} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-fuchsia-400 hover:text-white transition-colors text-sm font-mono">
+                <ExternalLink size={16} /> DEMO
+              </a>
+            )}
+          </div>
+        </CyberCard>
       ))}
     </div>
   </Container>
 </Section>
-
-<style>
-  :global(.section-title) {
-    font-size: 3.2rem;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 48px;
-    letter-spacing: -0.015em;
-    line-height: 1.2;
-    color: #1D1D1F;
-  }
-  
-  :global(html[data-theme="dark"] .section-title) {
-    color: #F5F5F7;
-  }
-  
-  :global(.projects-grid) {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 24px;
-  }
-</style>
