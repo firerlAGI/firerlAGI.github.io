@@ -1,10 +1,6 @@
 ---
 import LanguageSwitcher from '../react/LanguageSwitcher'
 
-interface Props {
-  class?: string
-}
-
 const { class: className = '' } = Astro.props
 
 <nav class={`navbar ${className}`}>
