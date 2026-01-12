@@ -1,0 +1,177 @@
+---
+import Container from '../ui/Container.astro'
+---
+
+<Section id="about">
+  <Container>
+    <h2 class="section-title animate-on-scroll" style="text-align: center; margin-bottom: 48px;">关于我</h2>
+    <div class="about-card animate-on-scroll">
+      <div class="about-content">
+        <div class="about-avatar">
+          <div class="avatar-placeholder">👨‍💻</div>
+        </div>
+        
+        <div class="about-text">
+          <h3 class="about-name">firerlAGI</h3>
+          <p class="about-role">全栈开发者 & AI 爱好者</p>
+          
+          <div class="about-focus">
+            <h4>技术焦点</h4>
+            <ul>
+              <li>人工智能与机器学习</li>
+              <li>前端开发（React、Vue、Astro）</li>
+              <li>后端开发（Node.js、Python）</li>
+              <li>知识管理与知识图谱</li>
+            </ul>
+          </div>
+          
+          <blockquote class="about-quote">
+            "技术的价值不在于它有多复杂，而在于它能为人们解决多少实际问题。"
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  :global(.about-card) {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 60px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  :global(html[data-theme="dark"] .about-card) {
+    background: rgba(28, 28, 30, 0.8);
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  :global(.about-card:hover) {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+  
+  :global(html[data-theme="dark"] .about-card:hover) {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  :global(.about-content) {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+  }
+  
+  :global(.about-avatar) {
+    flex-shrink: 0;
+  }
+  
+  :global(.avatar-placeholder) {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6rem;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  :global(.avatar-placeholder:hover) {
+    transform: scale(1.05) rotate(3deg);
+  }
+  
+  :global(.about-text) {
+    flex: 1;
+  }
+  
+  :global(.about-name) {
+    font-size: 3.2rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #1D1D1F;
+  }
+  
+  :global(html[data-theme="dark"] .about-name) {
+    color: #F5F5F7;
+  }
+  
+  :global(.about-role) {
+    font-size: 1.7rem;
+    color: #86868B;
+    margin: 0 0 32px 0;
+  }
+  
+  :global(.about-focus h4) {
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    color: #1D1D1F;
+  }
+  
+  :global(html[data-theme="dark"] .about-focus h4) {
+    color: #F5F5F7;
+  }
+  
+  :global(.about-focus ul) {
+    list-style: none;
+    margin: 0 0 32px 0;
+    padding: 0;
+  }
+  
+  :global(.about-focus li) {
+    font-size: 1.5rem;
+    color: #1D1D1F;
+    padding: 8px 0;
+    padding-left: 24px;
+    position: relative;
+  }
+  
+  :global(html[data-theme="dark"] .about-focus li) {
+    color: #F5F5F7;
+  }
+  
+  :global(.about-focus li::before) {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #007AFF;
+    font-weight: bold;
+  }
+  
+  :global(.about-quote) {
+    font-size: 1.9rem;
+    font-style: italic;
+    color: #86868B;
+    border-left: 4px solid #007AFF;
+    padding-left: 24px;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  @media (max-width: 768px) {
+    :global(.about-content) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    :global(.about-quote) {
+      border-left: none;
+      border-top: 4px solid #007AFF;
+      padding-left: 0;
+      padding-top: 24px;
+    }
+    
+    :global(.about-avatar) {
+      margin-bottom: 32px;
+    }
+  }
+</style>

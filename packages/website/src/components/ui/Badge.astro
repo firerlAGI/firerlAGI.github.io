@@ -1,0 +1,40 @@
+---
+interface Props {
+  class?: string
+}
+
+const { class: className = '' } = Astro.props
+---
+
+<span class={`badge ${className}`}>
+  <slot />
+</span>
+
+<style>
+  :global(.badge) {
+    display: inline-block;
+    height: 32px;
+    padding: 0 16px;
+    background: rgba(0, 122, 255, 0.1);
+    color: #007AFF;
+    border-radius: 16px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    transition: background-color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+                color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  
+  :global(html[data-theme="dark"] .badge) {
+    background: rgba(10, 132, 255, 0.1);
+    color: #0A84FF;
+  }
+  
+  :global(.badge:hover) {
+    background: #007AFF;
+    color: white;
+  }
+  
+  :global(html[data-theme="dark"] .badge:hover) {
+    background: #0A84FF;
+  }
+</style>

@@ -1,0 +1,76 @@
+---
+import '../styles/global.css'
+import { getTheme } from '../lib/theme'
+import Navbar from '../components/layout/Navbar.astro'
+import Footer from '../components/layout/Footer.astro'
+
+interface Props {
+  title?: string
+  description?: string
+  image?: string
+}
+
+const {
+  title = 'firerlAGI - 计算为了无法计算的价值',
+  description = '探索 AI、知识管理与创造力边界的个人作品集',
+  image = 'https://github.com/firerlAGI/firerlAGI-preview/raw/main/images/hero-bg.png',
+} = Astro.props
+
+const theme = getTheme()
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme={theme}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:url" content="https://firerlAGI.github.io" />
+    <meta property="og:site_name" content="firerlAGI" />
+    <meta property="og:locale" content="zh_CN" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <meta name="theme-color" content="#007AFF" />
+
+    <script is:inline>
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+          }
+        } catch (e) {
+          console.warn('无法读取localStorage中的主题设置');
+        }
+      })();
+    </script>
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <Navbar />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    
+    <script>
+      import { initThemeToggle } from '../scripts/theme-toggle'
+      import { initSmoothScroll } from '../scripts/smooth-scroll'
+      import { initScrollAnimations, initHeroAnimations } from '../scripts/animations'
+      
+      initThemeToggle()
+      initSmoothScroll()
+      initScrollAnimations()
+      initHeroAnimations()
+    </script>
+  </body>
+</html>

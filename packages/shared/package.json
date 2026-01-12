@@ -1,0 +1,17 @@
+{
+  "name": "shared",
+  "version": "1.0.0",
+  "private": true,
+  "description": "共享代码库",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'Build shared package'",
+    "test": "echo 'Test shared package'"
+  },
+  "keywords": [
+    "shared",
+    "utilities"
+  ],
+  "author": "firerlAGI",
+  "license": "MIT"
+}

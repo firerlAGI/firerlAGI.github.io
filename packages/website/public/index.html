@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+      } catch (e) {
+        console.warn('无法读取localStorage中的主题设置');
+      }
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="firerlAGI - 计算为了无法计算的价值。探索 AI、知识管理与创造力边界的个人作品集。">
+  <title>firerlAGI - 计算为了无法计算的价值</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="firerlAGI - 计算为了无法计算的价值">
+  <meta property="og:description" content="探索 AI、知识管理与创造力边界的个人作品集">
+  <meta property="og:image" content="https://github.com/firerlAGI/firerlAGI-preview/raw/main/images/hero-bg.png">
+  <meta property="og:url" content="https://firerlAGI.github.io">
+  <meta property="og:site_name" content="firerlAGI">
+  <meta property="og:locale" content="zh_CN">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="firerlAGI - 计算为了无法计算的价值">
+  <meta name="twitter:description" content="探索 AI、知识管理与创造力边界的个人作品集">
+  <meta name="twitter:image" content="https://github.com/firerlAGI/firerlAGI-preview/raw/main/images/hero-bg.png">
+  
+  <meta name="theme-color" content="#007AFF">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="#" class="navbar-logo">firerlAGI</a>
+    <div class="nav-links">
+      <a href="#projects" class="nav-link" data-i18n="nav.projects">个人项目</a>
+      <a href="#about" class="nav-link" data-i18n="nav.about">关于我</a>
+      <a href="#contact" class="nav-link" data-i18n="nav.contact">联系我</a>
+    </div>
+    <div class="nav-actions">
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="打开菜单">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <button class="lang-toggle" id="langToggle" aria-label="切换语言">
+        <span class="lang-current">中</span>
+        <span class="lang-separator">/</span>
+        <span class="lang-next">EN</span>
+      </button>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <svg class="icon-sun" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+        </svg>
+        <svg class="icon-moon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-content">
+      <a href="#projects" class="mobile-nav-link" data-i18n="nav.projects">个人项目</a>
+      <a href="#about" class="mobile-nav-link" data-i18n="nav.about">关于我</a>
+      <a href="#contact" class="mobile-nav-link" data-i18n="nav.contact">联系我</a>
+    </div>
+  </div>
+
+  <main>
+    <section id="home" class="hero">
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="assets/images/hero-bg.mp4" type="video/mp4">
+      </video>
+      <div class="hero-scroll-indicator">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title" data-i18n="projects.title">精选项目</h2>
+
+        <div class="projects-grid">
+          <div class="card card-large">
+            <div class="card-icon">🧠</div>
+            <h3 class="card-title" data-i18n="projects.secondBrain.title">第二大脑</h3>
+            <p class="card-description" data-i18n="projects.secondBrain.description">AI 驱动的个人知识管理系统，帮助你构建高效的知识网络，提升学习与创造效率。</p>
+            <div class="card-image-placeholder">
+              <div class="placeholder-content">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                  <circle cx="30" cy="30" r="25" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/>
+                  <path d="M30 20v20M20 30h20" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+            </div>
+            <div class="tech-badges">
+              <span class="tech-badge" data-i18n="projects.secondBrain.tech1">AI</span>
+              <span class="tech-badge" data-i18n="projects.secondBrain.tech2">知识图谱</span>
+              <span class="tech-badge" data-i18n="projects.secondBrain.tech3">NLP</span>
+              <span class="tech-badge" data-i18n="projects.secondBrain.tech4">机器学习</span>
+            </div>
+            <a href="javascript:void(0)" class="card-cta" data-project="second-brain" data-i18n="projects.learnMore">了解详情 →</a>
+          </div>
+
+          <div class="card card-small">
+            <div class="card-icon">🎯</div>
+            <h3 class="card-title" data-i18n="projects.adhdAssistant.title">ADHD 助手</h3>
+            <p class="card-description" data-i18n="projects.adhdAssistant.description">智能时间管理与专注工具，专为 ADHD 人群设计，帮助你掌控时间。</p>
+            <a href="javascript:void(0)" class="card-cta" data-project="adhd-assistant" data-i18n="projects.knowMore">了解更多 →</a>
+          </div>
+
+          <div class="card card-small">
+            <div class="card-icon">🔧</div>
+            <h3 class="card-title" data-i18n="projects.devTools.title">开发工具集</h3>
+            <p class="card-description" data-i18n="projects.devTools.description">提升开发效率的各种工具与插件，让编程变得更简单。</p>
+            <a href="javascript:void(0)" class="card-cta" data-project="dev-tools" data-i18n="projects.knowMore">了解更多 →</a>
+          </div>
+
+          <div class="card card-small">
+            <div class="card-icon">📱</div>
+            <h3 class="card-title" data-i18n="projects.mobileApps.title">移动应用</h3>
+            <p class="card-description" data-i18n="projects.mobileApps.description">跨平台移动应用开发，打造流畅的用户体验。</p>
+            <a href="javascript:void(0)" class="card-cta" data-project="mobile-apps" data-i18n="projects.knowMore">了解更多 →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="github-section" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">技术足迹</h2>
+        
+        <div class="stats-container">
+          <div class="stat-card">
+            <span class="stat-value" id="stat-commits">0</span>
+            <span class="stat-label">提交次数</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="stat-repos">0</span>
+            <span class="stat-label">活跃仓库</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="stat-stars">0</span>
+            <span class="stat-label">获得星标</span>
+          </div>
+        </div>
+
+        <div class="contribution-heatmap" id="contribution-heatmap">
+          <div class="heatmap-container">
+            <div class="heatmap-month-chart">
+              <div class="heatmap-grid" id="heatmap-grid"></div>
+            </div>
+          </div>
+          <div class="heatmap-legend">
+            <span class="legend-label">少</span>
+            <div class="legend-squares">
+              <div class="legend-square level-0"></div>
+              <div class="legend-square level-1"></div>
+              <div class="legend-square level-2"></div>
+              <div class="legend-square level-3"></div>
+            </div>
+            <span class="legend-label">多</span>
+          </div>
+          <div class="heatmap-tooltip" id="heatmap-tooltip">
+            <div class="tooltip-date"></div>
+            <div class="tooltip-commits"></div>
+          </div>
+        </div>
+        
+        <div class="filter-container">
+          <select id="event-filter">
+            <option value="all">全部活动</option>
+            <option value="PushEvent">代码提交</option>
+            <option value="CreateEvent">创建事件</option>
+            <option value="WatchEvent">关注仓库</option>
+            <option value="ForkEvent">Fork仓库</option>
+          </select>
+        </div>
+        
+        <div id="github-activities">
+          <div class="loading">加载中...</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title" data-i18n="about.title">关于我</h2>
+        <div class="about-card">
+          <div class="about-content">
+            <div class="about-avatar">
+              <div class="avatar-placeholder">👨‍💻</div>
+            </div>
+            <div class="about-text">
+              <h3 class="about-name">firerlAGI</h3>
+              <p class="about-role" data-i18n="about.role">全栈开发者 | AI 研究者</p>
+              <div class="about-focus">
+                <h4 data-i18n="about.focusTitle">当前聚焦：</h4>
+                <ul>
+                  <li data-i18n="about.focus1">第二大脑 - 个人知识管理系统</li>
+                  <li data-i18n="about.focus2">ADHD 研究 - 用 AI 攻克注意力缺陷</li>
+                  <li data-i18n="about.focus3">人机协作 - 让技术更好地服务人类</li>
+                </ul>
+              </div>
+              <blockquote class="about-quote">
+                "计算 为了无法计算的价值"
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="section-title" data-i18n="contact.title">联系我</h2>
+        <div class="contact-wrapper">
+          <div class="contact-info">
+            <div class="contact-links">
+              <a href="#" class="contact-link">
+                <div class="contact-icon">💬</div>
+                <div class="contact-text">
+                  <span class="contact-label" data-i18n="contact.wechat">微信</span>
+                  <span class="contact-value">firerlAGI</span>
+                </div>
+              </a>
+              <a href="#" class="contact-link">
+                <div class="contact-icon">📱</div>
+                <div class="contact-text">
+                  <span class="contact-label" data-i18n="contact.publicAccount">公众号</span>
+                  <span class="contact-value">@firerlAGI</span>
+                </div>
+              </a>
+              <a href="https://github.com/firerlAGI" target="_blank" class="contact-link">
+                <div class="contact-icon">🐙</div>
+                <div class="contact-text">
+                  <span class="contact-label">GitHub</span>
+                  <span class="contact-value">github.com/firerlAGI</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 firerlAGI. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/github-activity.js"></script>
+</body>
+</html>

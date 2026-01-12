@@ -1,0 +1,35 @@
+---
+const year = new Date().getFullYear()
+
+interface Props {
+  class?: string
+}
+
+const { class: className = '' } = Astro.props
+---
+
+<footer class={`footer ${className}`}>
+  <p>&copy; {year} firerlAGI. All rights reserved.</p>
+</footer>
+
+<style>
+  :global(.footer) {
+    padding: 32px;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    background: #F5F5F7;
+    transition: background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  :global(html[data-theme="dark"] .footer) {
+    background: #1C1C1E;
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  :global(.footer p) {
+    color: #86868B;
+    font-size: 1.4rem;
+    margin: 0;
+  }
+</style>

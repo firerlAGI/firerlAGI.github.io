@@ -1,0 +1,28 @@
+---
+interface Props {
+  id?: string
+  class?: string
+  alt?: boolean
+}
+
+const { id, class: className = '', alt = false } = Astro.props
+---
+
+<section id={id} class={`section ${alt ? 'section-alt' : ''} ${className}`}>
+  <slot />
+</section>
+
+<style>
+  :global(.section) {
+    padding: max(80px, 10vw) max(48px, 5vw);
+    transition: background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  :global(.section-alt) {
+    background: #F5F5F7;
+  }
+  
+  :global(html[data-theme="dark"] .section-alt) {
+    background: #1C1C1E;
+  }
+</style>

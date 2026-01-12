@@ -1,0 +1,98 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary'
+  type?: 'button' | 'submit' | 'reset'
+  href?: string
+  target?: '_blank' | '_self' | '_parent' | '_top'
+  class?: string
+  children?: string
+}
+
+const {
+  variant = 'primary',
+  type = 'button',
+  href,
+  target,
+  class: className = '',
+  children = ''
+} = Astro.props
+
+const buttonContent = children
+
+if (href) {
+  // 渲染为链接
+---
+  <a href={href} target={target} class={`btn btn-${variant} ${className}`}>
+    <slot>{buttonContent}</slot>
+  </a>
+---
+} else {
+  // 渲染为按钮
+---
+  <button type={type} class={`btn btn-${variant} ${className}`}>
+    <slot>{buttonContent}</slot>
+  </button>
+---
+}
+---
+
+<style>
+  :global(.btn) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 32px;
+    font-size: 1.7rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+    cursor: pointer;
+    border: none;
+  }
+  
+  :global(.btn-primary) {
+    background: #007AFF;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  
+  :global(html[data-theme="dark"] .btn-primary) {
+    background: #0A84FF;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  :global(.btn-primary:hover) {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+  
+  :global(html[data-theme="dark"] .btn-primary:hover) {
+    background: #409CFF;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  :global(.btn-secondary) {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1D1D1F;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  :global(html[data-theme="dark"] .btn-secondary) {
+    background: rgba(28, 28, 30, 0.9);
+    color: #F5F5F7;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  :global(.btn-secondary:hover) {
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+  
+  :global(html[data-theme="dark"] .btn-secondary:hover) {
+    background: #2C2C2E;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+</style>

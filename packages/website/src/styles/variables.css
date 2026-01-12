@@ -1,0 +1,89 @@
+:root {
+  --primary: #007AFF;
+  --primary-hover: #0056b3;
+  --primary-active: #004499;
+  --secondary: #5856D6;
+  --accent: #FF9500;
+  --success: #34C759;
+  --warning: #FF9500;
+  --error: #FF3B30;
+  --info: #5AC8FA;
+
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F5F5F7;
+  --bg-tertiary: #E8E8ED;
+  --bg-blur: rgba(255, 255, 255, 0.72);
+
+  --text-primary: #1D1D1F;
+  --text-secondary: #86868B;
+  --text-tertiary: #C7C7CC;
+
+  --border-color: rgba(0, 0, 0, 0.1);
+  --divider-color: rgba(0, 0, 0, 0.08);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.16);
+
+  --duration-instant: 0.15s;
+  --duration-fast: 0.25s;
+  --duration-medium: 0.35s;
+  --duration-slow: 0.5s;
+  --duration-slower: 0.75s;
+
+  --ease-linear: linear;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-enter: cubic-bezier(0, 0, 0.2, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-minimal: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --nav-bg: rgba(255, 255, 255, 0.72);
+
+  --font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+
+  --heatmap-level-0: #E8EDF5;
+  --heatmap-level-1: #A5C9FF;
+  --heatmap-level-2: #4D9AFF;
+  --heatmap-level-3: #007AFF;
+}
+
+[data-theme="dark"] {
+  --primary: #0A84FF;
+  --primary-hover: #409CFF;
+  --primary-active: #0062CC;
+  --secondary: #5E5CE6;
+  --accent: #FF9F0A;
+  --success: #32D74B;
+  --warning: #FF9F0A;
+  --error: #FF453A;
+  --info: #64D2FF;
+  --danger-color: #FF453A;
+
+  --bg-primary: #000000;
+  --bg-secondary: #1C1C1E;
+  --bg-tertiary: #2C2C2E;
+  --bg-blur: rgba(28, 28, 30, 0.72);
+
+  --text-primary: #F5F5F7;
+  --text-secondary: #86868B;
+  --text-tertiary: #48484A;
+
+  --border-color: rgba(255, 255, 255, 0.1);
+  --divider-color: rgba(255, 255, 255, 0.08);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.5);
+
+  --card-bg: rgba(28, 28, 30, 0.8);
+  --nav-bg: rgba(28, 28, 30, 0.72);
+
+  --heatmap-level-0: #161618;
+  --heatmap-level-1: #1C3A5E;
+  --heatmap-level-2: #0A5CB5;
+  --heatmap-level-3: #0A84FF;
+}

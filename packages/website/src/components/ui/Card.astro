@@ -1,0 +1,248 @@
+---
+interface Props {
+  size?: 'large' | 'small'
+  icon?: string
+  title?: string
+  description?: string
+  image?: boolean
+  techBadges?: string[]
+  cta?: string
+  ctaHref?: string
+  class?: string
+}
+
+const {
+  size = 'small',
+  icon,
+  title,
+  description,
+  image = false,
+  techBadges = [],
+  cta,
+  ctaHref,
+  class: className = ''
+} = Astro.props
+
+const gridSizeClass = size === 'large' ? 'card-large' : 'card-small'
+---
+
+<div class={`card ${gridSizeClass} ${className}`}>
+  {image && (
+    <div class="card-image-placeholder">
+      <span class="placeholder-content">🎨</span>
+    </div>
+  )}
+  
+  {icon && <div class="card-icon">{icon}</div>}
+  
+  {title && <h3 class="card-title">{title}</h3>}
+  {description && <p class="card-description">{description}</p>}
+  
+  {techBadges.length > 0 && (
+    <div class="tech-badges">
+      {techBadges.map(badge => (
+        <span class="tech-badge">{badge}</span>
+      ))}
+    </div>
+  )}
+  
+  {cta && ctaHref && (
+    <a href={ctaHref} class="card-cta" target="_blank" rel="noopener noreferrer">
+      {cta}
+      <span>→</span>
+    </a>
+  )}
+</div>
+
+<style>
+  :global(.card) {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  :global(html[data-theme="dark"] .card) {
+    background: rgba(28, 28, 30, 0.8);
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  :global(.card:hover) {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+  
+  :global(html[data-theme="dark"] .card:hover) {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  :global(.card-icon) {
+    font-size: 3.2rem;
+    margin-bottom: 16px;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  :global(.card:hover .card-icon) {
+    transform: scale(1.1) rotate(5deg);
+  }
+  
+  :global(.card-title) {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+    color: #1D1D1F;
+  }
+  
+  :global(html[data-theme="dark"] .card-title) {
+    color: #F5F5F7;
+  }
+  
+  :global(.card-description) {
+    font-size: 1.5rem;
+    color: #86868B;
+    line-height: 1.5;
+    margin: 0 0 24px 0;
+  }
+  
+  :global(.card-image-placeholder) {
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(135deg, #F5F5F7 0%, #FFFFFF 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+  }
+  
+  :global(html[data-theme="dark"] .card-image-placeholder) {
+    background: linear-gradient(135deg, #1C1C1E 0%, #000000 100%);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  :global(.card-image-placeholder::before) {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      #E8E8ED 25%,
+      #F5F5F7 50%,
+      #E8E8ED 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    opacity: 0.5;
+  }
+  
+  :global(html[data-theme="dark"] .card-image-placeholder::before) {
+    background: linear-gradient(
+      90deg,
+      #2C2C2E 25%,
+      #1C1C1E 50%,
+      #2C2C2E 75%
+    );
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+  :global(.placeholder-content) {
+    color: #86868B;
+    font-size: 4rem;
+  }
+  
+  :global(.tech-badges) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  
+  :global(.tech-badge) {
+    display: inline-block;
+    height: 32px;
+    padding: 0 16px;
+    background: rgba(0, 122, 255, 0.1);
+    color: #007AFF;
+    border-radius: 16px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    transition: background-color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+                color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  
+  :global(html[data-theme="dark"] .tech-badge) {
+    background: rgba(10, 132, 255, 0.1);
+    color: #0A84FF;
+  }
+  
+  :global(.tech-badge:hover) {
+    background: #007AFF;
+    color: white;
+  }
+  
+  :global(html[data-theme="dark"] .tech-badge:hover) {
+    background: #0A84FF;
+  }
+  
+  :global(.card-cta) {
+    font-size: 1.7rem;
+    color: #007AFF;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+                gap 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  :global(html[data-theme="dark"] .card-cta) {
+    color: #0A84FF;
+  }
+  
+  :global(.card-cta:hover) {
+    color: #0056b3;
+    gap: 12px;
+  }
+  
+  :global(html[data-theme="dark"] .card-cta:hover) {
+    color: #409CFF;
+  }
+  
+  :global(.card-large) {
+    grid-column: span 12;
+  }
+  
+  :global(.card-small) {
+    grid-column: span 4;
+  }
+  
+  @media (max-width: 1024px) {
+    :global(.card-small) {
+      grid-column: span 6;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    :global(.card-small) {
+      grid-column: span 12;
+    }
+  }
+</style>

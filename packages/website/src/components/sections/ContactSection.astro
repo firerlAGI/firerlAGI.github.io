@@ -1,0 +1,284 @@
+---
+import Container from '../ui/Container.astro'
+import Section from '../ui/Section.astro'
+---
+
+<Section id="contact" alt={true}>
+  <Container>
+    <h2 class="section-title animate-on-scroll">联系我</h2>
+    
+    <div class="contact-wrapper animate-on-scroll">
+      <div class="contact-info">
+        <p class="contact-description">
+          有项目合作意向，或者只是想聊聊？欢迎随时联系我！
+        </p>
+        
+        <div class="contact-links">
+          <a href="mailto:hello@firerlAGI.com" class="contact-link">
+            <span class="contact-icon">📧</span>
+            <div class="contact-text">
+              <span class="contact-label">Email</span>
+              <span class="contact-value">hello@firerlAGI.com</span>
+            </div>
+          </a>
+          
+          <a href="https://github.com/firerlAGI" target="_blank" rel="noopener noreferrer" class="contact-link">
+            <span class="contact-icon">🐙</span>
+            <div class="contact-text">
+              <span class="contact-label">GitHub</span>
+              <span class="contact-value">@firerlAGI</span>
+            </div>
+          </a>
+          
+          <a href="https://twitter.com/firerlAGI" target="_blank" rel="noopener noreferrer" class="contact-link">
+            <span class="contact-icon">🐦</span>
+            <div class="contact-text">
+              <span class="contact-label">Twitter</span>
+              <span class="contact-value">@firerlAGI</span>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="contact-form-wrapper">
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('表单功能开发中，请通过邮箱联系我。');">
+          <div class="form-group">
+            <label for="name">姓名</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="email">邮箱</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="message">留言</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-primary">发送消息</button>
+        </form>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  :global(.section-title) {
+    font-size: 3.2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 48px;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    color: #1D1D1F;
+  }
+  
+  :global(html[data-theme="dark"] .section-title) {
+    color: #F5F5F7;
+  }
+  
+  :global(.contact-wrapper) {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 48px;
+  }
+  
+  :global(.contact-info) {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  :global(.contact-description) {
+    font-size: 1.6rem;
+    color: #86868B;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  :global(.contact-links) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  
+  :global(.contact-link) {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 32px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  :global(html[data-theme="dark"] .contact-link) {
+    background: rgba(28, 28, 30, 0.8);
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  :global(.contact-link:hover) {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+  
+  :global(html[data-theme="dark"] .contact-link:hover) {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  :global(.contact-icon) {
+    font-size: 3.2rem;
+    flex-shrink: 0;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  :global(.contact-link:hover .contact-icon) {
+    transform: scale(1.1);
+  }
+  
+  :global(.contact-text) {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  :global(.contact-label) {
+    font-size: 1.3rem;
+    color: #86868B;
+  }
+  
+  :global(.contact-value) {
+    font-size: 1.7rem;
+    color: #1D1D1F;
+    font-weight: 500;
+  }
+  
+  :global(html[data-theme="dark"] .contact-value) {
+    color: #F5F5F7;
+  }
+  
+  :global(.contact-form-wrapper) {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  :global(html[data-theme="dark"] .contact-form-wrapper) {
+    background: rgba(28, 28, 30, 0.8);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  :global(.contact-form) {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  :global(.form-group) {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  :global(.form-group label) {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #1D1D1F;
+  }
+  
+  :global(html[data-theme="dark"] .form-group label) {
+    color: #F5F5F7;
+  }
+  
+  :global(.form-group input),
+  :global(.form-group textarea) {
+    padding: 16px;
+    font-size: 1.6rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: #1D1D1F;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  :global(html[data-theme="dark"] .form-group input),
+  :global(html[data-theme="dark"] .form-group textarea) {
+    background: #000000;
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #F5F5F7;
+  }
+  
+  :global(.form-group input:focus),
+  :global(.form-group textarea:focus) {
+    outline: none;
+    border-color: #007AFF;
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+  }
+  
+  :global(html[data-theme="dark"] .form-group input:focus),
+  :global(html[data-theme="dark"] .form-group textarea:focus) {
+    border-color: #0A84FF;
+    box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.1);
+  }
+  
+  :global(.form-group textarea) {
+    resize: vertical;
+    min-height: 120px;
+  }
+  
+  :global(.btn) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 32px;
+    font-size: 1.7rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+    cursor: pointer;
+    border: none;
+  }
+  
+  :global(.btn-primary) {
+    background: #007AFF;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  
+  :global(html[data-theme="dark"] .btn-primary) {
+    background: #0A84FF;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  :global(.btn-primary:hover) {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+  
+  :global(html[data-theme="dark"] .btn-primary:hover) {
+    background: #409CFF;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  @media (max-width: 768px) {
+    :global(.contact-links) {
+      grid-template-columns: 1fr;
+    }
+    
+    :global(.contact-wrapper) {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

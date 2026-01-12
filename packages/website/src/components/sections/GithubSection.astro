@@ -1,0 +1,365 @@
+---
+import Container from '../ui/Container.astro'
+import Section from '../ui/Section.astro'
+
+interface GithubStats {
+  repositories: number
+  stars: number
+  forks: number
+  followers: number
+  following: number
+  recentActivity?: Array<{
+    type: string
+    repo: string
+    created_at: string
+  }>
+}
+
+// 尝试从服务器端获取数据
+let stats: GithubStats = {
+  repositories: 42,
+  stars: 128,
+  forks: 892,
+  followers: 15,
+  following: 8,
+}
+
+try {
+  const response = await fetch('http://localhost:4321/api/github-stats.json')
+  if (response.ok) {
+    const data = await response.json()
+    stats = data
+  }
+} catch (error) {
+  console.log('Using fallback stats data')
+}
+
+const formatNumber = (num: number) => {
+  if (num >= 1000) {
+    return (num / 1000).toFixed(1) + 'k'
+  }
+  return num.toString()
+}
+---
+
+<Section id="github">
+  <Container>
+    <h2 class="section-title animate-on-scroll">技术足迹</h2>
+    
+    <div class="stats-container animate-on-scroll">
+      <div class="stat-card">
+        <div class="stat-icon">📦</div>
+        <span class="stat-value">{stats.repositories}</span>
+        <span class="stat-label">仓库数</span>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon">⭐</div>
+        <span class="stat-value">{formatNumber(stats.stars)}</span>
+        <span class="stat-label">Star数</span>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon">🔄</div>
+        <span class="stat-value">{formatNumber(stats.forks)}</span>
+        <span class="stat-label">Fork数</span>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon">👥</div>
+        <span class="stat-value">{stats.followers}</span>
+        <span class="stat-label">关注者</span>
+      </div>
+    </div>
+    
+    {stats.recentActivity && stats.recentActivity.length > 0 && (
+      <div class="activity-section animate-on-scroll">
+        <h3 class="activity-title">最近活动</h3>
+        <div class="activity-list">
+          {stats.recentActivity.slice(0, 5).map((activity) => (
+            <div class="activity-item">
+              <span class="activity-type">{getActivityIcon(activity.type)}</span>
+              <div class="activity-content">
+                <span class="activity-text">
+                  {getActivityText(activity.type, activity.repo)}
+                </span>
+                <span class="activity-time">
+                  {formatTime(activity.created_at)}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+    
+    <div class="github-links animate-on-scroll">
+      <a href="https://github.com/firerlAGI" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        访问我的 GitHub
+      </a>
+    </div>
+  </Container>
+</Section>
+
+<script define:vars={{ stats }}>
+  function getActivityIcon(type: string) {
+    const icons: Record<string, string> = {
+      PushEvent: '📝',
+      CreateEvent: '✨',
+      DeleteEvent: '🗑️',
+      WatchEvent: '⭐',
+      ForkEvent: '🔱',
+      IssuesEvent: '❓',
+      IssueCommentEvent: '💬',
+      PullRequestEvent: '🔀',
+      ReleaseEvent: '🎉',
+    }
+    return icons[type] || '📦'
+  }
+  
+  function getActivityText(type: string, repo: string) {
+    const repoName = repo?.split('/')[1] || repo
+    const texts: Record<string, string> = {
+      PushEvent: `推送到 ${repoName}`,
+      CreateEvent: `创建了 ${repoName}`,
+      DeleteEvent: `删除了 ${repoName}`,
+      WatchEvent: `Star 了 ${repoName}`,
+      ForkEvent: `Fork 了 ${repoName}`,
+      IssuesEvent: `在 ${repoName} 创建了 Issue`,
+      IssueCommentEvent: `在 ${repoName} 评论了 Issue`,
+      PullRequestEvent: `在 ${repoName} 提交了 PR`,
+      ReleaseEvent: `发布了 ${repoName}`,
+    }
+    return texts[type] || `在 ${repoName} 进行了操作`
+  }
+  
+  function formatTime(dateString: string) {
+    const date = new Date(dateString)
+    const now = new Date()
+    const diff = Math.floor((now.getTime() - date.getTime()) / 1000)
+    
+    if (diff < 60) return '刚刚'
+    if (diff < 3600) return `${Math.floor(diff / 60)} 分钟前`
+    if (diff < 86400) return `${Math.floor(diff / 3600)} 小时前`
+    if (diff < 604800) return `${Math.floor(diff / 86400)} 天前`
+    return date.toLocaleDateString('zh-CN')
+  }
+  
+  return { getActivityIcon, getActivityText, formatTime }
+</script>
+
+<style>
+  :global(.section-title) {
+    font-size: 3.2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 48px;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    color: #1D1D1F;
+  }
+  
+  :global(html[data-theme="dark"] .section-title) {
+    color: #F5F5F7;
+  }
+  
+  :global(.stats-container) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+  
+  :global(.stat-card) {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 32px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  :global(html[data-theme="dark"] .stat-card) {
+    background: rgba(28, 28, 30, 0.8);
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  :global(.stat-card:hover) {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+  
+  :global(html[data-theme="dark"] .stat-card:hover) {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  :global(.stat-icon) {
+    font-size: 3.2rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+  
+  :global(.stat-value) {
+    font-size: 3.2rem;
+    font-weight: 600;
+    color: #007AFF;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  :global(html[data-theme="dark"] .stat-value) {
+    color: #0A84FF;
+  }
+  
+  :global(.stat-label) {
+    color: #86868B;
+    font-size: 1.5rem;
+  }
+  
+  :global(.activity-section) {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  :global(html[data-theme="dark"] .activity-section) {
+    background: rgba(28, 28, 30, 0.8);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  :global(.activity-title) {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin: 0 0 24px 0;
+    color: #1D1D1F;
+  }
+  
+  :global(html[data-theme="dark"] .activity-title) {
+    color: #F5F5F7;
+  }
+  
+  :global(.activity-list) {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  :global(.activity-item) {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.02);
+    transition: background 0.2s;
+  }
+  
+  :global(html[data-theme="dark"] .activity-item) {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  :global(.activity-item:hover) {
+    background: rgba(0, 0, 0, 0.04);
+  }
+  
+  :global(html[data-theme="dark"] .activity-item:hover) {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  :global(.activity-type) {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+  
+  :global(.activity-content) {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  :global(.activity-text) {
+    font-size: 1.5rem;
+    color: #1D1D1F;
+    flex: 1;
+  }
+  
+  :global(html[data-theme="dark"] .activity-text) {
+    color: #F5F5F7;
+  }
+  
+  :global(.activity-time) {
+    font-size: 1.3rem;
+    color: #86868B;
+    flex-shrink: 0;
+  }
+  
+  :global(.github-links) {
+    display: flex;
+    justify-content: center;
+  }
+  
+  :global(.btn) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 32px;
+    font-size: 1.7rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+    cursor: pointer;
+    border: none;
+  }
+  
+  :global(.btn-primary) {
+    background: #007AFF;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  
+  :global(html[data-theme="dark"] .btn-primary) {
+    background: #0A84FF;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  :global(.btn-primary:hover) {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+  
+  :global(html[data-theme="dark"] .btn-primary:hover) {
+    background: #409CFF;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  @media (max-width: 768px) {
+    :global(.stats-container) {
+      grid-template-columns: 1fr;
+    }
+    
+    :global(.stat-value) {
+      font-size: 2.4rem;
+    }
+    
+    :global(.stat-label) {
+      font-size: 1.3rem;
+    }
+    
+    :global(.activity-content) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
