@@ -12,7 +12,7 @@ export default defineConfig({
   site: 'https://firerlAGI.github.io',
   compressHTML: true,
   build: {
-    inlineStylesheets: false,
+    inlineStylesheets: 'never',
   },
   image: {
     remotePatterns: [
