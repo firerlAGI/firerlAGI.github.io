@@ -25,13 +25,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: ./packages/website/package-lock.json
 
       - name: Install dependencies
         run: |
           cd packages/website
-          npm ci
+          npm install
 
       - name: Build
         run: |
