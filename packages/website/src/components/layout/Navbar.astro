@@ -3,7 +3,7 @@ import LanguageSwitcher from '../react/LanguageSwitcher'
 
 const { class: className = '' } = Astro.props
 
-<nav class={`navbar ${className}`}>
+<nav class:list={["navbar", className]}>
   <a href="#" class="navbar-logo">F<span class="logo-accent">IR</span>ER<span class="logo-accent">LA</span>GI</a>
   
   <div class="nav-links">
