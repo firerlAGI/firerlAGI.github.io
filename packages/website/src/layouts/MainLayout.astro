@@ -4,6 +4,7 @@ import '../styles/cyberpunk.css'
 import { getTheme } from '../lib/theme'
 import Navbar from '../components/layout/Navbar.astro'
 import Footer from '../components/layout/Footer.astro'
+import { LanguageProvider } from '../contexts/LanguageContext'
 
 interface Props {
   title?: string
@@ -62,7 +63,9 @@ const theme = getTheme()
   <body class="flex flex-col min-h-screen">
     <Navbar />
     <main class="flex-1">
-      <slot />
+      <LanguageProvider client:load>
+        <slot />
+      </LanguageProvider>
     </main>
     <Footer />
     

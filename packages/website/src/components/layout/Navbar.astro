@@ -1,5 +1,5 @@
 ---
-const currentLang = 'zh'
+import LanguageSwitcher from './LanguageSwitcher.astro'
 
 interface Props {
   class?: string
@@ -20,6 +20,9 @@ const { class: className = '' } = Astro.props
   </div>
   
   <div class="nav-actions">
+    <div class="language-toggle">
+      <LanguageSwitcher client:load />
+    </div>
     <button class="mobile-menu-toggle" aria-label="打开菜单" aria-expanded="false">
       <span></span>
       <span></span>
@@ -143,6 +146,16 @@ const { class: className = '' } = Astro.props
     display: flex;
     gap: 16px;
     align-items: center;
+  }
+  
+  :global(.language-toggle) {
+    display: none;
+  }
+  
+  @media (min-width: 769px) {
+    :global(.language-toggle) {
+      display: block;
+    }
   }
   
   :global(.mobile-menu-toggle) {
