@@ -1,11 +1,10 @@
 ---
 import LanguageSwitcher from '../react/LanguageSwitcher'
+---
 
-const { class: className = '' } = Astro.props
-
-<nav class:list={["navbar", className]}>
+<nav class="navbar">
   <a href="#" class="navbar-logo">F<span class="logo-accent">IR</span>ER<span class="logo-accent">LA</span>GI</a>
-  
+
   <div class="nav-links">
     <a href="#about" class="nav-link">/ABOUT</a>
     <a href="#skills" class="nav-link">/ACTIVITY</a>
@@ -13,7 +12,7 @@ const { class: className = '' } = Astro.props
     <a href="#blog" class="nav-link">/LOGS</a>
     <a href="#contact" class="nav-link">/CONTACT</a>
   </div>
-  
+
   <div class="nav-actions">
     <div class="language-toggle">
       <LanguageSwitcher client:idle />
@@ -79,7 +78,7 @@ const { class: className = '' } = Astro.props
 </script>
 
 <style>
-  :global(.navbar) {
+  .navbar {
     position: fixed;
     top: 0;
     left: 0;
@@ -97,12 +96,12 @@ const { class: className = '' } = Astro.props
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
-  :global(.navbar.scrolled) {
+  .navbar.scrolled {
     background: rgba(5, 5, 5, 0.9);
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
   }
   
-  :global(.navbar-logo) {
+  .navbar-logo {
     font-size: 1.5rem;
     font-weight: 700;
     color: #ffffff;
@@ -112,17 +111,17 @@ const { class: className = '' } = Astro.props
     transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
   
-  :global(.logo-accent) {
+  .logo-accent {
     color: #00ffff;
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
   }
   
-  :global(.nav-links) {
+  .nav-links {
     display: flex;
     gap: 32px;
   }
   
-  :global(.nav-link) {
+  .nav-link {
     font-size: 0.875rem;
     color: #9ca3af;
     text-decoration: none;
@@ -132,28 +131,28 @@ const { class: className = '' } = Astro.props
     letter-spacing: 0.1em;
   }
   
-  :global(.nav-link:hover) {
+  .nav-link:hover {
     color: #00ffff;
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
   }
   
-  :global(.nav-actions) {
+  .nav-actions {
     display: flex;
     gap: 16px;
     align-items: center;
   }
   
-  :global(.language-toggle) {
+  .language-toggle {
     display: none;
   }
   
   @media (min-width: 769px) {
-    :global(.language-toggle) {
+    .language-toggle {
       display: block;
     }
   }
   
-  :global(.mobile-menu-toggle) {
+  .mobile-menu-toggle {
     display: none;
     flex-direction: column;
     justify-content: space-around;
@@ -166,7 +165,7 @@ const { class: className = '' } = Astro.props
     z-index: 1001;
   }
   
-  :global(.mobile-menu-toggle span) {
+  .mobile-menu-toggle span {
     width: 100%;
     height: 2px;
     background: #00ffff;
@@ -175,23 +174,23 @@ const { class: className = '' } = Astro.props
     box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
   }
   
-  :global(.mobile-menu-toggle.active span:nth-child(1)) {
+  .mobile-menu-toggle.active span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
     background: #ff00ff;
     box-shadow: 0 0 5px rgba(255, 0, 255, 0.3);
   }
   
-  :global(.mobile-menu-toggle.active span:nth-child(2)) {
+  .mobile-menu-toggle.active span:nth-child(2) {
     opacity: 0;
   }
   
-  :global(.mobile-menu-toggle.active span:nth-child(3)) {
+  .mobile-menu-toggle.active span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
     background: #ff00ff;
     box-shadow: 0 0 5px rgba(255, 0, 255, 0.3);
   }
   
-  :global(.mobile-menu) {
+  .mobile-menu {
     position: fixed;
     top: 0;
     left: 0;
@@ -208,18 +207,18 @@ const { class: className = '' } = Astro.props
     border-left: 1px solid rgba(0, 255, 255, 0.3);
   }
   
-  :global(.mobile-menu.open) {
+  .mobile-menu.open {
     transform: translateX(0);
   }
   
-  :global(.mobile-menu-content) {
+  .mobile-menu-content {
     display: flex;
     flex-direction: column;
     gap: 48px;
     align-items: center;
   }
   
-  :global(.mobile-nav-link) {
+  .mobile-nav-link {
     font-size: 2rem;
     color: #ffffff;
     text-decoration: none;
@@ -228,17 +227,17 @@ const { class: className = '' } = Astro.props
     letter-spacing: 0.1em;
   }
   
-  :global(.mobile-nav-link:hover) {
+  .mobile-nav-link:hover {
     color: #00ffff;
     text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
   }
   
   @media (max-width: 768px) {
-    :global(.nav-links) {
+    .nav-links {
       display: none;
     }
     
-    :global(.mobile-menu-toggle) {
+    .mobile-menu-toggle {
       display: flex;
     }
   }
