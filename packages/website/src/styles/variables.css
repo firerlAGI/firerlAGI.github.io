@@ -86,4 +86,17 @@
   --heatmap-level-1: #1C3A5E;
   --heatmap-level-2: #0A5CB5;
   --heatmap-level-3: #0A84FF;
+
+  /* Cyberpunk Theme Variables */
+  --cyber-dark: #050505;
+  --cyber-cyan: #00ffff;
+  --cyber-cyan-dark: #06b6d4;
+  --cyber-fuchsia: #ff00ff;
+  --cyber-fuchsia-dark: #d946ef;
+  --cyber-panel: rgba(0, 0, 0, 0.5);
+  --cyber-grid: rgba(0, 255, 255, 0.02);
+  
+  /* Font families */
+  --font-cyber: 'Orbitron', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }

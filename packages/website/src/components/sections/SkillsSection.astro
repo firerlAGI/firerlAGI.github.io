@@ -1,150 +1,351 @@
 ---
+import Container from '../ui/Container.astro'
+import Section from '../ui/Section.astro'
 import CyberCard from '../ui/CyberCard.astro'
 import GlitchText from '../ui/GlitchText.astro'
+import { Activity as ActivityIcon, GitCommit, Code, Calendar as CalendarIcon } from 'lucide-react'
 
-const skills = [
-  { name: 'React / TypeScript', level: 95, category: 'frontend' },
-  { name: 'Node.js / Express', level: 85, category: 'backend' },
-  { name: 'Gemini AI API', level: 90, category: 'ai' },
-  { name: 'Tailwind CSS', level: 98, category: 'frontend' },
-  { name: 'Three.js / WebGL', level: 75, category: 'frontend' },
-  { name: 'Python / PyTorch', level: 70, category: 'ai' },
-  { name: 'Docker / K8s', level: 80, category: 'tools' },
-  { name: 'PostgreSQL', level: 85, category: 'backend' },
-]
+// 获取数据
+interface Activity {
+  date: string
+  count: number
+  level: 0 | 1 | 2 | 3 | 4
+}
+
+interface Stats {
+  loc: number
+  days: number
+  contribs: number
+}
+
+let data: Activity[] = []
+let stats: Stats = { loc: 0, days: 0, contribs: 0 }
+let loading = true
+
+// 模拟数据生成（实际项目中应该从API获取）
+const generateMockData = () => {
+  const startDate = new Date('2026-01-01')
+  const q1Data: Activity[] = []
+  let totalContribs = 0
+  let activeDays = 0
+  
+  for (let i = 0; i < 90; i++) {
+    const currentDate = new Date(startDate)
+    currentDate.setDate(startDate.getDate() + i)
+    
+    const count = Math.floor(Math.random() * 15)
+    const level = count === 0 ? 0 : Math.min(4, Math.floor(count / 3)) as 0 | 1 | 2 | 3 | 4
+    
+    q1Data.push({
+      date: currentDate.toISOString().split('T')[0],
+      count: count,
+      level: level,
+    })
+    
+    totalContribs += count
+    if (count > 0) activeDays++
+  }
+  
+  return {
+    data: q1Data,
+    stats: {
+      contribs: totalContribs,
+      days: activeDays,
+      loc: totalContribs * 25
+    }
+  }
+}
+
+const mockData = generateMockData()
+data = mockData.data
+stats = mockData.stats
+loading = false
 ---
 
-<section id="skills" class="skills-section">
-  <div class="skills-header">
-    <GlitchText text="TECH ARSENAL" as="h2" className="skills-title" />
-    <div class="skills-divider"></div>
-  </div>
+<Section id="skills" class="py-20 px-4">
+  <Container class="max-w-7xl mx-auto">
+    <div class="mb-12">
+      <GlitchText text="NEURAL ACTIVITY" as="h2" className="text-4xl md:text-5xl font-bold text-white mb-4" />
+      <div class="h-1 w-24 bg-fuchsia-500" />
+    </div>
 
-  <div class="skills-grid">
-    {skills.map((skill, index) => (
-      <CyberCard glowColor={index % 2 === 0 ? 'cyan' : 'pink'} className="skill-card border-l-4">
-        <div class="skill-header">
-          <span class="skill-name">{skill.name}</span>
-          <span class="skill-level">{skill.level}% SYNCHRONIZED</span>
+    <CyberCard glowColor="cyan" class="p-0 overflow-hidden">
+      <!-- Dashboard Header -->
+      <div class="bg-cyan-950/30 border-b border-cyan-500/30 p-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-3">
+          <ActivityIcon size={24} class="text-cyan-400 animate-pulse" />
+          <h3 class="text-xl font-cyber text-cyan-100 tracking-widest">SYNCHRONIZED // DASHBOARD</h3>
         </div>
-        <div class="skill-bar">
-          <div 
-            class={`skill-bar-fill ${index % 2 === 0 ? 'skill-bar-cyan' : 'skill-bar-pink'}`}
-            style={`width: ${skill.level}%`}
-          />
-          <div class="skill-bar-shimmer"></div>
+        <div class="flex gap-4 text-xs font-mono text-cyan-600">
+          <span class="px-2 py-1 bg-cyan-900/20 border border-cyan-800 rounded">SYS.STATUS: ONLINE</span>
+          <span class="px-2 py-1 bg-cyan-900/20 border border-cyan-800 rounded">NET.LATENCY: 12ms</span>
         </div>
-      </CyberCard>
-    ))}
-  </div>
-</section>
+      </div>
+
+      <!-- Dashboard Content -->
+      <div class="p-6 md:p-8">
+        <div class="flex flex-col xl:flex-row gap-8">
+          <!-- Left: Heatmap Section -->
+          <div class="flex-grow xl:w-2/3">
+            <div class="flex justify-between items-center mb-6">
+              <span class="font-mono text-sm text-fuchsia-400 flex items-center gap-2">
+                <GitCommit size={16} /> GITHUB_MAINNET
+              </span>
+              <span class="text-xs font-mono text-gray-500">Q1 2026 LOGS</span>
+            </div>
+            
+            <div class="w-full overflow-x-auto pb-2 custom-scrollbar flex justify-center lg:justify-start">
+              {loading ? (
+                <div class="h-40 w-full flex flex-col items-center justify-center font-mono text-cyan-500/50">
+                  <ActivityIcon class="animate-spin mb-2" />
+                  LOADING DATA STREAM...
+                </div>
+              ) : (
+                <div class="activity-calendar" id="activity-calendar"></div>
+              )}
+            </div>
+          </div>
+
+          <!-- Right: Stats Grid -->
+          <div class="xl:w-1/3 flex flex-col justify-between gap-4 border-t xl:border-t-0 xl:border-l border-cyan-900/50 pt-8 xl:pt-0 xl:pl-8">
+            <div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-1 gap-4 h-full">
+              <!-- LOC Stat -->
+              <div class="bg-black/40 border border-fuchsia-500/20 p-4 rounded hover:bg-fuchsia-900/10 transition-colors group relative overflow-hidden">
+                <div class="absolute right-2 top-2 opacity-20 group-hover:opacity-100 transition-opacity">
+                  <Code size={16} class="text-fuchsia-400" />
+                </div>
+                <div class="text-3xl font-cyber text-white mb-1 group-hover:text-fuchsia-300 transition-colors">
+                  {loading ? '...' : stats.loc.toLocaleString()}
+                </div>
+                <div class="text-[10px] font-mono text-fuchsia-500/70 tracking-widest uppercase">
+                  LINES_WRITTEN
+                </div>
+                <div class="absolute bottom-0 left-0 h-[2px] bg-fuchsia-500 w-0 group-hover:w-full transition-all duration-500" />
+              </div>
+
+              <!-- Active Days Stat -->
+              <div class="bg-black/40 border border-cyan-500/20 p-4 rounded hover:bg-cyan-900/10 transition-colors group relative overflow-hidden">
+                <div class="absolute right-2 top-2 opacity-20 group-hover:opacity-100 transition-opacity">
+                  <CalendarIcon size={16} class="text-cyan-400" />
+                </div>
+                <div class="text-3xl font-cyber text-white mb-1 group-hover:text-cyan-300 transition-colors">
+                  {loading ? '...' : stats.days}
+                </div>
+                <div class="text-[10px] font-mono text-cyan-500/70 tracking-widest uppercase">
+                  UPTIME_DAYS
+                </div>
+                <div class="absolute bottom-0 left-0 h-[2px] bg-cyan-500 w-0 group-hover:w-full transition-all duration-500" />
+              </div>
+
+              <!-- Contributions Stat -->
+              <div class="bg-black/40 border border-cyan-500/20 p-4 rounded hover:bg-cyan-900/10 transition-colors group relative overflow-hidden">
+                <div class="absolute right-2 top-2 opacity-20 group-hover:opacity-100 transition-opacity">
+                  <GitCommit size={16} class="text-white" />
+                </div>
+                <div class="text-3xl font-cyber text-cyan-200 mb-1 group-hover:text-white transition-colors">
+                  {loading ? '...' : stats.contribs.toLocaleString()}
+                </div>
+                <div class="text-[10px] font-mono text-gray-400 tracking-widest uppercase">
+                  DATA_PACKETS
+                </div>
+                <div class="absolute bottom-0 left-0 h-[2px] bg-white w-0 group-hover:w-full transition-all duration-500" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Footer Detail -->
+      <div class="bg-black/50 p-2 border-t border-cyan-900/50 flex justify-between items-center text-[10px] font-mono text-gray-600 px-6">
+        <span>ID: {Math.random().toString(36).substring(7).toUpperCase()}</span>
+        <span>SECURE_CONNECTION</span>
+      </div>
+    </CyberCard>
+  </Container>
+</Section>
+
+<script define:vars={{ data }}>
+  // Render activity calendar
+  const calendarContainer = document.getElementById('activity-calendar')
+  if (calendarContainer && data.length > 0) {
+    const theme = {
+      0: '#0f172a',
+      1: '#064e3b',
+      2: '#059669',
+      3: '#10b981',
+      4: '#34d399',
+    }
+    
+    const weeks: any[][] = []
+    let currentWeek: any[] = []
+    let currentDayOfWeek = new Date(data[0].date).getDay()
+    
+    // Adjust to start from Sunday
+    const startOffset = currentDayOfWeek
+    for (let i = 0; i < startOffset; i++) {
+      currentWeek.push(null)
+    }
+    
+    data.forEach((day) => {
+      currentWeek.push(day)
+      const dayOfWeek = new Date(day.date).getDay()
+      if (dayOfWeek === 6) {
+        weeks.push(currentWeek)
+        currentWeek = []
+      }
+    })
+    
+    if (currentWeek.length > 0) {
+      weeks.push(currentWeek)
+    }
+    
+    // Build calendar HTML
+    let calendarHTML = '<div class="activity-calendar-grid">'
+    
+    // Weekday labels
+    const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    calendarHTML += '<div class="activity-weekdays">'
+    dayLabels.forEach(day => {
+      calendarHTML += `<div class="activity-day-label">${day}</div>`
+    })
+    calendarHTML += '</div>'
+    
+    // Calendar grid
+    calendarHTML += '<div class="activity-weeks">'
+    weeks.forEach(week => {
+      calendarHTML += '<div class="activity-week">'
+      week.forEach(day => {
+        if (day) {
+          calendarHTML += `
+            <div 
+              class="activity-day level-${day.level}" 
+              title="${day.date}: ${day.count} contributions"
+              style="background-color: ${theme[day.level]}"
+            ></div>
+          `
+        } else {
+          calendarHTML += '<div class="activity-day empty"></div>'
+        }
+      })
+      calendarHTML += '</div>'
+    })
+    calendarHTML += '</div>'
+    
+    // Legend
+    calendarHTML += `
+      <div class="activity-legend">
+        <span class="legend-label">OFFLINE</span>
+        <div class="legend-colors">
+          ${[0, 1, 2, 3, 4].map(level => `
+            <div 
+              class="legend-color" 
+              style="background-color: ${theme[level]}"
+            ></div>
+          `).join('')}
+        </div>
+        <span class="legend-label">MAX_LOAD</span>
+      </div>
+    `
+    
+    calendarHTML += '</div>'
+    calendarContainer.innerHTML = calendarHTML
+  }
+</script>
 
 <style>
-  :global(.skills-section) {
-    padding: 80px 16px;
-    max-width: 72rem;
-    margin: 0 auto;
+  .activity-calendar {
+    width: 100%;
+    min-width: 720px;
   }
   
-  :global(.skills-header) {
-    margin-bottom: 48px;
-  }
-  
-  :global(.skills-title) {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 16px;
-  }
-  
-  :global(.skills-divider) {
-    height: 4px;
-    width: 96px;
-    background: linear-gradient(90deg, #d946ef 0%, #d946ef 100%);
-  }
-  
-  :global(.skills-grid) {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 32px;
-  }
-  
-  @media (min-width: 768px) {
-    :global(.skills-grid) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  :global(.skill-card) {
+  .activity-calendar-grid {
     display: flex;
     flex-direction: column;
+    gap: 8px;
   }
   
-  :global(.skill-header) {
+  .activity-weekdays {
     display: flex;
-    justify-content: space-between;
-    align-items: end;
-    margin-bottom: 8px;
+    gap: 4px;
+    margin-left: 32px;
   }
   
-  :global(.skill-name) {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.125rem;
-    color: #ffffff;
-  }
-  
-  :global(.skill-level) {
+  .activity-day-label {
+    width: 14px;
+    font-size: 10px;
+    color: #94a3b8;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    color: #9ca3af;
   }
   
-  :global(.skill-bar) {
-    width: 100%;
-    height: 8px;
-    background: #1f2937;
-    position: relative;
-    overflow: hidden;
-    border-radius: 4px;
+  .activity-weeks {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
   }
   
-  :global(.skill-bar-fill) {
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: width 1s ease-out;
-    border-radius: 4px;
+  .activity-week {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
   
-  :global(.skill-bar-cyan) {
-    background: #00ffff;
+  .activity-day {
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
   }
   
-  :global(.skill-bar-pink) {
-    background: #ff00ff;
+  .activity-day:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px currentColor;
   }
   
-  :global(.skill-bar-shimmer) {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
-    width: 100%;
-    animation: shimmer 2s infinite;
+  .activity-day.empty {
+    background: transparent;
+    cursor: default;
   }
   
-  @keyframes shimmer {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(100%);
-    }
+  .activity-day.empty:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .activity-legend {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    margin-top: 8px;
+  }
+  
+  .legend-label {
+    font-size: 10px;
+    color: #64748b;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+  }
+  
+  .legend-colors {
+    display: flex;
+    gap: 2px;
+  }
+  
+  .legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
   }
   
   @media (max-width: 768px) {
-    :global(.skills-title) {
-      font-size: 2rem;
+    .activity-calendar {
+      min-width: 100%;
+    }
+    
+    .activity-day {
+      width: 12px;
+      height: 12px;
     }
   }
 </style>

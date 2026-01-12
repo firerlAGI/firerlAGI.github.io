@@ -1,178 +1,254 @@
 ---
 import Container from '../ui/Container.astro'
 import Section from '../ui/Section.astro'
+import CyberCard from '../ui/CyberCard.astro'
+import GlitchText from '../ui/GlitchText.astro'
+import { Cpu, Code2, Brain, Zap } from 'lucide-react'
 ---
 
-<Section id="about">
-  <Container>
-    <h2 class="section-title animate-on-scroll" style="text-align: center; margin-bottom: 48px;">关于我</h2>
-    <div class="about-card animate-on-scroll">
-      <div class="about-content">
-        <div class="about-avatar">
-          <div class="avatar-placeholder">👨‍💻</div>
-        </div>
-        
-        <div class="about-text">
-          <h3 class="about-name">firerlAGI</h3>
-          <p class="about-role">全栈开发者 & AI 爱好者</p>
-          
-          <div class="about-focus">
-            <h4>技术焦点</h4>
-            <ul>
-              <li>人工智能与机器学习</li>
-              <li>前端开发（React、Vue、Astro）</li>
-              <li>后端开发（Node.js、Python）</li>
-              <li>知识管理与知识图谱</li>
-            </ul>
+<Section id="about" class="py-20 px-4">
+  <Container class="max-w-7xl mx-auto">
+    <div class="mb-12">
+      <GlitchText text="OPERATOR PROFILE" as="h2" className="text-4xl md:text-5xl font-bold text-white mb-4" />
+      <div class="h-1 w-24 bg-cyan-500" />
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Left: Profile Card -->
+      <CyberCard glowColor="cyan" className="h-full">
+        <div class="flex items-start gap-6">
+          <div class="avatar-container">
+            <div class="avatar-image">👨‍💻</div>
+            <div class="avatar-status animate-pulse">ONLINE</div>
           </div>
           
-          <blockquote class="about-quote">
-            "技术的价值不在于它有多复杂，而在于它能为人们解决多少实际问题。"
-          </blockquote>
+          <div class="flex-grow">
+            <h3 class="text-2xl font-cyber text-cyan-400 mb-2">FIRERLAGI</h3>
+            <p class="text-fuchsia-400 font-mono text-sm mb-4">[FULL_STACK_ENGINEER] // [AI_INTEGRATOR]</p>
+            
+            <div class="space-y-3 text-gray-300 font-mono text-sm">
+              <p class="leading-relaxed">
+                Operating in the digital frontier, specializing in building scalable systems 
+                and integrating artificial intelligence into practical applications.
+              </p>
+              <p class="leading-relaxed">
+                Passionate about the intersection of human creativity and machine learning, 
+                pushing the boundaries of what's possible in web development.
+              </p>
+            </div>
+
+            <div class="mt-6 pt-6 border-t border-cyan-500/20">
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 text-xs border border-cyan-500/30 text-cyan-400 font-mono bg-cyan-900/10">
+                  REACT
+                </span>
+                <span class="px-3 py-1 text-xs border border-fuchsia-500/30 text-fuchsia-400 font-mono bg-fuchsia-900/10">
+                  PYTHON
+                </span>
+                <span class="px-3 py-1 text-xs border border-cyan-500/30 text-cyan-400 font-mono bg-cyan-900/10">
+                  NODE.JS
+                </span>
+                <span class="px-3 py-1 text-xs border border-fuchsia-500/30 text-fuchsia-400 font-mono bg-fuchsia-900/10">
+                  AI/ML
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
+      </CyberCard>
+
+      <!-- Right: Skills Grid -->
+      <div class="space-y-4">
+        <CyberCard glowColor="pink" className="skill-card group">
+          <div class="flex items-start gap-4">
+            <div class="skill-icon text-fuchsia-400">
+              <Cpu size={32} />
+            </div>
+            <div class="flex-grow">
+              <h4 class="text-lg font-cyber text-fuchsia-400 mb-2">SYSTEM ARCHITECTURE</h4>
+              <p class="text-gray-400 text-sm font-mono leading-relaxed">
+                Designing robust, scalable systems with microservices architecture, 
+                cloud-native deployments, and performance optimization strategies.
+              </p>
+            </div>
+          </div>
+        </CyberCard>
+
+        <CyberCard glowColor="cyan" className="skill-card group">
+          <div class="flex items-start gap-4">
+            <div class="skill-icon text-cyan-400">
+              <Code2 size={32} />
+            </div>
+            <div class="flex-grow">
+              <h4 class="text-lg font-cyber text-cyan-400 mb-2">FULL_STACK_DEVELOPMENT</h4>
+              <p class="text-gray-400 text-sm font-mono leading-relaxed">
+                Building seamless user experiences with modern frameworks, 
+                responsive designs, and pixel-perfect implementations.
+              </p>
+            </div>
+          </div>
+        </CyberCard>
+
+        <CyberCard glowColor="pink" className="skill-card group">
+          <div class="flex items-start gap-4">
+            <div class="skill-icon text-fuchsia-400">
+              <Brain size={32} />
+            </div>
+            <div class="flex-grow">
+              <h4 class="text-lg font-cyber text-fuchsia-400 mb-2">AI_INTEGRATION</h4>
+              <p class="text-gray-400 text-sm font-mono leading-relaxed">
+                Implementing intelligent features using LLMs, machine learning models, 
+                and neural networks to enhance application capabilities.
+              </p>
+            </div>
+          </div>
+        </CyberCard>
+
+        <CyberCard glowColor="cyan" className="skill-card group">
+          <div class="flex items-start gap-4">
+            <div class="skill-icon text-cyan-400">
+              <Zap size={32} />
+            </div>
+            <div class="flex-grow">
+              <h4 class="text-lg font-cyber text-cyan-400 mb-2">RAPID_PROTOTYPING</h4>
+              <p class="text-gray-400 text-sm font-mono leading-relaxed">
+                Transforming ideas into functional prototypes quickly, 
+                iterating based on feedback, and delivering value fast.
+              </p>
+            </div>
+          </div>
+        </CyberCard>
+      </div>
+    </div>
+
+    <!-- Quote Section -->
+    <div class="mt-12">
+      <div class="quote-container">
+        <div class="quote-mark text-6xl text-cyan-500/20">"</div>
+        <p class="quote-text text-xl text-gray-300 font-mono italic text-center">
+          Technology's value lies not in its complexity, but in its ability to solve real-world problems.
+        </p>
+        <div class="quote-mark text-6xl text-fuchsia-500/20 transform rotate-180">"</div>
       </div>
     </div>
   </Container>
 </Section>
 
 <style>
-  :global(.about-card) {
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 20px;
-    padding: 60px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  :global(html[data-theme="dark"] .about-card) {
-    background: rgba(28, 28, 30, 0.8);
-    border-color: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  :global(.about-card:hover) {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  }
-  
-  :global(html[data-theme="dark"] .about-card:hover) {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-  }
-  
-  :global(.about-content) {
-    display: flex;
-    gap: 60px;
-    align-items: flex-start;
-  }
-  
-  :global(.about-avatar) {
+  .avatar-container {
+    position: relative;
     flex-shrink: 0;
   }
-  
-  :global(.avatar-placeholder) {
-    width: 200px;
-    height: 200px;
-    background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+
+  .avatar-image {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #06b6d4 0%, #d946ef 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 6rem;
-    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: 4rem;
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+    transition: all 0.3s ease;
   }
-  
-  :global(.avatar-placeholder:hover) {
-    transform: scale(1.05) rotate(3deg);
+
+  .avatar-image:hover {
+    transform: scale(1.05) rotate(5deg);
+    box-shadow: 0 0 30px rgba(217, 70, 239, 0.4);
   }
-  
-  :global(.about-text) {
-    flex: 1;
-  }
-  
-  :global(.about-name) {
-    font-size: 3.2rem;
-    font-weight: 600;
-    margin: 0 0 8px 0;
-    color: #1D1D1F;
-  }
-  
-  :global(html[data-theme="dark"] .about-name) {
-    color: #F5F5F7;
-  }
-  
-  :global(.about-role) {
-    font-size: 1.7rem;
-    color: #86868B;
-    margin: 0 0 32px 0;
-  }
-  
-  :global(.about-focus h4) {
-    font-size: 1.7rem;
-    font-weight: 600;
-    margin: 0 0 16px 0;
-    color: #1D1D1F;
-  }
-  
-  :global(html[data-theme="dark"] .about-focus h4) {
-    color: #F5F5F7;
-  }
-  
-  :global(.about-focus ul) {
-    list-style: none;
-    margin: 0 0 32px 0;
-    padding: 0;
-  }
-  
-  :global(.about-focus li) {
-    font-size: 1.5rem;
-    color: #1D1D1F;
-    padding: 8px 0;
-    padding-left: 24px;
-    position: relative;
-  }
-  
-  :global(html[data-theme="dark"] .about-focus li) {
-    color: #F5F5F7;
-  }
-  
-  :global(.about-focus li::before) {
-    content: '•';
+
+  .avatar-status {
     position: absolute;
-    left: 0;
-    color: #007AFF;
+    bottom: 0;
+    right: 0;
+    font-size: 10px;
     font-weight: bold;
+    padding: 4px 8px;
+    background: #10b981;
+    color: black;
+    border-radius: 9999px;
+    font-family: 'JetBrains Mono', monospace;
   }
-  
-  :global(.about-quote) {
-    font-size: 1.9rem;
-    font-style: italic;
-    color: #86868B;
-    border-left: 4px solid #007AFF;
-    padding-left: 24px;
-    line-height: 1.6;
-    margin: 0;
+
+  .skill-card {
+    transition: all 0.3s ease;
   }
-  
+
+  .skill-card:hover {
+    transform: translateX(8px);
+  }
+
+  .skill-icon {
+    flex-shrink: 0;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .skill-card:hover .skill-icon {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px currentColor;
+  }
+
+  .quote-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .quote-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      linear-gradient(90deg, rgba(0, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(rgba(0, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+  }
+
+  .quote-mark {
+    line-height: 1;
+    font-family: Georgia, serif;
+  }
+
+  .quote-text {
+    position: relative;
+    z-index: 1;
+    line-height: 1.8;
+  }
+
   @media (max-width: 768px) {
-    :global(.about-content) {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+    .avatar-container {
+      margin: 0 auto 24px;
     }
-    
-    :global(.about-quote) {
-      border-left: none;
-      border-top: 4px solid #007AFF;
-      padding-left: 0;
-      padding-top: 24px;
+
+    .avatar-image {
+      width: 100px;
+      height: 100px;
+      font-size: 3rem;
     }
-    
-    :global(.about-avatar) {
-      margin-bottom: 32px;
+
+    .skill-card:hover {
+      transform: translateX(4px);
+    }
+
+    .quote-container {
+      padding: 24px;
+    }
+
+    .quote-text {
+      font-size: 1rem;
     }
   }
 </style>
