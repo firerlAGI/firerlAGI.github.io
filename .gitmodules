@@ -1,0 +1,3 @@
+[submodule "firerlAGI"]
+	path = firerlAGI
+	url = https://github.com/firerlAGI/firerlAGI.git
