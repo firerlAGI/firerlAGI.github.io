@@ -10,8 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "fetch-github-stats": "node scripts/fetch-github-stats.cjs",
-    "prebuild": "npm run fetch-github-stats",
+    "fetch-github-stats": "node scripts/fetch-github-stats.cjs || npx node scripts/fetch-github-stats.cjs",
     "workflow:monitor": "node scripts/monitor-and-fix-workflow.js",
     "workflow:check": "node scripts/monitor-and-fix-workflow.js"
   },

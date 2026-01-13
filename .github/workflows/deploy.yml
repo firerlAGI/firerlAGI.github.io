@@ -37,10 +37,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile=false
 
-      - name: Build
-        run: cd packages/website && pnpm run build
+      - name: Fetch GitHub Stats
+        working-directory: ./packages/website
+        run: pnpm run fetch-github-stats
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build
+        working-directory: ./packages/website
+        run: pnpm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
