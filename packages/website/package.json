@@ -11,7 +11,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "fetch-github-stats": "node scripts/fetch-github-stats.cjs",
-    "prebuild": "npm run fetch-github-stats"
+    "prebuild": "npm run fetch-github-stats",
+    "workflow:monitor": "node scripts/monitor-and-fix-workflow.js",
+    "workflow:check": "node scripts/monitor-and-fix-workflow.js"
   },
   "dependencies": {
     "astro": "^5.0.0",
