@@ -11,30 +11,24 @@ const {
   className = '' 
 } = Astro.props
 
-const borderColor = glowColor === 'cyan' ? 'border-cyan-500/30' : 'border-fuchsia-500/30'
-const glowClass = glowColor === 'cyan' ? 'hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]' : 'hover:shadow-[0_0_20px_rgba(217,70,239,0.3)]'
-const titleColor = glowColor === 'cyan' ? 'text-cyan-400' : 'text-fuchsia-400'
-const glowColorClass = glowColor === 'cyan' ? 'bg-cyan-400' : 'bg-fuchsia-400'
+const isCyan = glowColor === 'cyan'
 ---
 
 <div class={`relative group ${className}`}>
-  <div class={`
-    relative overflow-hidden
-    bg-cyber-panel/80 backdrop-blur-sm
-    border ${borderColor}
-    p-6 transition-all duration-300
-    ${glowClass}
-    clip-path-slant
-  `}>
-    <div class={`absolute top-0 left-0 w-2 h-2 ${glowColorClass}`} />
-    <div class={`absolute top-0 right-0 w-2 h-2 ${glowColorClass}`} />
-    <div class={`absolute bottom-0 left-0 w-2 h-2 ${glowColorClass}`} />
-    <div class={`absolute bottom-0 right-0 w-2 h-2 ${glowColorClass}`} />
+  <div class="relative overflow-hidden bg-cyber-panel/80 backdrop-blur-sm border p-6 transition-all duration-300 clip-path-slant"
+       class:border-cyan-500/30={isCyan}
+       class:border-fuchsia-500/30={!isCyan}
+       class:hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]={isCyan}
+       class:hover:shadow-[0_0_20px_rgba(217,70,239,0.3)]={!isCyan}>
+    <div class={`absolute top-0 left-0 w-2 h-2 ${isCyan ? 'bg-cyan-400' : 'bg-fuchsia-400'}`} />
+    <div class={`absolute top-0 right-0 w-2 h-2 ${isCyan ? 'bg-cyan-400' : 'bg-fuchsia-400'}`} />
+    <div class={`absolute bottom-0 left-0 w-2 h-2 ${isCyan ? 'bg-cyan-400' : 'bg-fuchsia-400'}`} />
+    <div class={`absolute bottom-0 right-0 w-2 h-2 ${isCyan ? 'bg-cyan-400' : 'bg-fuchsia-400'}`} />
 
     <div class="absolute inset-0 pointer-events-none opacity-5 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[length:100%_4px]" />
 
     {title && (
-      <h3 class={`font-cyber text-xl font-bold mb-4 ${titleColor} uppercase tracking-widest`}>
+      <h3 class={`font-cyber text-xl font-bold mb-4 uppercase tracking-widest ${isCyan ? 'text-cyan-400' : 'text-fuchsia-400'}`}>
         {title}
       </h3>
     )}
