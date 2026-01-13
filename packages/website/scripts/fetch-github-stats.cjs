@@ -147,8 +147,8 @@ async function main() {
     // Write to files
     const fs = require('fs');
     const path = require('path');
-    const outputPath = path.join(__dirname, OUTPUT_FILE);
-    const contributionsPath = path.join(__dirname, CONTRIBUTIONS_FILE);
+    const outputPath = path.join(process.cwd(), OUTPUT_FILE);
+    const contributionsPath = path.join(process.cwd(), CONTRIBUTIONS_FILE);
     
     fs.writeFileSync(outputPath, JSON.stringify(stats, null, 2));
     console.log('✅ Stats saved to', OUTPUT_FILE);
