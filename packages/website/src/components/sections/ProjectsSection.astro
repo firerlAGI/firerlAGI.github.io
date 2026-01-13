@@ -4,10 +4,9 @@ import Section from '../ui/Section.astro'
 import CyberCard from '../ui/CyberCard.astro'
 import GlitchText from '../ui/GlitchText.astro'
 import { projects } from '../../data/projects'
-import { translations } from '../translations'
-import { useLanguageContext } from '../contexts/LanguageContext'
+import { translations, Language } from '../translations'
 
-const { lang } = useLanguageContext()
+const lang: Language = 'en'
 const t = translations[lang]
 
 <Section id="projects" class="py-20 px-4">

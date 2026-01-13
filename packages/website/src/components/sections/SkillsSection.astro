@@ -4,8 +4,7 @@ import Section from '../ui/Section.astro'
 import CyberCard from '../ui/CyberCard.astro'
 import GlitchText from '../ui/GlitchText.astro'
 import { Activity as ActivityIcon, GitCommit, Code, Calendar as CalendarIcon } from 'lucide-react'
-import { translations } from '../translations'
-import { useLanguageContext } from '../contexts/LanguageContext'
+import { translations, Language } from '../translations'
 
 // 获取数据
 interface Activity {
@@ -62,7 +61,7 @@ try {
   }
 }
 
-const { lang } = useLanguageContext()
+const lang: Language = 'en'
 const t = translations[lang]
 ---
 
