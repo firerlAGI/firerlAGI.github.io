@@ -4,7 +4,7 @@ import Section from '../ui/Section.astro'
 import CyberCard from '../ui/CyberCard.astro'
 import GlitchText from '../ui/GlitchText.astro'
 import { Activity as ActivityIcon, GitCommit, Code, Calendar as CalendarIcon } from 'lucide-react'
-import { translations, Language } from '../translations'
+import { translations, Language } from '../../translations'
 
 // 获取数据
 interface Activity {
@@ -25,40 +25,30 @@ interface ContributionData {
   updatedAt?: string
 }
 
+// 使用备用数据（github-contributions.json 文件不存在）
 let data: Activity[] = []
 let stats: Stats = { loc: 0, days: 0, contribs: 0 }
 let loading = false
 
-try {
-  // 读取本地的贡献数据文件
-  const { default: contributionsData } = await import('/github-contributions.json')
-  if (contributionsData) {
-    data = contributionsData.data || []
-    stats = contributionsData.stats || { loc: 0, days: 0, contribs: 0 }
-  }
-} catch (error) {
-  console.log('Using fallback data: github-contributions.json not found')
+// 生成最小化的备用数据
+const startDate = new Date()
+startDate.setDate(startDate.getDate() - 90)
+
+for (let i = 0; i < 90; i++) {
+  const currentDate = new Date(startDate)
+  currentDate.setDate(startDate.getDate() + i)
   
-  // 如果没有真实数据，生成最小化的备用数据
-  const startDate = new Date()
-  startDate.setDate(startDate.getDate() - 90)
-  
-  for (let i = 0; i < 90; i++) {
-    const currentDate = new Date(startDate)
-    currentDate.setDate(startDate.getDate() + i)
-    
-    data.push({
-      date: currentDate.toISOString().split('T')[0],
-      count: 0,
-      level: 0,
-    })
-  }
-  
-  stats = {
-    contribs: 0,
-    days: 0,
-    loc: 0
-  }
+  data.push({
+    date: currentDate.toISOString().split('T')[0],
+    count: 0,
+    level: 0,
+  })
+}
+
+stats = {
+  contribs: 0,
+  days: 0,
+  loc: 0
 }
 
 const lang: Language = 'en'
@@ -68,7 +58,7 @@ const t = translations[lang]
 <Section sectionId="skills" class="py-20 px-4">
   <Container class="max-w-7xl mx-auto">
     <div class="mb-12">
-      <GlitchText text={t.skills.title} tag="h2" className="text-4xl md:text-5xl font-bold text-white mb-4" />
+      <GlitchText text={t.skills.title} tag="h2" class="text-4xl md:text-5xl font-bold text-white mb-4" />
       <div class="h-1 w-24 bg-fuchsia-500" />
     </div>
 

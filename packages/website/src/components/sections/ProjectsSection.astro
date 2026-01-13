@@ -4,21 +4,22 @@ import Section from '../ui/Section.astro'
 import CyberCard from '../ui/CyberCard.astro'
 import GlitchText from '../ui/GlitchText.astro'
 import { projects } from '../../data/projects'
-import { translations, Language } from '../translations'
+import { translations, Language } from '../../translations'
 
 const lang: Language = 'en'
 const t = translations[lang]
+---
 
 <Section sectionId="projects" class="py-20 px-4">
   <Container class="max-w-7xl mx-auto">
     <div class="mb-12 flex flex-col items-end text-right">
-      <GlitchText text={t.projects.title} tag="h2" className="text-4xl md:text-5xl font-bold text-white mb-4" />
+      <GlitchText text={t.projects.title} tag="h2" class="text-4xl md:text-5xl font-bold text-white mb-4" />
       <div class="h-1 w-24 bg-cyan-500" />
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {projects.map((project, index) => (
-        <CyberCard key={project.title} className="h-full flex flex-col" glowColor={index % 2 === 0 ? 'pink' : 'cyan'}>
+        <CyberCard key={project.title} class="h-full flex flex-col" glowColor={index % 2 === 0 ? 'pink' : 'cyan'}>
           {project.image && (
             <div class="relative mb-4 overflow-hidden group-hover:border-b border-cyan-500/50">
               <img 

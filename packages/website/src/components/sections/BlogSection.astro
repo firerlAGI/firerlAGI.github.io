@@ -26,13 +26,13 @@ const formatDate = (date: Date) => {
 <Section sectionId="blog" class="py-20 px-4">
   <Container class="max-w-7xl mx-auto">
     <div class="mb-12">
-      <GlitchText text="DATA ARCHIVES" tag="h2" className="text-4xl md:text-5xl font-bold text-white mb-4" />
+      <GlitchText text="DATA ARCHIVES" tag="h2" class="text-4xl md:text-5xl font-bold text-white mb-4" />
       <div class="h-1 w-24 bg-fuchsia-500" />
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {posts.map((post) => (
-        <CyberCard key={post.id} glowColor="pink" className="flex flex-col h-full group">
+        <CyberCard key={post.id} glowColor="pink" class="flex flex-col h-full group">
           <div class="flex justify-between items-start mb-4 border-b border-fuchsia-500/20 pb-2">
             <div class="flex items-center gap-2 text-fuchsia-400 font-mono text-xs">
               <Calendar size={12} />

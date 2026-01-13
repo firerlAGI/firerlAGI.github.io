@@ -4,21 +4,21 @@ import Section from '../ui/Section.astro'
 import CyberCard from '../ui/CyberCard.astro'
 import GlitchText from '../ui/GlitchText.astro'
 import { Cpu, Code2, Brain, Zap } from 'lucide-react'
-import { translations, Language } from '../translations'
+import { translations, Language } from '../../translations'
 
 const lang: Language = 'en'
 const t = translations[lang]
+---
 
-<Section sectionId="about" className="py-20 px-4">
-  <Container className="max-w-7xl mx-auto">
+<Section sectionId="about" class="py-20 px-4">
+  <Container class="max-w-7xl mx-auto">
     <div class="mb-12">
-      <GlitchText text={t.about.profile} tag="h2" className="text-4xl md:text-5xl font-bold text-white mb-4" />
+      <GlitchText text={t.about.profile} tag="h2" class="text-4xl md:text-5xl font-bold text-white mb-4" />
       <div class="h-1 w-24 bg-cyan-500" />
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <!-- Left: Profile Card -->
-      <CyberCard glowColor="cyan" className="h-full">
+      <CyberCard glowColor="cyan" class="h-full">
         <div class="flex items-start gap-6">
           <div class="avatar-container">
             <div class="avatar-image">👨‍💻</div>
@@ -58,9 +58,8 @@ const t = translations[lang]
         </div>
       </CyberCard>
 
-      <!-- Right: Skills Grid -->
       <div class="space-y-4">
-        <CyberCard glowColor="pink" className="skill-card group">
+        <CyberCard glowColor="pink" class="skill-card group">
           <div class="flex items-start gap-4">
             <div class="skill-icon text-fuchsia-400">
               <Cpu size={32} />
@@ -74,7 +73,7 @@ const t = translations[lang]
           </div>
         </CyberCard>
 
-        <CyberCard glowColor="cyan" className="skill-card group">
+        <CyberCard glowColor="cyan" class="skill-card group">
           <div class="flex items-start gap-4">
             <div class="skill-icon text-cyan-400">
               <Code2 size={32} />
@@ -88,7 +87,7 @@ const t = translations[lang]
           </div>
         </CyberCard>
 
-        <CyberCard glowColor="pink" className="skill-card group">
+        <CyberCard glowColor="pink" class="skill-card group">
           <div class="flex items-start gap-4">
             <div class="skill-icon text-fuchsia-400">
               <Brain size={32} />
@@ -102,7 +101,7 @@ const t = translations[lang]
           </div>
         </CyberCard>
 
-        <CyberCard glowColor="cyan" className="skill-card group">
+        <CyberCard glowColor="cyan" class="skill-card group">
           <div class="flex items-start gap-4">
             <div class="skill-icon text-cyan-400">
               <Zap size={32} />
@@ -118,7 +117,6 @@ const t = translations[lang]
       </div>
     </div>
 
-    <!-- Quote Section -->
     <div class="mt-12">
       <div class="quote-container">
         <div class="quote-mark text-6xl text-cyan-500/20">"</div>
