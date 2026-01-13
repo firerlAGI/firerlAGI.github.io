@@ -1,14 +1,14 @@
 ---
 interface Props {
-  id?: string
+  sectionId?: string
   class?: string
   alt?: boolean
 }
 
-const { id, class: className = '', alt = false } = Astro.props
+const { sectionId, class: className = '', alt = false } = Astro.props
 ---
 
-<section id={id} class={`section ${alt ? 'section-alt' : ''} ${className}`}>
+<section id={sectionId} class={`section ${alt ? 'section-alt' : ''} ${className}`}>
   <slot />
 </section>
 
