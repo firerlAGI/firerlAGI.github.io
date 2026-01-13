@@ -10,7 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "fetch-github-stats": "node scripts/fetch-github-stats.js",
+    "fetch-github-stats": "node scripts/fetch-github-stats.cjs",
     "prebuild": "npm run fetch-github-stats"
   },
   "dependencies": {
