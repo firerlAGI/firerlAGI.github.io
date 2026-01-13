@@ -4,42 +4,23 @@ import Section from '../ui/Section.astro'
 import CyberCard from '../ui/CyberCard.astro'
 import GlitchText from '../ui/GlitchText.astro'
 import { ArrowRight, Calendar, Hash } from 'lucide-react'
+import { getCollection } from 'astro:content'
 
-interface BlogPost {
-  id: string
-  title: string
-  excerpt: string
-  date: string
-  readTime: string
-  category: string
+// Get blog posts from content collections
+const allPosts = await getCollection('blog')
+
+// Sort posts by date (newest first)
+const posts = allPosts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3) // Show only latest 3 posts
+
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('zh-CN', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(date).replace(/\//g, '.')
 }
-
-const posts: BlogPost[] = [
-  {
-    id: '1',
-    title: 'The Ghost in the Machine: AI Consciousness',
-    excerpt: 'Exploring the boundaries between advanced LLMs and true sentience in the age of neural networks.',
-    date: '2024.11.15',
-    readTime: '5 MIN',
-    category: 'AI_ETHICS'
-  },
-  {
-    id: '2',
-    title: 'Optimizing WebGL for Low-End Cyberdecks',
-    excerpt: 'Techniques for rendering high-fidelity particle systems on limited hardware resources.',
-    date: '2024.10.28',
-    readTime: '8 MIN',
-    category: 'RENDERING'
-  },
-  {
-    id: '3',
-    title: 'Zero-Trust Architecture in 2077',
-    excerpt: 'Why traditional firewalls are obsolete and how identity-based security is the future.',
-    date: '2024.09.10',
-    readTime: '6 MIN',
-    category: 'SECURITY'
-  }
-]
 ---
 
 <Section id="blog" class="py-20 px-4">
@@ -50,31 +31,34 @@ const posts: BlogPost[] = [
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {posts.map((post, index) => (
+      {posts.map((post) => (
         <CyberCard key={post.id} glowColor="pink" className="flex flex-col h-full group">
           <div class="flex justify-between items-start mb-4 border-b border-fuchsia-500/20 pb-2">
             <div class="flex items-center gap-2 text-fuchsia-400 font-mono text-xs">
               <Calendar size={12} />
-              <span>{post.date}</span>
+              <span>{formatDate(post.data.date)}</span>
             </div>
             <div class="flex items-center gap-1 text-gray-500 font-mono text-xs">
               <Hash size={10} />
-              <span>{post.category}</span>
+              <span>{post.data.category}</span>
             </div>
           </div>
 
           <h3 class="text-xl font-cyber text-white mb-3 group-hover:text-fuchsia-400 transition-colors">
-            {post.title}
+            {post.data.title}
           </h3>
           
           <p class="text-gray-400 text-sm font-mono mb-6 leading-relaxed flex-grow">
-            {post.excerpt}
+            {post.data.description}
           </p>
 
-          <button class="flex items-center justify-between w-full p-2 border border-fuchsia-500/30 bg-fuchsia-900/10 hover:bg-fuchsia-500/20 text-fuchsia-400 hover:text-white transition-all group/btn cursor-pointer">
+          <a 
+            href={`/blog/${post.slug}`}
+            class="flex items-center justify-between w-full p-2 border border-fuchsia-500/30 bg-fuchsia-900/10 hover:bg-fuchsia-500/20 text-fuchsia-400 hover:text-white transition-all group/btn"
+          >
             <span class="font-cyber text-xs tracking-widest">ACCESS NODE</span>
             <ArrowRight size={16} class="transform group-hover/btn:translate-x-1 transition-transform" />
-          </button>
+          </a>
         </CyberCard>
       ))}
     </div>

@@ -1,6 +1,8 @@
 ---
 import Container from '../ui/Container.astro'
 import Section from '../ui/Section.astro'
+import { translations } from '../translations'
+import { useLanguageContext } from '../contexts/LanguageContext'
 
 interface GithubStats {
   repositories: number
@@ -15,7 +17,7 @@ interface GithubStats {
   }>
 }
 
-// 尝试从服务器端获取数据
+// 从静态 JSON 文件获取数据
 let stats: GithubStats = {
   repositories: 42,
   stars: 128,
@@ -25,14 +27,17 @@ let stats: GithubStats = {
 }
 
 try {
-  const response = await fetch('http://localhost:4321/api/github-stats.json')
-  if (response.ok) {
-    const data = await response.json()
-    stats = data
+  // 读取本地的 GitHub stats 文件
+  const { default: githubStats } = await import('/github-stats.json')
+  if (githubStats) {
+    stats = githubStats
   }
 } catch (error) {
-  console.log('Using fallback stats data')
+  console.log('Using fallback stats data, github-stats.json not found')
 }
+
+const { lang } = useLanguageContext()
+const t = translations[lang]
 
 const formatNumber = (num: number) => {
   if (num >= 1000) {
@@ -40,41 +45,89 @@ const formatNumber = (num: number) => {
   }
   return num.toString()
 }
+
+const getActivityText = (type: string, repo: string) => {
+  const repoName = repo?.split('/')[1] || repo
+  const textsEn: Record<string, string> = {
+    PushEvent: `Pushed to ${repoName}`,
+    CreateEvent: `Created ${repoName}`,
+    DeleteEvent: `Deleted ${repoName}`,
+    WatchEvent: `Starred ${repoName}`,
+    ForkEvent: `Forked ${repoName}`,
+    IssuesEvent: `Created issue in ${repoName}`,
+    IssueCommentEvent: `Commented on issue in ${repoName}`,
+    PullRequestEvent: `Opened PR in ${repoName}`,
+    ReleaseEvent: `Released ${repoName}`,
+  }
+  const textsZh: Record<string, string> = {
+    PushEvent: `推送到 ${repoName}`,
+    CreateEvent: `创建了 ${repoName}`,
+    DeleteEvent: `删除了 ${repoName}`,
+    WatchEvent: `Star 了 ${repoName}`,
+    ForkEvent: `Fork 了 ${repoName}`,
+    IssuesEvent: `在 ${repoName} 创建了 Issue`,
+    IssueCommentEvent: `在 ${repoName} 评论了 Issue`,
+    PullRequestEvent: `在 ${repoName} 提交了 PR`,
+    ReleaseEvent: `发布了 ${repoName}`,
+  }
+  return lang === 'zh' ? (textsZh[type] || `在 ${repoName} 进行了操作`) : (textsEn[type] || `Performed action on ${repoName}`)
+}
+
+const formatTime = (dateString: string) => {
+  const date = new Date(dateString)
+  const now = new Date()
+  const diff = Math.floor((now.getTime() - date.getTime()) / 1000)
+  
+  if (diff < 60) return lang === 'zh' ? '刚刚' : 'just now'
+  if (diff < 3600) {
+    const mins = Math.floor(diff / 60)
+    return lang === 'zh' ? `${mins} 分钟前` : `${mins} minute${mins > 1 ? 's' : ''} ago`
+  }
+  if (diff < 86400) {
+    const hours = Math.floor(diff / 3600)
+    return lang === 'zh' ? `${hours} 小时前` : `${hours} hour${hours > 1 ? 's' : ''} ago`
+  }
+  if (diff < 604800) {
+    const days = Math.floor(diff / 86400)
+    return lang === 'zh' ? `${days} 天前` : `${days} day${days > 1 ? 's' : ''} ago`
+  }
+  return date.toLocaleDateString(lang === 'zh' ? 'zh-CN' : 'en-US')
+}
 ---
 
 <Section id="github">
   <Container>
-    <h2 class="section-title animate-on-scroll">技术足迹</h2>
+    <h2 class="section-title animate-on-scroll">{t.github.title}</h2>
     
     <div class="stats-container animate-on-scroll">
       <div class="stat-card">
         <div class="stat-icon">📦</div>
         <span class="stat-value">{stats.repositories}</span>
-        <span class="stat-label">仓库数</span>
+        <span class="stat-label">{t.github.repos}</span>
       </div>
       
       <div class="stat-card">
         <div class="stat-icon">⭐</div>
         <span class="stat-value">{formatNumber(stats.stars)}</span>
-        <span class="stat-label">Star数</span>
+        <span class="stat-label">{t.github.stars}</span>
       </div>
       
       <div class="stat-card">
         <div class="stat-icon">🔄</div>
         <span class="stat-value">{formatNumber(stats.forks)}</span>
-        <span class="stat-label">Fork数</span>
+        <span class="stat-label">{t.github.forks}</span>
       </div>
       
       <div class="stat-card">
         <div class="stat-icon">👥</div>
         <span class="stat-value">{stats.followers}</span>
-        <span class="stat-label">关注者</span>
+        <span class="stat-label">{t.github.followers}</span>
       </div>
     </div>
     
     {stats.recentActivity && stats.recentActivity.length > 0 && (
       <div class="activity-section animate-on-scroll">
-        <h3 class="activity-title">最近活动</h3>
+        <h3 class="activity-title">{t.github.recent}</h3>
         <div class="activity-list">
           {stats.recentActivity.slice(0, 5).map((activity) => (
             <div class="activity-item">
@@ -95,13 +148,13 @@ const formatNumber = (num: number) => {
     
     <div class="github-links animate-on-scroll">
       <a href="https://github.com/firerlAGI" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-        访问我的 GitHub
+        {t.github.visit}
       </a>
     </div>
   </Container>
 </Section>
 
-<script define:vars={{ stats }}>
+<script define:vars={{ stats, getActivityText, formatTime }}>
   function getActivityIcon(type: string) {
     const icons: Record<string, string> = {
       PushEvent: '📝',
@@ -117,35 +170,7 @@ const formatNumber = (num: number) => {
     return icons[type] || '📦'
   }
   
-  function getActivityText(type: string, repo: string) {
-    const repoName = repo?.split('/')[1] || repo
-    const texts: Record<string, string> = {
-      PushEvent: `推送到 ${repoName}`,
-      CreateEvent: `创建了 ${repoName}`,
-      DeleteEvent: `删除了 ${repoName}`,
-      WatchEvent: `Star 了 ${repoName}`,
-      ForkEvent: `Fork 了 ${repoName}`,
-      IssuesEvent: `在 ${repoName} 创建了 Issue`,
-      IssueCommentEvent: `在 ${repoName} 评论了 Issue`,
-      PullRequestEvent: `在 ${repoName} 提交了 PR`,
-      ReleaseEvent: `发布了 ${repoName}`,
-    }
-    return texts[type] || `在 ${repoName} 进行了操作`
-  }
-  
-  function formatTime(dateString: string) {
-    const date = new Date(dateString)
-    const now = new Date()
-    const diff = Math.floor((now.getTime() - date.getTime()) / 1000)
-    
-    if (diff < 60) return '刚刚'
-    if (diff < 3600) return `${Math.floor(diff / 60)} 分钟前`
-    if (diff < 86400) return `${Math.floor(diff / 3600)} 小时前`
-    if (diff < 604800) return `${Math.floor(diff / 86400)} 天前`
-    return date.toLocaleDateString('zh-CN')
-  }
-  
-  return { getActivityIcon, getActivityText, formatTime }
+  return { getActivityIcon }
 </script>
 
 <style>

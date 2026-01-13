@@ -1,0 +1,224 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro'
+import Container from '../../components/ui/Container.astro'
+import CyberCard from '../../components/ui/CyberCard.astro'
+import GlitchText from '../../components/ui/GlitchText.astro'
+import { Calendar, Hash, Clock, ArrowLeft } from 'lucide-react'
+import { getCollection } from 'astro:content'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog')
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }))
+}
+
+const { post } = Astro.props
+const { Content } = await post.render()
+
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('zh-CN', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(date)
+}
+---
+
+<MainLayout title={`${post.data.title} | Blog`}>
+  <Container class="max-w-4xl mx-auto py-12 px-4">
+    <!-- Back Button -->
+    <a href="/#blog" class="inline-flex items-center gap-2 text-fuchsia-400 hover:text-fuchsia-300 transition-colors mb-8 group">
+      <ArrowLeft size={20} class="transform group-hover:-translate-x-1 transition-transform" />
+      <span class="font-cyber text-sm tracking-widest">RETURN TO ARCHIVES</span>
+    </a>
+
+    <!-- Article Header -->
+    <div class="mb-12 animate-on-scroll">
+      <div class="flex items-center gap-3 text-sm font-mono text-gray-500 mb-4">
+        <div class="flex items-center gap-2 text-fuchsia-400">
+          <Calendar size={14} />
+          <span>{formatDate(post.data.date)}</span>
+        </div>
+        <span class="text-gray-700">|</span>
+        <div class="flex items-center gap-2 text-cyan-400">
+          <Clock size={14} />
+          <span>{post.data.readTime}</span>
+        </div>
+        <span class="text-gray-700">|</span>
+        <div class="flex items-center gap-2 text-gray-400">
+          <Hash size={14} />
+          <span>{post.data.category}</span>
+        </div>
+      </div>
+
+      <GlitchText text={post.data.title} as="h1" className="text-4xl md:text-5xl font-bold text-white mb-6" />
+      
+      <p class="text-xl text-gray-400 font-mono leading-relaxed">
+        {post.data.description}
+      </p>
+
+      {post.data.tags && post.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-6">
+          {post.data.tags.map((tag) => (
+            <span class="px-3 py-1 bg-fuchsia-900/20 border border-fuchsia-500/30 text-fuchsia-400 text-xs font-mono rounded">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <!-- Article Content -->
+    <CyberCard glowColor="cyan" class="p-8 md:p-12">
+      <article class="prose prose-invert prose-lg max-w-none">
+        <Content />
+      </article>
+    </CyberCard>
+
+    <!-- Article Footer -->
+    <div class="mt-12 pt-8 border-t border-gray-800">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div class="text-sm text-gray-500">
+          <span class="font-mono">ARCHIVE_ID:</span>
+          <span class="font-cyber text-fuchsia-400 ml-2">{post.id}</span>
+        </div>
+        <div class="flex gap-4">
+          <a
+            href="/#blog"
+            class="inline-flex items-center gap-2 px-4 py-2 bg-cyan-900/20 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/20 transition-colors font-cyber text-sm"
+          >
+            <ArrowLeft size={16} />
+            <span>BACK TO INDEX</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </Container>
+</MainLayout>
+
+<style>
+  /* Article Content Styling */
+  :global(.prose) {
+    color: #e5e7eb;
+    line-height: 1.8;
+  }
+  
+  :global(.prose h2) {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid rgba(192, 38, 211, 0.3);
+  }
+  
+  :global(.prose h3) {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #e0f2fe;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  :global(.prose p) {
+    margin-bottom: 1.5rem;
+    font-size: 1.125rem;
+  }
+  
+  :global(.prose ul),
+  :global(.prose ol) {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+  }
+  
+  :global(.prose li) {
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+  }
+  
+  :global(.prose code) {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    color: #22d3ee;
+  }
+  
+  :global(.prose pre) {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+  }
+  
+  :global(.prose pre code) {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: #e5e7eb;
+  }
+  
+  :global(.prose blockquote) {
+    border-left: 4px solid #c026d3;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: #9ca3af;
+    background: rgba(192, 38, 211, 0.05);
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+  }
+  
+  :global(.prose a) {
+    color: #22d3ee;
+    text-decoration: underline;
+    text-decoration-color: rgba(34, 211, 238, 0.3);
+    transition: all 0.2s;
+  }
+  
+  :global(.prose a:hover) {
+    color: #67e8f9;
+    text-decoration-color: #67e8f9;
+  }
+  
+  :global(.prose strong) {
+    color: #fff;
+    font-weight: 700;
+  }
+  
+  :global(.prose hr) {
+    border-color: rgba(75, 85, 99, 0.5);
+    margin: 3rem 0;
+  }
+  
+  /* Code block styling */
+  :global(.language-js),
+  :global(.language-javascript),
+  :global(.language-ts),
+  :global(.language-typescript),
+  :global(.language-glsl) {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+  
+  @media (max-width: 768px) {
+    :global(.prose h2) {
+      font-size: 1.5rem;
+    }
+    
+    :global(.prose h3) {
+      font-size: 1.25rem;
+    }
+    
+    :global(.prose p),
+    :global(.prose li) {
+      font-size: 1rem;
+    }
+  }
+</style>

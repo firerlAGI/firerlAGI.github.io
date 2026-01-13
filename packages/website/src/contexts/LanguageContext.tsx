@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { translations, Language } from '../translations';
 
 interface LanguageContextType {
@@ -7,10 +7,54 @@ interface LanguageContextType {
   t: typeof translations.en;
 }
 
+const LANGUAGE_STORAGE_KEY = 'firerlagi-language';
+
+const getStoredLanguage = (): Language => {
+  if (typeof window === 'undefined') return 'en';
+  try {
+    const stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    if (stored && (stored === 'en' || stored === 'zh')) {
+      return stored as Language;
+    }
+  } catch (error) {
+    console.warn('Failed to read language from localStorage:', error);
+  }
+  return 'en';
+};
+
+const storeLanguage = (lang: Language) => {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
+  } catch (error) {
+    console.warn('Failed to write language to localStorage:', error);
+  }
+};
+
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguageState] = useState<Language>(getStoredLanguage());
+
+  useEffect(() => {
+    // Update language state when localStorage changes (e.g., in another tab)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === LANGUAGE_STORAGE_KEY && e.newValue) {
+        const newLang = e.newValue as Language;
+        if (newLang === 'en' || newLang === 'zh') {
+          setLanguageState(newLang);
+        }
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    storeLanguage(lang);
+  };
 
   const value = {
     language,

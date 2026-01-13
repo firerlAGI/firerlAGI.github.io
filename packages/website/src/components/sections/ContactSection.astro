@@ -47,7 +47,12 @@ import { Mail, Github, Twitter, MapPin } from 'lucide-react'
       </CyberCard>
       
       <div class="contact-form-wrapper">
-        <form class="contact-form" onsubmit="event.preventDefault(); alert('Transmission failed. Please use direct frequency: hello@firerlAGI.com');">
+        <form 
+          class="contact-form" 
+          action="https://formspree.io/f/your-form-id" 
+          method="POST"
+          id="contact-form"
+        >
           <div class="form-group">
             <label for="name">IDENTITY</label>
             <input type="text" id="name" name="name" required placeholder="Enter your identity" />

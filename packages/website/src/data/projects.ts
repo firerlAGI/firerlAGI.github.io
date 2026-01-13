@@ -8,6 +8,7 @@ export interface Project {
   image?: boolean
   cta?: string
   ctaHref?: string
+  note?: string
 }
 
 export const projects: Project[] = [
@@ -40,7 +41,8 @@ export const projects: Project[] = [
     techBadges: ['LLM', 'Python', 'FastAPI'],
     size: 'small',
     cta: '查看项目',
-    ctaHref: '#'
+    ctaHref: '#',
+    note: '项目开发中'
   },
   {
     id: 'data-viz',
@@ -50,7 +52,8 @@ export const projects: Project[] = [
     techBadges: ['D3.js', 'React', 'TypeScript'],
     size: 'small',
     cta: '查看项目',
-    ctaHref: '#'
+    ctaHref: '#',
+    note: '项目规划中'
   },
   {
     id: 'task-manager',
@@ -60,6 +63,7 @@ export const projects: Project[] = [
     techBadges: ['Vue.js', 'Node.js', 'MongoDB'],
     size: 'small',
     cta: '查看项目',
-    ctaHref: '#'
+    ctaHref: '#',
+    note: '项目规划中'
   }
 ]

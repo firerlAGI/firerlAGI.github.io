@@ -4,12 +4,16 @@ import Section from '../ui/Section.astro'
 import CyberCard from '../ui/CyberCard.astro'
 import GlitchText from '../ui/GlitchText.astro'
 import { Cpu, Code2, Brain, Zap } from 'lucide-react'
----
+import { translations } from '../translations'
+import { useLanguageContext } from '../contexts/LanguageContext'
+
+const { lang } = useLanguageContext()
+const t = translations[lang]
 
 <Section id="about" class="py-20 px-4">
   <Container class="max-w-7xl mx-auto">
     <div class="mb-12">
-      <GlitchText text="OPERATOR PROFILE" as="h2" className="text-4xl md:text-5xl font-bold text-white mb-4" />
+      <GlitchText text={t.about.profile} as="h2" className="text-4xl md:text-5xl font-bold text-white mb-4" />
       <div class="h-1 w-24 bg-cyan-500" />
     </div>
 
@@ -24,16 +28,14 @@ import { Cpu, Code2, Brain, Zap } from 'lucide-react'
           
           <div class="flex-grow">
             <h3 class="text-2xl font-cyber text-cyan-400 mb-2">FIRERLAGI</h3>
-            <p class="text-fuchsia-400 font-mono text-sm mb-4">[FULL_STACK_ENGINEER] // [AI_INTEGRATOR]</p>
+            <p class="text-fuchsia-400 font-mono text-sm mb-4">{t.about.roleBadge}</p>
             
             <div class="space-y-3 text-gray-300 font-mono text-sm">
               <p class="leading-relaxed">
-                Operating in the digital frontier, specializing in building scalable systems 
-                and integrating artificial intelligence into practical applications.
+                {t.about.description1}
               </p>
               <p class="leading-relaxed">
-                Passionate about the intersection of human creativity and machine learning, 
-                pushing the boundaries of what's possible in web development.
+                {t.about.description2}
               </p>
             </div>
 
@@ -65,10 +67,9 @@ import { Cpu, Code2, Brain, Zap } from 'lucide-react'
               <Cpu size={32} />
             </div>
             <div class="flex-grow">
-              <h4 class="text-lg font-cyber text-fuchsia-400 mb-2">SYSTEM ARCHITECTURE</h4>
+              <h4 class="text-lg font-cyber text-fuchsia-400 mb-2">{t.about.skills.architecture}</h4>
               <p class="text-gray-400 text-sm font-mono leading-relaxed">
-                Designing robust, scalable systems with microservices architecture, 
-                cloud-native deployments, and performance optimization strategies.
+                {t.about.skills.architectureDesc}
               </p>
             </div>
           </div>
@@ -80,10 +81,9 @@ import { Cpu, Code2, Brain, Zap } from 'lucide-react'
               <Code2 size={32} />
             </div>
             <div class="flex-grow">
-              <h4 class="text-lg font-cyber text-cyan-400 mb-2">FULL_STACK_DEVELOPMENT</h4>
+              <h4 class="text-lg font-cyber text-cyan-400 mb-2">{t.about.skills.fullstack}</h4>
               <p class="text-gray-400 text-sm font-mono leading-relaxed">
-                Building seamless user experiences with modern frameworks, 
-                responsive designs, and pixel-perfect implementations.
+                {t.about.skills.fullstackDesc}
               </p>
             </div>
           </div>
@@ -95,10 +95,9 @@ import { Cpu, Code2, Brain, Zap } from 'lucide-react'
               <Brain size={32} />
             </div>
             <div class="flex-grow">
-              <h4 class="text-lg font-cyber text-fuchsia-400 mb-2">AI_INTEGRATION</h4>
+              <h4 class="text-lg font-cyber text-fuchsia-400 mb-2">{t.about.skills.ai}</h4>
               <p class="text-gray-400 text-sm font-mono leading-relaxed">
-                Implementing intelligent features using LLMs, machine learning models, 
-                and neural networks to enhance application capabilities.
+                {t.about.skills.aiDesc}
               </p>
             </div>
           </div>
@@ -110,10 +109,9 @@ import { Cpu, Code2, Brain, Zap } from 'lucide-react'
               <Zap size={32} />
             </div>
             <div class="flex-grow">
-              <h4 class="text-lg font-cyber text-cyan-400 mb-2">RAPID_PROTOTYPING</h4>
+              <h4 class="text-lg font-cyber text-cyan-400 mb-2">{t.about.skills.prototyping}</h4>
               <p class="text-gray-400 text-sm font-mono leading-relaxed">
-                Transforming ideas into functional prototypes quickly, 
-                iterating based on feedback, and delivering value fast.
+                {t.about.skills.prototypingDesc}
               </p>
             </div>
           </div>
@@ -126,7 +124,7 @@ import { Cpu, Code2, Brain, Zap } from 'lucide-react'
       <div class="quote-container">
         <div class="quote-mark text-6xl text-cyan-500/20">"</div>
         <p class="quote-text text-xl text-gray-300 font-mono italic text-center">
-          Technology's value lies not in its complexity, but in its ability to solve real-world problems.
+          {t.about.quote}
         </p>
         <div class="quote-mark text-6xl text-fuchsia-500/20 transform rotate-180">"</div>
       </div>
