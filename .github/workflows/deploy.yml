@@ -37,13 +37,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile=false
 
-      - name: Fetch GitHub Stats
-        run: cd packages/website && node scripts/fetch-github-stats.cjs
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Build
-        run: pnpm run build
+        run: cd packages/website && pnpm run build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
