@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-import { translations, Language } from '../translations';
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import { translations, type Language } from '../translations';
 
 interface LanguageContextType {
   language: Language;
@@ -33,7 +33,7 @@ const storeLanguage = (lang: Language) => {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguageState] = useState<Language>(getStoredLanguage());
 
   useEffect(() => {

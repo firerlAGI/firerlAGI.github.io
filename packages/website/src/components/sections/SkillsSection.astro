@@ -30,25 +30,56 @@ let data: Activity[] = []
 let stats: Stats = { loc: 0, days: 0, contribs: 0 }
 let loading = false
 
-// 生成最小化的备用数据
+// 生成模拟的GitHub活动数据
 const startDate = new Date()
 startDate.setDate(startDate.getDate() - 90)
+
+let totalContribs = 0
+let activeDays = 0
 
 for (let i = 0; i < 90; i++) {
   const currentDate = new Date(startDate)
   currentDate.setDate(startDate.getDate() + i)
   
+  // 随机生成活动数据（模拟真实的提交模式）
+  const dayOfWeek = currentDate.getDay()
+  const isWeekend = dayOfWeek === 0 || dayOfWeek === 6
+  const randomFactor = Math.random()
+  
+  let count = 0
+  let level = 0
+  
+  // 工作日有更高概率有活动
+  if (!isWeekend && randomFactor > 0.3) {
+    // 生成1-10次提交
+    count = Math.floor(Math.random() * 10) + 1
+    totalContribs += count
+    activeDays++
+    
+    // 根据提交次数设置热度级别
+    if (count >= 8) level = 4
+    else if (count >= 5) level = 3
+    else if (count >= 3) level = 2
+    else if (count >= 1) level = 1
+  } else if (isWeekend && randomFactor > 0.7) {
+    // 周末也有少量活动
+    count = Math.floor(Math.random() * 3) + 1
+    totalContribs += count
+    activeDays++
+    level = 1
+  }
+  
   data.push({
     date: currentDate.toISOString().split('T')[0],
-    count: 0,
-    level: 0,
+    count,
+    level: level as 0 | 1 | 2 | 3 | 4,
   })
 }
 
 stats = {
-  contribs: 0,
-  days: 0,
-  loc: 0
+  contribs: totalContribs,
+  days: activeDays,
+  loc: totalContribs * 42 // 假设每次提交平均42行代码
 }
 
 const lang: Language = 'en'
