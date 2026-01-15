@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <linearGradient id="bg-grad-5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d0d1a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a1a30;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2a2a45;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="neon-green" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00ffff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="neon-blue-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00aaff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00ff88;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow-5">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="400" height="300" fill="url(#bg-grad-5)"/>
+  
+  <g filter="url(#glow-5)">
+    <rect x="60" y="50" width="280" height="200" rx="10" fill="none" stroke="url(#neon-green)" stroke-width="2"/>
+    
+    <rect x="80" y="80" width="240" height="25" rx="5" fill="#00ff88" opacity="0.3"/>
+    <rect x="85" y="87" width="15" height="11" fill="#00ff88" filter="url(#glow-5)"/>
+    
+    <rect x="80" y="120" width="240" height="25" rx="5" fill="#00ff88" opacity="0.2"/>
+    <rect x="85" y="127" width="15" height="11" fill="#00ffff" filter="url(#glow-5)"/>
+    
+    <rect x="80" y="160" width="240" height="25" rx="5" fill="#00ff88" opacity="0.3"/>
+    <rect x="85" y="167" width="15" height="11" fill="#00ff88" filter="url(#glow-5)"/>
+    
+    <rect x="80" y="200" width="240" height="25" rx="5" fill="#00ff88" opacity="0.2"/>
+    <rect x="85" y="207" width="15" height="11" fill="#00ffff" filter="url(#glow-5)"/>
+    
+    <circle cx="320" cy="92" r="6" fill="none" stroke="#00ff88" stroke-width="2"/>
+    <circle cx="320" cy="132" r="6" fill="#00ffff" filter="url(#glow-5)"/>
+    <circle cx="320" cy="172" r="6" fill="none" stroke="#00ff88" stroke-width="2"/>
+    <circle cx="320" cy="212" r="6" fill="#00ffff" filter="url(#glow-5)"/>
+    
+    <path d="M120 92 L280 92" stroke="url(#neon-blue-grad)" stroke-width="1" opacity="0.6"/>
+    <path d="M120 132 L280 132" stroke="url(#neon-blue-grad)" stroke-width="1" opacity="0.6"/>
+    <path d="M120 172 L280 172" stroke="url(#neon-blue-grad)" stroke-width="1" opacity="0.6"/>
+    <path d="M120 212 L280 212" stroke="url(#neon-blue-grad)" stroke-width="1" opacity="0.6"/>
+    
+    <path d="M300 60 L350 40" stroke="#00ffff" stroke-width="1.5"/>
+    <path d="M300 240 L350 260" stroke="#00ffff" stroke-width="1.5"/>
+    <path d="M100 60 L50 40" stroke="#00ffff" stroke-width="1.5"/>
+    <path d="M100 240 L50 260" stroke="#00ffff" stroke-width="1.5"/>
+  </g>
+  
+  <g opacity="0.2">
+    <rect x="30" y="20" width="340" height="260" fill="none" stroke="#00ff88" stroke-width="1"/>
+    <path d="M30 20 L50 20 M390 20 L370 20 M390 280 L370 280 M30 280 L50 280" stroke="#00ff88" stroke-width="2"/>
+  </g>
+  
+  <text x="200" y="280" text-anchor="middle" font-family="monospace" font-size="12" fill="#00ff88" opacity="0.8">TASK MANAGER</text>
+</svg>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f23;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a1a3e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d1b4e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="neon-pink" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff00ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00ffff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="neon-blue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00ffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="400" height="300" fill="url(#bg-grad)"/>
+  
+  <g filter="url(#glow)">
+    <path d="M50 150 L100 100 L150 120 L200 80 L250 100 L300 80 L350 120 L380 150 L350 180 L300 160 L250 180 L200 140 L150 180 L100 160 L50 150" 
+          fill="none" stroke="url(#neon-pink)" stroke-width="2" opacity="0.6"/>
+    
+    <circle cx="200" cy="150" r="60" fill="none" stroke="#00ffff" stroke-width="2" opacity="0.8"/>
+    <circle cx="200" cy="150" r="40" fill="none" stroke="#ff00ff" stroke-width="2" opacity="0.8"/>
+    <circle cx="200" cy="150" r="20" fill="none" stroke="#00ffff" stroke-width="2" opacity="0.8"/>
+    
+    <line x1="200" y1="90" x2="200" y2="210" stroke="url(#neon-blue)" stroke-width="1" opacity="0.5"/>
+    <line x1="140" y1="150" x2="260" y2="150" stroke="url(#neon-blue)" stroke-width="1" opacity="0.5"/>
+    
+    <circle cx="200" cy="150" r="8" fill="#ff00ff" filter="url(#glow)"/>
+    
+    <path d="M100 220 L120 240 L140 220 L160 240 L180 220 L200 240 L220 220 L240 240 L260 220 L280 240 L300 220" 
+          fill="none" stroke="url(#neon-pink)" stroke-width="1" opacity="0.4"/>
+  </g>
+  
+  <g opacity="0.3">
+    <rect x="30" y="30" width="340" height="240" fill="none" stroke="#00ffff" stroke-width="1"/>
+    <rect x="35" y="35" width="330" height="230" fill="none" stroke="#ff00ff" stroke-width="1"/>
+  </g>
+  
+  <text x="200" y="280" text-anchor="middle" font-family="monospace" font-size="12" fill="#00ffff" opacity="0.8">SECOND BRAIN</text>
+</svg>

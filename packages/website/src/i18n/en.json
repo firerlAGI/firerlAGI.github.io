@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "about": "/ABOUT",
+    "skills": "/ACTIVITY",
+    "projects": "/PROJECTS",
+    "blog": "/LOGS",
+    "contact": "/CONTACT"
+  },
+  "hero": {
+    "status": "System Online",
+    "title": "FIRERLAGI",
+    "subtitle": "Full Stack Engineer | Cyberpunk Enthusiast | AI Integrator",
+    "cta_work": "VIEW WORK",
+    "cta_contact": "CONTACT",
+    "typewriter": "Building the future, one line of code at a time."
+  },
+  "skills": {
+    "title": "NEURAL ACTIVITY",
+    "sync": "SYNCHRONIZED",
+    "total": "Total Contributions",
+    "loc": "LINES_WRITTEN",
+    "activeDays": "UPTIME_DAYS",
+    "contribs": "DATA_PACKETS",
+    "quarter": "Q1 2026 LOGS",
+    "status": "SYS.STATUS: ONLINE",
+    "latency": "NET.LATENCY: 12ms",
+    "secure": "SECURE_CONNECTION",
+    "github": "GITHUB_MAINNET"
+  },
+  "github": {
+    "title": "Technical Footprints",
+    "repos": "Repositories",
+    "stars": "Stars",
+    "forks": "Forks",
+    "followers": "Followers",
+    "recent": "Recent Activity",
+    "visit": "Visit My GitHub"
+  },
+  "about": {
+    "title": "SYSTEM OVERVIEW",
+    "subtitle": "About the operator behind the neural interface.",
+    "role": "CURRENT_ROLE",
+    "roleTitle": "Full Stack Engineer",
+    "location": "LOCATION",
+    "locationValue": "Neon City, Sector 7",
+    "experience": "EXPERIENCE",
+    "experienceValue": "5+ years in the grid",
+    "description": "A passionate developer who bridges the gap between futuristic aesthetics and functional code. Specializing in modern web technologies with a cyberpunk aesthetic.",
+    "profile": "OPERATOR PROFILE",
+    "roleBadge": "[FULL_STACK_ENGINEER] // [AI_INTEGRATOR]",
+    "description1": "Operating in the digital frontier, specializing in building scalable systems and integrating artificial intelligence into practical applications.",
+    "description2": "Passionate about the intersection of human creativity and machine learning, pushing the boundaries of what's possible in web development.",
+    "skills": {
+      "architecture": "SYSTEM ARCHITECTURE",
+      "architectureDesc": "Designing robust, scalable systems with microservices architecture, cloud-native deployments, and performance optimization strategies.",
+      "fullstack": "FULL_STACK_DEVELOPMENT",
+      "fullstackDesc": "Building seamless user experiences with modern frameworks, responsive designs, and pixel-perfect implementations.",
+      "ai": "AI_INTEGRATION",
+      "aiDesc": "Implementing intelligent features using LLMs, machine learning models, and neural networks to enhance application capabilities.",
+      "prototyping": "RAPID_PROTOTYPING",
+      "prototypingDesc": "Transforming ideas into functional prototypes quickly, iterating based on feedback, and delivering value fast."
+    },
+    "quote": "Technology's value lies not in its complexity, but in its ability to solve real-world problems."
+  },
+  "projects": {
+    "title": "DEPLOYED MODULES",
+    "code": "CODE",
+    "demo": "DEMO"
+  },
+  "blog": {
+    "title": "DATA ARCHIVES",
+    "readMore": "ACCESS NODE"
+  },
+  "contact": {
+    "title": "INITIATE UPLINK",
+    "subtitle": "Available for freelance contracts and classified missions.",
+    "channels": "TRANSMISSION CHANNELS",
+    "form": {
+      "identity": "IDENTITY",
+      "email": "FREQUENCY (EMAIL)",
+      "message": "ENCRYPTED MESSAGE",
+      "send": "SEND TRANSMISSION"
+    }
+  },
+  "ai": {
+    "greeting": "GREETINGS. I AM FIRERLAGI_BOT v2.0. HOW CAN I ASSIST?",
+    "placeholder": "Enter command...",
+    "processing": "PROCESSING DATA STREAM...",
+    "header": "AI TERMINAL"
+  },
+  "footer": "© 2024 FIRERLAGI. SYSTEM.VERSION(2.0). ALL RIGHTS RESERVED."
+}
