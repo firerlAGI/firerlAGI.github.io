@@ -8,21 +8,17 @@ interface Props {
 const { sectionId, class: className = '', alt = false } = Astro.props
 ---
 
-<section id={sectionId} class={`section ${alt ? 'section-alt' : ''} ${className}`}>
+<section id={sectionId} class={`section w-full flex flex-col items-center ${alt ? 'section-alt' : ''} ${className}`}>
   <slot />
 </section>
 
 <style>
   :global(.section) {
-    padding: max(80px, 10vw) max(48px, 5vw);
+    /* padding is handled by utility classes now, defaults provided in usage */
     transition: background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   :global(.section-alt) {
-    background: #F5F5F7;
-  }
-  
-  :global(html[data-theme="dark"] .section-alt) {
-    background: #1C1C1E;
+    background: var(--cyber-dark);
   }
 </style>

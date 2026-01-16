@@ -4,7 +4,9 @@ import Section from '../ui/Section.astro'
 import CyberCard from '../ui/CyberCard.astro'
 import GlitchText from '../ui/GlitchText.astro'
 import { Activity as ActivityIcon, GitCommit, Code, Calendar as CalendarIcon } from 'lucide-react'
-import { translations, Language } from '../../translations'
+import { translations } from '../../translations'
+
+type Language = 'en' | 'zh'
 
 // 获取数据
 interface Activity {
@@ -66,7 +68,7 @@ const t = translations[lang]
 ---
 
 <Section sectionId="skills" class="py-20 px-4">
-  <Container class="max-w-7xl mx-auto">
+  <Container class="max-w-[1400px] mx-auto">
     <div class="mb-12">
       <GlitchText text={t.skills.title} tag="h2" class="text-4xl md:text-5xl font-bold text-white mb-4" />
       <div class="h-1 w-24 bg-fuchsia-500" />
@@ -177,94 +179,96 @@ const t = translations[lang]
   </Container>
 </Section>
 
-<script define:vars={{ data }}>
-  // Render activity calendar
-  const calendarContainer = document.getElementById('activity-calendar')
-  if (calendarContainer && data.length > 0) {
-    const theme = {
-      0: '#0f172a',
-      1: '#064e3b',
-      2: '#059669',
-      3: '#10b981',
-      4: '#34d399',
-    }
-    
-    const weeks: any[][] = []
-    let currentWeek: any[] = []
-    let currentDayOfWeek = new Date(data[0].date).getDay()
-    
-    // Adjust to start from Sunday
-    const startOffset = currentDayOfWeek
-    for (let i = 0; i < startOffset; i++) {
-      currentWeek.push(null)
-    }
-    
-    data.forEach((day) => {
-      currentWeek.push(day)
-      const dayOfWeek = new Date(day.date).getDay()
-      if (dayOfWeek === 6) {
-        weeks.push(currentWeek)
-        currentWeek = []
+<script define:vars={{ data, lang }}>
+  const renderCalendar = () => {
+    const calendarContainer = document.getElementById('activity-calendar')
+    if (calendarContainer && data.length > 0) {
+      const theme = {
+        0: '#0f172a',
+        1: '#064e3b',
+        2: '#059669',
+        3: '#10b981',
+        4: '#34d399',
       }
-    })
-    
-    if (currentWeek.length > 0) {
-      weeks.push(currentWeek)
-    }
-    
-    // Build calendar HTML
-    let calendarHTML = '<div class="activity-calendar-grid">'
-    
-    // Weekday labels
-    const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-    calendarHTML += '<div class="activity-weekdays">'
-    dayLabels.forEach(day => {
-      calendarHTML += `<div class="activity-day-label">${day}</div>`
-    })
-    calendarHTML += '</div>'
-    
-    // Calendar grid
-    calendarHTML += '<div class="activity-weeks">'
-    weeks.forEach(week => {
-      calendarHTML += '<div class="activity-week">'
-      week.forEach(day => {
-        if (day) {
-          calendarHTML += `
-            <div 
-              class="activity-day level-${day.level}" 
-              title="${day.date}: ${day.count} contributions"
-              style="background-color: ${theme[day.level]}"
-            ></div>
-          `
-        } else {
-          calendarHTML += '<div class="activity-day empty"></div>'
+      
+      const weeks = []
+      let currentWeek = []
+      let currentDayOfWeek = new Date(data[0].date).getDay()
+      
+      const startOffset = currentDayOfWeek
+      for (let i = 0; i < startOffset; i++) {
+        currentWeek.push(null)
+      }
+      
+      data.forEach((day) => {
+        currentWeek.push(day)
+        const dayOfWeek = new Date(day.date).getDay()
+        if (dayOfWeek === 6) {
+          weeks.push(currentWeek)
+          currentWeek = []
         }
       })
+      
+      if (currentWeek.length > 0) {
+        weeks.push(currentWeek)
+      }
+      
+      let calendarHTML = '<div class="activity-calendar-grid" style="display: flex; flex-direction: column; gap: 8px;">'
+      
+      const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+      calendarHTML += '<div class="activity-weekdays" style="display: flex; gap: 4px; margin-left: 32px;">'
+      dayLabels.forEach(day => {
+        calendarHTML += `<div class="activity-day-label">${day}</div>`
+      })
       calendarHTML += '</div>'
-    })
-    calendarHTML += '</div>'
-    
-    // Legend
-    const offlineLabel = lang === 'zh' ? '离线' : 'OFFLINE'
-    const maxLoadLabel = lang === 'zh' ? '最大负载' : 'MAX_LOAD'
-    
-    calendarHTML += `
-      <div class="activity-legend">
-        <span class="legend-label">${offlineLabel}</span>
-        <div class="legend-colors">
-          ${[0, 1, 2, 3, 4].map(level => `
-            <div 
-              class="legend-color" 
-              style="background-color: ${theme[level]}"
-            ></div>
-          `).join('')}
+      
+      calendarHTML += '<div class="activity-weeks" style="display: flex; gap: 4px; overflow-x: auto;">'
+      weeks.forEach(week => {
+        calendarHTML += '<div class="activity-week" style="display: flex; flex-direction: column; gap: 4px;">'
+        week.forEach(day => {
+          if (day) {
+            calendarHTML += `
+              <div 
+                class="activity-day level-${day.level}" 
+                title="${day.date}: ${day.count} contributions"
+                style="background-color: ${theme[day.level]}; width: 14px; height: 14px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 2px;"
+              ></div>
+            `
+          } else {
+            calendarHTML += '<div class="activity-day empty" style="width: 14px; height: 14px; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 2px;"></div>'
+          }
+        })
+        calendarHTML += '</div>'
+      })
+      calendarHTML += '</div>'
+      
+      const offlineLabel = lang === 'zh' ? '离线' : 'OFFLINE'
+      const maxLoadLabel = lang === 'zh' ? '最大负载' : 'MAX_LOAD'
+      
+      calendarHTML += `
+        <div class="activity-legend" style="display: flex; align-items: center; justify-content: flex-end; gap: 4px; margin-top: 8px;">
+          <span class="legend-label" data-i18n="skills.offline">${offlineLabel}</span>
+          <div class="legend-colors" style="display: flex; gap: 2px;">
+            ${[0, 1, 2, 3, 4].map(level => `
+              <div 
+                class="legend-color" 
+                style="background-color: ${theme[level]}; width: 12px; height: 12px;"
+              ></div>
+            `).join('')}
+          </div>
+          <span class="legend-label" data-i18n="skills.maxLoad">${maxLoadLabel}</span>
         </div>
-        <span class="legend-label">${maxLoadLabel}</span>
-      </div>
-    `
-    
-    calendarHTML += '</div>'
-    calendarContainer.innerHTML = calendarHTML
+      `
+      
+      calendarHTML += '</div>'
+      calendarContainer.innerHTML = calendarHTML
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderCalendar)
+  } else {
+    renderCalendar()
   }
 </script>
 
@@ -275,14 +279,14 @@ const t = translations[lang]
   }
   
   .activity-calendar-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
   }
   
   .activity-weekdays {
-    display: flex;
-    gap: 4px;
+    display: flex !important;
+    gap: 4px !important;
     margin-left: 32px;
   }
   
@@ -294,33 +298,37 @@ const t = translations[lang]
   }
   
   .activity-weeks {
-    display: flex;
-    gap: 4px;
+    display: flex !important;
+    gap: 4px !important;
     overflow-x: auto;
   }
   
   .activity-week {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
   }
   
   .activity-day {
-    width: 14px;
-    height: 14px;
+    width: 14px !important;
+    height: 14px !important;
     border-radius: 2px;
     cursor: pointer;
     transition: all 0.2s ease;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
   
   .activity-day:hover {
     transform: scale(1.2);
     box-shadow: 0 0 10px currentColor;
+    border-color: rgba(255, 255, 255, 0.3);
   }
   
   .activity-day.empty {
-    background: transparent;
+    background: transparent !important;
     cursor: default;
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
   
   .activity-day.empty:hover {
@@ -329,10 +337,10 @@ const t = translations[lang]
   }
   
   .activity-legend {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 4px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 4px !important;
     margin-top: 8px;
   }
   
@@ -344,8 +352,8 @@ const t = translations[lang]
   }
   
   .legend-colors {
-    display: flex;
-    gap: 2px;
+    display: flex !important;
+    gap: 2px !important;
   }
   
   .legend-color {
@@ -360,8 +368,8 @@ const t = translations[lang]
     }
     
     .activity-day {
-      width: 12px;
-      height: 12px;
+      width: 12px !important;
+      height: 12px !important;
     }
   }
 </style>

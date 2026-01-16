@@ -25,7 +25,9 @@
     "status": "系统状态: 在线",
     "latency": "网络延迟: 12ms",
     "secure": "安全连接",
-    "github": "GitHub 主网"
+    "github": "GitHub 主网",
+    "offline": "离线",
+    "maxLoad": "最大负载"
   },
   "github": {
     "title": "技术足迹",
@@ -67,6 +69,50 @@
     "code": "代码",
     "demo": "演示"
   },
+  "project_items": {
+    "second-brain": {
+      "title": "第二大脑",
+      "description": "AI 驱动的个人知识管理系统，帮助你构建高效的知识网络，提升学习与创造效率。",
+      "note": "查看项目"
+    },
+    "github-home": {
+      "title": "GitHub Home",
+      "description": "个人作品集网站，展示项目和技术能力，响应式设计，支持深色模式。",
+      "note": "查看项目"
+    },
+    "ai-assistant": {
+      "title": "AI 助手",
+      "description": "智能对话助手，支持多轮对话、上下文理解，提供个性化的建议和帮助。",
+      "note": "项目开发中"
+    },
+    "data-viz": {
+      "title": "数据可视化",
+      "description": "交互式数据可视化工具，支持多种图表类型，实时数据更新和导出功能。",
+      "note": "项目规划中"
+    },
+    "task-manager": {
+      "title": "任务管理器",
+      "description": "高效的任务管理工具，支持拖拽排序、标签分类、团队协作等功能。",
+      "note": "项目规划中"
+    }
+  },
+  "tech": {
+    "AI": "AI",
+    "Knowledge Graph": "知识图谱",
+    "NLP": "NLP",
+    "Machine Learning": "机器学习",
+    "Astro": "Astro",
+    "TypeScript": "TypeScript",
+    "Tailwind CSS": "Tailwind CSS",
+    "LLM": "LLM",
+    "Python": "Python",
+    "FastAPI": "FastAPI",
+    "D3.js": "D3.js",
+    "React": "React",
+    "Vue.js": "Vue.js",
+    "Node.js": "Node.js",
+    "MongoDB": "MongoDB"
+  },
   "blog": {
     "title": "数据归档",
     "readMore": "访问节点"
@@ -77,8 +123,11 @@
     "channels": "传输频道",
     "form": {
       "identity": "身份 (姓名)",
+      "identityPlaceholder": "请输入您的身份",
       "email": "频率 (邮箱)",
+      "emailPlaceholder": "请输入您的频率",
       "message": "加密信息 (内容)",
+      "messagePlaceholder": "请输入加密信息",
       "send": "发送传输"
     }
   },

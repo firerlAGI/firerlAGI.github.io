@@ -9,17 +9,27 @@ const { class: className = '' } = Astro.props
 ---
 
 <footer class={`footer ${className}`}>
-  <p>&copy; {year} firerlAGI. All rights reserved.</p>
+  <div class="footer-container">
+    <p data-i18n="footer">&copy; {year} firerlAGI. All rights reserved.</p>
+  </div>
 </footer>
 
 <style>
   :global(.footer) {
-    padding: 32px;
-    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     background: #F5F5F7;
     transition: background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
                 border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  :global(.footer-container) {
+    width: 100%;
+    max-width: 1400px;
+    padding: 32px 20px;
+    text-align: center;
   }
   
   :global(html[data-theme="dark"] .footer) {

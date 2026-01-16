@@ -16,7 +16,13 @@ interface ContributionData {
   data: ContributionDay[]
   stats: ContributionStats
   updatedAt: string
+  cached?: boolean
 }
+
+// Simple in-memory cache
+let cachedData: ContributionData | null = null
+let cacheTime: number = 0
+const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
 
 async function fetchContributionsWithGraphQL(): Promise<ContributionData> {
   const username = 'firerlAGI'
@@ -218,6 +224,20 @@ async function fetchContributionsWithREST(): Promise<ContributionData> {
 
 export const GET: APIRoute = async () => {
   try {
+    const now = Date.now()
+    
+    // Check cache
+    if (cachedData && (now - cacheTime) < CACHE_DURATION) {
+      console.log('Returning cached data')
+      return new Response(JSON.stringify({ ...cachedData, cached: true }), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'public, max-age=600, s-maxage=1800',
+        },
+      })
+    }
+
     const GITHUB_TOKEN = import.meta.env.GITHUB_TOKEN
 
     let data: ContributionData
@@ -234,6 +254,10 @@ export const GET: APIRoute = async () => {
       data = await fetchContributionsWithREST()
     }
 
+    // Update cache
+    cachedData = data
+    cacheTime = now
+
     return new Response(JSON.stringify(data), {
       status: 200,
       headers: {
@@ -243,6 +267,17 @@ export const GET: APIRoute = async () => {
     })
   } catch (error) {
     console.error('GitHub contributions API error:', error)
+
+    // Return cached data if available on error
+    if (cachedData) {
+      console.log('API error, returning cached data')
+      return new Response(JSON.stringify({ ...cachedData, cached: true }), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+    }
 
     return new Response(
       JSON.stringify({ error: 'Failed to fetch GitHub contributions' }),

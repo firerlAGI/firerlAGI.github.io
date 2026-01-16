@@ -4,17 +4,21 @@ import Section from '../ui/Section.astro'
 import CyberCard from '../ui/CyberCard.astro'
 import GlitchText from '../ui/GlitchText.astro'
 import { Mail, Github, Twitter, MapPin } from 'lucide-react'
+import { translations, type Language } from '../../translations'
+
+const lang: Language = 'en'
+const t = translations[lang]
 ---
 
-<Section sectionId="contact" alt={true}>
-  <Container>
+<Section sectionId="contact">
+  <Container class="max-w-[1400px] mx-auto">
     <div class="contact-header animate-on-scroll">
-      <GlitchText text="INITIATE UPLINK" tag="h2" className="section-title" />
-      <p class="contact-subtitle">Available for freelance contracts and classified missions.</p>
+      <GlitchText text={t.contact.title} tag="h2" className="section-title" data-i18n="contact.title" />
+      <p class="contact-subtitle" data-i18n="contact.subtitle">{t.contact.subtitle}</p>
     </div>
     
     <div class="contact-wrapper animate-on-scroll">
-      <CyberCard glowColor="pink" title="TRANSMISSION CHANNELS" class="contact-info">
+      <CyberCard glowColor="pink" title={t.contact.channels} titleI18n="contact.channels" class="contact-info h-full">
         <div class="contact-links">
           <a href="mailto:hello@firerlAGI.com" class="contact-link">
             <div class="icon-wrapper">
@@ -46,7 +50,7 @@ import { Mail, Github, Twitter, MapPin } from 'lucide-react'
         </div>
       </CyberCard>
       
-      <div class="contact-form-wrapper">
+      <CyberCard glowColor="cyan" class="contact-form-card h-full">
         <form 
           class="contact-form" 
           action="https://formspree.io/f/your-form-id" 
@@ -54,36 +58,36 @@ import { Mail, Github, Twitter, MapPin } from 'lucide-react'
           id="contact-form"
         >
           <div class="form-group">
-            <label htmlFor="name">IDENTITY</label>
-            <input type="text" id="name" name="name" required placeholder="Enter your identity" />
+            <label htmlFor="name" data-i18n="contact.form.identity">{t.contact.form.identity}</label>
+            <input type="text" id="name" name="name" required placeholder={t.contact.form.identityPlaceholder} data-i18n="contact.form.identityPlaceholder" />
           </div>
           
           <div class="form-group">
-            <label htmlFor="email">FREQUENCY (EMAIL)</label>
-            <input type="email" id="email" name="email" required placeholder="Enter your frequency" />
+            <label htmlFor="email" data-i18n="contact.form.email">{t.contact.form.email}</label>
+            <input type="email" id="email" name="email" required placeholder={t.contact.form.emailPlaceholder} data-i18n="contact.form.emailPlaceholder" />
           </div>
           
           <div class="form-group">
-            <label htmlFor="message">ENCRYPTED MESSAGE</label>
-            <textarea id="message" name="message" rows="5" required placeholder="Enter encrypted message"></textarea>
+            <label htmlFor="message" data-i18n="contact.form.message">{t.contact.form.message}</label>
+            <textarea id="message" name="message" rows="5" required placeholder={t.contact.form.messagePlaceholder} data-i18n="contact.form.messagePlaceholder"></textarea>
           </div>
           
           <button type="submit" class="cyber-button">
-            <span class="button-text">SEND TRANSMISSION</span>
+            <span class="button-text" data-i18n="contact.form.send">{t.contact.form.send}</span>
           </button>
         </form>
-      </div>
+      </CyberCard>
     </div>
   </Container>
 </Section>
 
 <style>
-  :global(.contact-header) {
+  .contact-header {
     text-align: center;
     margin-bottom: 64px;
   }
 
-  :global(.section-title) {
+  .section-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
     margin-bottom: 16px;
@@ -96,7 +100,7 @@ import { Mail, Github, Twitter, MapPin } from 'lucide-react'
       0 0 30px rgba(0, 255, 255, 0.2);
   }
 
-  :global(.contact-subtitle) {
+  .contact-subtitle {
     font-size: 1.1rem;
     color: #22d3ee;
     font-family: 'Courier New', monospace;
@@ -104,27 +108,27 @@ import { Mail, Github, Twitter, MapPin } from 'lucide-react'
     margin: 0;
   }
 
-  :global(.contact-wrapper) {
+  .contact-wrapper {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
     gap: 32px;
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
   }
 
-  :global(.contact-info) {
+  .contact-info {
     display: flex;
     flex-direction: column;
     gap: 24px;
   }
 
-  :global(.contact-links) {
+  .contact-links {
     display: flex;
     flex-direction: column;
     gap: 16px;
   }
 
-  :global(.contact-link) {
+  .contact-link {
     display: flex;
     align-items: center;
     gap: 16px;
@@ -137,7 +141,7 @@ import { Mail, Github, Twitter, MapPin } from 'lucide-react'
     overflow: hidden;
   }
 
-  :global(.contact-link::before) {
+  .contact-link::before {
     content: '';
     position: absolute;
     top: 0;
@@ -148,23 +152,23 @@ import { Mail, Github, Twitter, MapPin } from 'lucide-react'
     transition: left 0.5s;
   }
 
-  :global(.contact-link:hover::before) {
+  .contact-link:hover::before {
     left: 100%;
   }
 
-  :global(.contact-link:hover) {
+  .contact-link:hover {
     border-color: #d946ef;
     box-shadow: 0 0 20px rgba(217, 70, 239, 0.3);
     transform: translateX(4px);
   }
 
-  :global(.contact-link:hover .icon-wrapper) {
+  .contact-link:hover .icon-wrapper {
     border-color: #d946ef;
     color: #d946ef;
     box-shadow: 0 0 15px rgba(217, 70, 239, 0.4);
   }
 
-  :global(.icon-wrapper) {
+  .icon-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -177,40 +181,17 @@ import { Mail, Github, Twitter, MapPin } from 'lucide-react'
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  :global(.contact-value) {
+  .contact-value {
     font-size: 1rem;
     color: #e2e8f0;
     transition: color 0.3s;
   }
 
-  :global(.contact-link:hover .contact-value) {
+  .contact-link:hover .contact-value {
     color: #d946ef;
   }
 
-  :global(.contact-form-wrapper) {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(34, 211, 238, 0.3);
-    border-radius: 4px;
-    padding: 32px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  :global(.contact-form-wrapper::before) {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 20px 20px;
-    pointer-events: none;
-  }
-
-  :global(.contact-form) {
+  .contact-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -218,13 +199,13 @@ import { Mail, Github, Twitter, MapPin } from 'lucide-react'
     z-index: 1;
   }
 
-  :global(.form-group) {
+  .form-group {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
 
-  :global(.form-group label) {
+  .form-group label {
     font-size: 0.875rem;
     font-weight: 600;
     color: #22d3ee;
@@ -233,8 +214,8 @@ import { Mail, Github, Twitter, MapPin } from 'lucide-react'
     font-family: 'Courier New', monospace;
   }
 
-  :global(.form-group input),
-  :global(.form-group textarea) {
+  .form-group input,
+  .form-group textarea {
     padding: 14px 16px;
     font-size: 1rem;
     border: 1px solid rgba(34, 211, 238, 0.3);
@@ -245,8 +226,8 @@ import { Mail, Github, Twitter, MapPin } from 'lucide-react'
     position: relative;
   }
 
-  :global(.form-group input:focus),
-  :global(.form-group textarea:focus) {
+  .form-group input:focus,
+  .form-group textarea:focus {
     outline: none;
     border-color: #22d3ee;
     box-shadow: 
@@ -254,17 +235,17 @@ import { Mail, Github, Twitter, MapPin } from 'lucide-react'
       inset 0 0 10px rgba(34, 211, 238, 0.1);
   }
 
-  :global(.form-group input::placeholder),
-  :global(.form-group textarea::placeholder) {
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
     color: rgba(148, 163, 184, 0.6);
   }
 
-  :global(.form-group textarea) {
+  .form-group textarea {
     resize: vertical;
     min-height: 120px;
   }
 
-  :global(.cyber-button) {
+  .cyber-button {
     position: relative;
     padding: 16px 32px;
     background: rgba(34, 211, 238, 0.1);
@@ -283,7 +264,7 @@ import { Mail, Github, Twitter, MapPin } from 'lucide-react'
     justify-content: center;
   }
 
-  :global(.cyber-button::before) {
+  .cyber-button::before {
     content: '';
     position: absolute;
     top: 0;
@@ -294,11 +275,11 @@ import { Mail, Github, Twitter, MapPin } from 'lucide-react'
     transition: left 0.5s;
   }
 
-  :global(.cyber-button:hover::before) {
+  .cyber-button:hover::before {
     left: 100%;
   }
 
-  :global(.cyber-button:hover) {
+  .cyber-button:hover {
     background: #22d3ee;
     color: #000;
     box-shadow: 
@@ -307,11 +288,11 @@ import { Mail, Github, Twitter, MapPin } from 'lucide-react'
     transform: translateY(-2px);
   }
 
-  :global(.cyber-button:active) {
+  .cyber-button:active {
     transform: translateY(0);
   }
 
-  :global(.button-text) {
+  .button-text {
     position: relative;
     z-index: 1;
   }
@@ -340,16 +321,16 @@ import { Mail, Github, Twitter, MapPin } from 'lucide-react'
     }
   }
 
-  :global(.section-title:hover) {
+  .section-title:hover {
     animation: cyberGlitch 0.5s infinite;
   }
 
   @media (max-width: 768px) {
-    :global(.contact-wrapper) {
+    .contact-wrapper {
       grid-template-columns: 1fr;
     }
 
-    :global(.section-title) {
+    .section-title {
       font-size: 2rem;
     }
   }

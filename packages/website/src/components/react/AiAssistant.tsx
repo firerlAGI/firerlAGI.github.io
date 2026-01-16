@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send, Cpu } from 'lucide-react';
-import { getGeminiResponse } from '../../services/geminiService';
-import CyberCard from '../ui/CyberCard.astro';
+import { getAiResponse } from '../../services/aiService';
+import CyberCard from './CyberCard';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 interface Message {
@@ -42,7 +42,7 @@ const AiAssistant: React.FC = () => {
     setInput('');
     setIsLoading(true);
 
-    const reply = await getGeminiResponse(userMsg);
+    const reply = await getAiResponse(userMsg);
     
     setMessages(prev => [...prev, { role: 'ai', text: reply }]);
     setIsLoading(false);

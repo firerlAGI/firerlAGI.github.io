@@ -29,42 +29,44 @@ const Navbar: React.FC = () => {
   };
 
   const navLinks = [
-    { href: '#about', label: t('nav.about') },
-    { href: '#skills', label: t('nav.skills') },
-    { href: '#projects', label: t('nav.projects') },
-    { href: '#blog', label: t('nav.blog') },
-    { href: '#contact', label: t('nav.contact') },
+    { href: '#about', label: t.nav.about },
+    { href: '#skills', label: t.nav.skills },
+    { href: '#projects', label: t.nav.projects },
+    { href: '#blog', label: t.nav.blog },
+    { href: '#contact', label: t.nav.contact },
   ];
 
   return (
     <>
       <nav className="navbar">
-        <a href="#" className="navbar-logo">
-          F<span className="logo-accent">IR</span>ER<span className="logo-accent">LA</span>GI
-        </a>
+        <div className="navbar-container">
+          <a href="#" className="navbar-logo">
+            F<span className="logo-accent">IR</span>ER<span className="logo-accent">LA</span>GI
+          </a>
 
-        <div className="nav-links">
-          {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="nav-link" onClick={handleNavClick}>
-              /{link.label.toUpperCase()}
-            </a>
-          ))}
-        </div>
-
-        <div className="nav-actions">
-          <div className="language-toggle">
-            <LanguageSwitcher />
+          <div className="nav-links">
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="nav-link" onClick={handleNavClick}>
+                /{link.label.toUpperCase()}
+              </a>
+            ))}
           </div>
-          <button
-            className="mobile-menu-toggle"
-            aria-label="Open menu"
-            aria-expanded={isMobileMenuOpen}
-            onClick={toggleMobileMenu}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+
+          <div className="nav-actions">
+            <div className="language-toggle">
+              <LanguageSwitcher />
+            </div>
+            <button
+              className="mobile-menu-toggle"
+              aria-label="Open menu"
+              aria-expanded={isMobileMenuOpen}
+              onClick={toggleMobileMenu}
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
         </div>
       </nav>
 

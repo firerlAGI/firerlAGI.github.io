@@ -2,7 +2,7 @@
 import '../styles/global.css'
 import '../styles/cyberpunk.css'
 import { getTheme } from '../lib/theme'
-import Navbar from '../components/layout/Navbar.astro'
+import Navbar from '../components/react/Navbar'
 import Footer from '../components/layout/Footer.astro'
 import { LanguageProvider } from '../contexts/LanguageContext'
 
@@ -10,12 +10,14 @@ interface Props {
   title?: string
   description?: string
   image?: string
+  mainClass?: string
 }
 
 const {
   title = 'firerlAGI - 计算为了无法计算的价值',
   description = '探索 AI、知识管理与创造力边界的个人作品集',
   image = 'https://github.com/firerlAGI/firerlAGI-preview/raw/main/images/hero-bg.png',
+  mainClass = '',
 } = Astro.props
 
 const theme = getTheme()
@@ -60,16 +62,17 @@ const theme = getTheme()
       })();
     </script>
   </head>
-  <body class="flex flex-col min-h-screen">
+  <body class="flex flex-col min-h-screen antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
     <LanguageProvider client:load>
-      <Navbar />
-      <main class="flex-1">
+      <Navbar client:load />
+      <main id="main-content" class={`flex-1 relative w-full min-w-0 isolate flex flex-col items-center ${mainClass}`}>
         <slot />
       </main>
       <Footer />
     </LanguageProvider>
     
     <script>
+      import '../scripts/i18n';
       import { initThemeToggle } from '../scripts/theme-toggle'
       import { initSmoothScroll } from '../scripts/smooth-scroll'
       import { initScrollAnimations, initHeroAnimations } from '../scripts/animations'

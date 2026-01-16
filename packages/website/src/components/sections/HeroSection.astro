@@ -2,7 +2,9 @@
 import GlitchText from '../ui/GlitchText.astro'
 ---
 
-<section class="hero">
+<section class="hero w-full">
+  <div class="hero-background"></div>
+  <div class="hero-grayscale-filter"></div>
   <div class="hero-overlay"></div>
   
   <div class="hero-content">
@@ -11,7 +13,7 @@ import GlitchText from '../ui/GlitchText.astro'
         <polyline points="4 17 10 11 4 5"></polyline>
         <line x1="12" y1="19" x2="20" y2="19"></line>
       </svg>
-      <span class="status-text">System Online</span>
+      <span class="status-text" data-i18n="hero.status">System Online</span>
     </div>
 
     <h1 class="hero-title">
@@ -19,22 +21,23 @@ import GlitchText from '../ui/GlitchText.astro'
         text="FIRERLAGI" 
         as="span"
         className="hero-title-main"
+        data-i18n="hero.title"
       />
     </h1>
     
     <p class="hero-subtitle" id="typewriter-text"></p>
     
-    <p class="hero-description">
+    <p class="hero-description" data-i18n="hero.subtitle">
       Full Stack Engineer | Cyberpunk Enthusiast | AI Integrator
     </p>
     
     <div class="hero-cta">
       <a href="#projects" class="cyber-button cyber-button-cyan">
-        <span class="cyber-button-text">VIEW WORK</span>
+        <span class="cyber-button-text" data-i18n="hero.cta_work">VIEW WORK</span>
         <div class="cyber-button-overlay"></div>
       </a>
       <a href="#contact" class="cyber-button cyber-button-fuchsia">
-        <span class="cyber-button-text">CONTACT</span>
+        <span class="cyber-button-text" data-i18n="hero.cta_contact">CONTACT</span>
         <div class="cyber-button-overlay"></div>
       </a>
     </div>
@@ -47,21 +50,40 @@ import GlitchText from '../ui/GlitchText.astro'
   </div>
 </section>
 
-<script define:vars={{ fullText: "Building the future, one line of code at a time." }}>
+<script>
+  import { language } from '../../stores/languageStore';
+  import { translations } from '../../translations';
+
   const typewriterText = document.getElementById('typewriter-text');
-  if (typewriterText) {
+  let currentTimeout: any = null;
+
+  function startTypewriter(text: string) {
+    if (!typewriterText) return;
+    
+    // Clear existing timeout
+    if (currentTimeout) clearTimeout(currentTimeout);
+    
     let index = 0;
+    typewriterText.textContent = '';
+    
     const type = () => {
-      if (index < fullText.length) {
-        typewriterText.textContent = fullText.slice(0, index + 1) + '_';
+      if (index < text.length) {
+        typewriterText.textContent = text.slice(0, index + 1) + '_';
         index++;
-        setTimeout(type, 50);
+        currentTimeout = setTimeout(type, 50);
       } else {
-        typewriterText.textContent = fullText;
+        typewriterText.textContent = text;
       }
     };
+    
     type();
   }
+
+  // Subscribe to language changes
+  language.subscribe(lang => {
+    const text = translations[lang].hero.typewriter;
+    startTypewriter(text);
+  });
 </script>
 
 <style>
@@ -78,6 +100,31 @@ import GlitchText from '../ui/GlitchText.astro'
       radial-gradient(ellipse at bottom right, rgba(217, 70, 239, 0.1) 0%, transparent 50%),
       linear-gradient(180deg, #050505 0%, #0a0a0a 100%);
   }
+
+  :global(.hero-background) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/assets/images/hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+  }
+
+  :global(.hero-grayscale-filter) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(128, 128, 128, 0.7);
+    backdrop-filter: grayscale(100%);
+    z-index: 1;
+    pointer-events: none;
+  }
   
   :global(.hero)::before {
     content: '';
@@ -91,7 +138,7 @@ import GlitchText from '../ui/GlitchText.astro'
       linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px);
     background-size: 50px 50px;
     animation: gridMove 20s linear infinite;
-    z-index: 0;
+    z-index: 2;
   }
   
   @keyframes gridMove {
@@ -137,16 +184,20 @@ import GlitchText from '../ui/GlitchText.astro'
     right: 0;
     bottom: 0;
     background: linear-gradient(to bottom, transparent, #050505 90%);
-    z-index: 1;
+    z-index: 3;
     pointer-events: none;
   }
   
   :global(.hero-content) {
     text-align: center;
-    z-index: 2;
+    z-index: 4;
     padding: 0 20px;
-    max-width: 900px;
+    max-width: 1400px;
     position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   :global(.system-status) {
@@ -301,7 +352,7 @@ import GlitchText from '../ui/GlitchText.astro'
     transform: translateX(-50%);
     color: #00ffff;
     animation: bounce 2s infinite;
-    z-index: 2;
+    z-index: 4;
     font-size: 2rem;
     opacity: 0.5;
   }

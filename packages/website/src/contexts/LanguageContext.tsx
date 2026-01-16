@@ -1,4 +1,6 @@
-import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, type ReactNode } from 'react';
+import { useStore } from '@nanostores/react';
+import { language as languageAtom, setLanguage as setLanguageStore } from '../stores/languageStore';
 import { translations, type Language } from '../translations';
 
 interface LanguageContextType {
@@ -7,59 +9,15 @@ interface LanguageContextType {
   t: typeof translations.en;
 }
 
-const LANGUAGE_STORAGE_KEY = 'firerlagi-language';
-
-const getStoredLanguage = (): Language => {
-  if (typeof window === 'undefined') return 'en';
-  try {
-    const stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
-    if (stored && (stored === 'en' || stored === 'zh')) {
-      return stored as Language;
-    }
-  } catch (error) {
-    console.warn('Failed to read language from localStorage:', error);
-  }
-  return 'en';
-};
-
-const storeLanguage = (lang: Language) => {
-  if (typeof window === 'undefined') return;
-  try {
-    localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
-  } catch (error) {
-    console.warn('Failed to write language to localStorage:', error);
-  }
-};
-
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguageState] = useState<Language>(getStoredLanguage());
-
-  useEffect(() => {
-    // Update language state when localStorage changes (e.g., in another tab)
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === LANGUAGE_STORAGE_KEY && e.newValue) {
-        const newLang = e.newValue as Language;
-        if (newLang === 'en' || newLang === 'zh') {
-          setLanguageState(newLang);
-        }
-      }
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
-  }, []);
-
-  const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
-    storeLanguage(lang);
-  };
+  const currentLanguage = useStore(languageAtom);
 
   const value = {
-    language,
-    setLanguage,
-    t: translations[language],
+    language: currentLanguage,
+    setLanguage: setLanguageStore,
+    t: translations[currentLanguage],
   };
 
   return (
@@ -71,13 +29,18 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
-  if (context === undefined) {
-    // Return default values for SSR compatibility
-    return {
-      language: 'en' as Language,
-      setLanguage: () => {},
-      t: translations.en,
-    };
+  const storeLanguage = useStore(languageAtom);
+  
+  // If used inside a provider, return the context
+  if (context !== undefined) {
+    return context;
   }
-  return context;
+
+  // If used outside a provider (e.g. in Astro islands), directly use the store
+  // This ensures reactivity even without a common root provider
+  return {
+    language: storeLanguage,
+    setLanguage: setLanguageStore,
+    t: translations[storeLanguage],
+  };
 };

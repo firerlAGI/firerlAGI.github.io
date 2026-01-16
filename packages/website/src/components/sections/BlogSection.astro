@@ -5,6 +5,7 @@ import CyberCard from '../ui/CyberCard.astro'
 import GlitchText from '../ui/GlitchText.astro'
 import { ArrowRight, Calendar, Hash } from 'lucide-react'
 import { getCollection } from 'astro:content'
+import { translations, type Language } from '../../translations'
 
 // Get blog posts from content collections
 const allPosts = await getCollection('blog')
@@ -13,6 +14,9 @@ const allPosts = await getCollection('blog')
 const posts = allPosts
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3) // Show only latest 3 posts
+
+const lang: Language = 'en'
+const t = translations[lang]
 
 const formatDate = (date: Date) => {
   return new Intl.DateTimeFormat('zh-CN', {
@@ -24,9 +28,9 @@ const formatDate = (date: Date) => {
 ---
 
 <Section sectionId="blog" class="py-20 px-4">
-  <Container class="max-w-7xl mx-auto">
+  <Container class="max-w-[1400px] mx-auto">
     <div class="mb-12">
-      <GlitchText text="DATA ARCHIVES" tag="h2" class="text-4xl md:text-5xl font-bold text-white mb-4" />
+      <GlitchText text={t.blog.title} tag="h2" class="text-4xl md:text-5xl font-bold text-white mb-4" data-i18n="blog.title" />
       <div class="h-1 w-24 bg-fuchsia-500" />
     </div>
 
@@ -53,10 +57,12 @@ const formatDate = (date: Date) => {
           </p>
 
           <a 
-            href={`/blog/${post.slug}`}
+            href={post.data.externalUrl || `/blog/${post.slug}`}
+            target={post.data.externalUrl ? "_blank" : undefined}
+            rel={post.data.externalUrl ? "noopener noreferrer" : undefined}
             class="flex items-center justify-between w-full p-2 border border-fuchsia-500/30 bg-fuchsia-900/10 hover:bg-fuchsia-500/20 text-fuchsia-400 hover:text-white transition-all group/btn"
           >
-            <span class="font-cyber text-xs tracking-widest">ACCESS NODE</span>
+            <span class="font-cyber text-xs tracking-widest" data-i18n="blog.readMore">{t.blog.readMore}</span>
             <ArrowRight size={16} class="transform group-hover/btn:translate-x-1 transition-transform" />
           </a>
         </CyberCard>

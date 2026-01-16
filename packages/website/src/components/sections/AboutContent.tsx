@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { Cpu, Code2, Brain, Zap } from 'lucide-react';
+import { Cpu, Code2, Brain, Zap, Terminal } from 'lucide-react';
 
 const AboutContent: React.FC = () => {
   const { t } = useLanguage();
@@ -9,7 +9,7 @@ const AboutContent: React.FC = () => {
     <div>
       <div className="mb-12">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-          {t('about.title')}
+          {t.about.title}
         </h2>
         <div className="h-1 w-24 bg-cyan-500" />
       </div>
@@ -17,21 +17,45 @@ const AboutContent: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="bg-black/40 border border-fuchsia-500/30 p-6 rounded-lg h-full hover:border-fuchsia-500/50 transition-all duration-300">
           <div className="flex items-start gap-6">
-            <div className="avatar-container">
-              <div className="avatar-image">👨‍💻</div>
-              <div className="avatar-status animate-pulse">ONLINE</div>
+            <div className="avatar-container group">
+              {/* Rotating Tech Rings */}
+              <div className="tech-ring ring-outer"></div>
+              <div className="tech-ring ring-inner"></div>
+              
+              <div className="avatar-hexagon-wrapper">
+                <div className="glitch-effect"></div>
+                <div className="avatar-hexagon-bg"></div>
+                <div className="avatar-hexagon">
+                  <div className="scanline"></div>
+                  <div className="icon-wrapper">
+                    <Terminal className="w-16 h-16 text-cyan-100 drop-shadow-[0_0_15px_rgba(34,211,238,0.8)] relative z-10" />
+                  </div>
+                  <div className="hud-overlay"></div>
+                </div>
+              </div>
+              
+              {/* HUD Corners */}
+              <div className="hud-corner top-left"></div>
+              <div className="hud-corner top-right"></div>
+              <div className="hud-corner bottom-left"></div>
+              <div className="hud-corner bottom-right"></div>
+
+              <div className="avatar-status">
+                <span className="status-indicator"></span>
+                <span className="relative z-10 tracking-widest">NET.LINK</span>
+              </div>
             </div>
             
             <div className="flex-grow">
               <h3 className="text-2xl font-cyber text-cyan-400 mb-2">FIRERLAGI</h3>
-              <p className="text-fuchsia-400 font-mono text-sm mb-4">{t('about.roleBadge')}</p>
+              <p className="text-fuchsia-400 font-mono text-sm mb-4">{t.about.roleBadge}</p>
               
               <div className="space-y-3 text-gray-300 font-mono text-sm">
                 <p className="leading-relaxed">
-                  {t('about.description1')}
+                  {t.about.description1}
                 </p>
                 <p className="leading-relaxed">
-                  {t('about.description2')}
+                  {t.about.description2}
                 </p>
               </div>
 
@@ -62,9 +86,9 @@ const AboutContent: React.FC = () => {
                 <Cpu size={32} />
               </div>
               <div className="flex-grow">
-                <h4 className="text-lg font-cyber text-fuchsia-400 mb-2">{t('about.skills.architecture')}</h4>
+                <h4 className="text-lg font-cyber text-fuchsia-400 mb-2">{t.about.skills.architecture}</h4>
                 <p className="text-gray-400 text-sm font-mono leading-relaxed">
-                  {t('about.skills.architectureDesc')}
+                  {t.about.skills.architectureDesc}
                 </p>
               </div>
             </div>
@@ -76,9 +100,9 @@ const AboutContent: React.FC = () => {
                 <Code2 size={32} />
               </div>
               <div className="flex-grow">
-                <h4 className="text-lg font-cyber text-cyan-400 mb-2">{t('about.skills.fullstack')}</h4>
+                <h4 className="text-lg font-cyber text-cyan-400 mb-2">{t.about.skills.fullstack}</h4>
                 <p className="text-gray-400 text-sm font-mono leading-relaxed">
-                  {t('about.skills.fullstackDesc')}
+                  {t.about.skills.fullstackDesc}
                 </p>
               </div>
             </div>
@@ -118,7 +142,7 @@ const AboutContent: React.FC = () => {
         <div className="relative max-w-2xl mx-auto p-10 bg-black/30 border border-cyan-500/20 rounded-lg overflow-hidden">
           <div className="quote-mark text-6xl text-cyan-500/20">"</div>
           <p className="relative z-10 text-xl text-gray-300 font-mono italic text-center leading-relaxed">
-            {t('about.quote')}
+            {t.about.quote}
           </p>
           <div className="quote-mark text-6xl text-fuchsia-500/20 transform rotate-180">"</div>
         </div>

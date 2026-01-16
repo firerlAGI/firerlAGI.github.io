@@ -25,7 +25,9 @@
     "status": "SYS.STATUS: ONLINE",
     "latency": "NET.LATENCY: 12ms",
     "secure": "SECURE_CONNECTION",
-    "github": "GITHUB_MAINNET"
+    "github": "GITHUB_MAINNET",
+    "offline": "OFFLINE",
+    "maxLoad": "MAX_LOAD"
   },
   "github": {
     "title": "Technical Footprints",
@@ -67,6 +69,50 @@
     "code": "CODE",
     "demo": "DEMO"
   },
+  "project_items": {
+    "second-brain": {
+      "title": "Second Brain",
+      "description": "AI-powered personal knowledge management system, helping you build an efficient knowledge network to boost learning and creativity.",
+      "note": "VIEW PROJECT"
+    },
+    "github-home": {
+      "title": "GitHub Home",
+      "description": "Personal portfolio website showcasing projects and technical skills, responsive design with dark mode support.",
+      "note": "VIEW PROJECT"
+    },
+    "ai-assistant": {
+      "title": "AI Assistant",
+      "description": "Intelligent conversational assistant supporting multi-turn dialogue and context understanding, providing personalized suggestions and help.",
+      "note": "IN DEVELOPMENT"
+    },
+    "data-viz": {
+      "title": "Data Visualization",
+      "description": "Interactive data visualization tool supporting various chart types, real-time data updates, and export functionality.",
+      "note": "PLANNING"
+    },
+    "task-manager": {
+      "title": "Task Manager",
+      "description": "Efficient task management tool supporting drag-and-drop sorting, tag classification, and team collaboration.",
+      "note": "PLANNING"
+    }
+  },
+  "tech": {
+    "AI": "AI",
+    "Knowledge Graph": "Knowledge Graph",
+    "NLP": "NLP",
+    "Machine Learning": "Machine Learning",
+    "Astro": "Astro",
+    "TypeScript": "TypeScript",
+    "Tailwind CSS": "Tailwind CSS",
+    "LLM": "LLM",
+    "Python": "Python",
+    "FastAPI": "FastAPI",
+    "D3.js": "D3.js",
+    "React": "React",
+    "Vue.js": "Vue.js",
+    "Node.js": "Node.js",
+    "MongoDB": "MongoDB"
+  },
   "blog": {
     "title": "DATA ARCHIVES",
     "readMore": "ACCESS NODE"
@@ -77,8 +123,11 @@
     "channels": "TRANSMISSION CHANNELS",
     "form": {
       "identity": "IDENTITY",
+      "identityPlaceholder": "Enter your identity",
       "email": "FREQUENCY (EMAIL)",
+      "emailPlaceholder": "Enter your frequency",
       "message": "ENCRYPTED MESSAGE",
+      "messagePlaceholder": "Enter encrypted message",
       "send": "SEND TRANSMISSION"
     }
   },

@@ -2,12 +2,14 @@
 interface Props {
   glowColor?: 'cyan' | 'pink'
   title?: string
+  titleI18n?: string
   className?: string
 }
 
 const { 
   glowColor = 'cyan', 
   title, 
+  titleI18n,
   className = '' 
 } = Astro.props
 
@@ -15,7 +17,7 @@ const isCyan = glowColor === 'cyan'
 ---
 
 <div class={`relative group ${className}`}>
-  <div class="relative overflow-hidden bg-cyber-panel/80 backdrop-blur-sm border p-6 transition-all duration-300 clip-path-slant"
+  <div class="relative overflow-hidden bg-cyber-panel/80 backdrop-blur-sm border p-6 transition-all duration-300 clip-path-slant h-full flex flex-col"
        class:border-cyan-500/30={isCyan}
        class:border-fuchsia-500/30={!isCyan}
        class:hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]={isCyan}
@@ -28,12 +30,12 @@ const isCyan = glowColor === 'cyan'
     <div class="absolute inset-0 pointer-events-none opacity-5 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[length:100%_4px]" />
 
     {title && (
-      <h3 class={`font-cyber text-xl font-bold mb-4 uppercase tracking-widest ${isCyan ? 'text-cyan-400' : 'text-fuchsia-400'}`}>
+      <h3 class={`font-cyber text-xl font-bold mb-4 uppercase tracking-widest ${isCyan ? 'text-cyan-400' : 'text-fuchsia-400'}`} data-i18n={titleI18n}>
         {title}
       </h3>
     )}
     
-    <div class="relative z-10 font-mono text-gray-300">
+    <div class="relative z-10 font-mono text-gray-300 flex-grow flex flex-col">
       <slot />
     </div>
   </div>

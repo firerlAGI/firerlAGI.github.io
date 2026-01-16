@@ -3,43 +3,67 @@ import Container from '../ui/Container.astro'
 import Section from '../ui/Section.astro'
 import CyberCard from '../ui/CyberCard.astro'
 import GlitchText from '../ui/GlitchText.astro'
-import { Cpu, Code2, Brain, Zap } from 'lucide-react'
-import { translations, Language } from '../../translations'
+import { Cpu, Code2, Brain, Zap, Terminal } from 'lucide-react'
+import { translations, type Language } from '../../translations'
 
 const lang: Language = 'en'
 const t = translations[lang]
 ---
 
 <Section sectionId="about" class="py-20 px-4">
-  <Container class="max-w-7xl mx-auto">
+  <Container class="max-w-[1400px] mx-auto">
     <div class="mb-12">
-      <GlitchText text={t.about.profile} tag="h2" class="text-4xl md:text-5xl font-bold text-white mb-4" />
+      <GlitchText text={t.about.profile} tag="h2" class="text-4xl md:text-5xl font-bold text-white mb-4" data-i18n="about.profile" />
       <div class="h-1 w-24 bg-cyan-500" />
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <CyberCard glowColor="cyan" class="h-full">
-        <div class="flex items-start gap-6">
-          <div class="avatar-container">
-            <div class="avatar-image">👨‍💻</div>
-            <div class="avatar-status animate-pulse">ONLINE</div>
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+          <div class="avatar-container group">
+            <!-- Rotating Tech Rings -->
+            <div class="tech-ring ring-outer"></div>
+            <div class="tech-ring ring-inner"></div>
+            
+            <div class="avatar-hexagon-wrapper">
+              <div class="glitch-effect"></div>
+              <div class="avatar-hexagon-bg"></div>
+              <div class="avatar-hexagon">
+                <div class="scanline"></div>
+                <div class="icon-wrapper">
+                  <Terminal class="w-16 h-16 text-cyan-100 drop-shadow-[0_0_15px_rgba(34,211,238,0.8)] relative z-10" />
+                </div>
+                <div class="hud-overlay"></div>
+              </div>
+            </div>
+            
+            <!-- HUD Corners -->
+            <div class="hud-corner top-left"></div>
+            <div class="hud-corner top-right"></div>
+            <div class="hud-corner bottom-left"></div>
+            <div class="hud-corner bottom-right"></div>
+
+            <div class="avatar-status">
+              <span class="status-indicator"></span>
+              <span class="relative z-10 tracking-widest">NET.LINK</span>
+            </div>
           </div>
           
-          <div class="flex-grow">
+          <div class="flex-grow text-center md:text-left">
             <h3 class="text-2xl font-cyber text-cyan-400 mb-2">FIRERLAGI</h3>
-            <p class="text-fuchsia-400 font-mono text-sm mb-4">{t.about.roleBadge}</p>
+            <p class="text-fuchsia-400 font-mono text-sm mb-4" data-i18n="about.roleBadge">{t.about.roleBadge}</p>
             
             <div class="space-y-3 text-gray-300 font-mono text-sm">
-              <p class="leading-relaxed">
+              <p class="leading-relaxed" data-i18n="about.description1">
                 {t.about.description1}
               </p>
-              <p class="leading-relaxed">
+              <p class="leading-relaxed" data-i18n="about.description2">
                 {t.about.description2}
               </p>
             </div>
 
             <div class="mt-6 pt-6 border-t border-cyan-500/20">
-              <div class="flex flex-wrap gap-2">
+              <div class="flex flex-wrap justify-center md:justify-start gap-2">
                 <span class="px-3 py-1 text-xs border border-cyan-500/30 text-cyan-400 font-mono bg-cyan-900/10">
                   REACT
                 </span>
@@ -65,8 +89,8 @@ const t = translations[lang]
               <Cpu size={32} />
             </div>
             <div class="flex-grow">
-              <h4 class="text-lg font-cyber text-fuchsia-400 mb-2">{t.about.skills.architecture}</h4>
-              <p class="text-gray-400 text-sm font-mono leading-relaxed">
+              <h4 class="text-lg font-cyber text-fuchsia-400 mb-2" data-i18n="about.skills.architecture">{t.about.skills.architecture}</h4>
+              <p class="text-gray-400 text-sm font-mono leading-relaxed" data-i18n="about.skills.architectureDesc">
                 {t.about.skills.architectureDesc}
               </p>
             </div>
@@ -79,8 +103,8 @@ const t = translations[lang]
               <Code2 size={32} />
             </div>
             <div class="flex-grow">
-              <h4 class="text-lg font-cyber text-cyan-400 mb-2">{t.about.skills.fullstack}</h4>
-              <p class="text-gray-400 text-sm font-mono leading-relaxed">
+              <h4 class="text-lg font-cyber text-cyan-400 mb-2" data-i18n="about.skills.fullstack">{t.about.skills.fullstack}</h4>
+              <p class="text-gray-400 text-sm font-mono leading-relaxed" data-i18n="about.skills.fullstackDesc">
                 {t.about.skills.fullstackDesc}
               </p>
             </div>
@@ -93,8 +117,8 @@ const t = translations[lang]
               <Brain size={32} />
             </div>
             <div class="flex-grow">
-              <h4 class="text-lg font-cyber text-fuchsia-400 mb-2">{t.about.skills.ai}</h4>
-              <p class="text-gray-400 text-sm font-mono leading-relaxed">
+              <h4 class="text-lg font-cyber text-fuchsia-400 mb-2" data-i18n="about.skills.ai">{t.about.skills.ai}</h4>
+              <p class="text-gray-400 text-sm font-mono leading-relaxed" data-i18n="about.skills.aiDesc">
                 {t.about.skills.aiDesc}
               </p>
             </div>
@@ -107,8 +131,8 @@ const t = translations[lang]
               <Zap size={32} />
             </div>
             <div class="flex-grow">
-              <h4 class="text-lg font-cyber text-cyan-400 mb-2">{t.about.skills.prototyping}</h4>
-              <p class="text-gray-400 text-sm font-mono leading-relaxed">
+              <h4 class="text-lg font-cyber text-cyan-400 mb-2" data-i18n="about.skills.prototyping">{t.about.skills.prototyping}</h4>
+              <p class="text-gray-400 text-sm font-mono leading-relaxed" data-i18n="about.skills.prototypingDesc">
                 {t.about.skills.prototypingDesc}
               </p>
             </div>
@@ -120,7 +144,7 @@ const t = translations[lang]
     <div class="mt-12">
       <div class="quote-container">
         <div class="quote-mark text-6xl text-cyan-500/20">"</div>
-        <p class="quote-text text-xl text-gray-300 font-mono italic text-center">
+        <p class="quote-text text-xl text-gray-300 font-mono italic text-center" data-i18n="about.quote">
           {t.about.quote}
         </p>
         <div class="quote-mark text-6xl text-fuchsia-500/20 transform rotate-180">"</div>
@@ -130,40 +154,231 @@ const t = translations[lang]
 </Section>
 
 <style>
+  /* Cyberpunk Avatar Styles */
   .avatar-container {
     position: relative;
     flex-shrink: 0;
-  }
-
-  .avatar-image {
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(135deg, #06b6d4 0%, #d946ef 100%);
-    border-radius: 50%;
+    width: 160px;
+    height: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 4rem;
-    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+    perspective: 1000px;
+  }
+
+  /* Rotating Rings */
+  .tech-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px dashed rgba(6, 182, 212, 0.3);
+    pointer-events: none;
+  }
+
+  .ring-outer {
+    width: 100%;
+    height: 100%;
+    border-color: rgba(6, 182, 212, 0.4);
+    border-width: 2px;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: spin-right 10s linear infinite;
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.1);
+  }
+
+  .ring-inner {
+    width: 85%;
+    height: 85%;
+    border-color: rgba(217, 70, 239, 0.4);
+    border-width: 1px;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    animation: spin-left 8s linear infinite;
+  }
+
+  /* Main Hexagon Wrapper */
+  .avatar-hexagon-wrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+  }
+
+  .avatar-container:hover .avatar-hexagon-wrapper {
+    transform: scale(1.05) translateZ(20px);
+  }
+
+  /* Glitch Effect Layer */
+  .glitch-effect {
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, #06b6d4, #d946ef, #06b6d4);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    opacity: 0;
+    z-index: -1;
+  }
+
+  .avatar-container:hover .glitch-effect {
+    animation: glitch-anim 0.5s infinite;
+    opacity: 0.8;
+  }
+
+  /* Hexagon Background */
+  .avatar-hexagon-bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.8);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    border: 2px solid rgba(6, 182, 212, 0.5);
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3), inset 0 0 20px rgba(6, 182, 212, 0.1);
+    backdrop-filter: blur(5px);
+  }
+
+  /* Inner Hexagon Content */
+  .avatar-hexagon {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: radial-gradient(circle at center, rgba(6, 182, 212, 0.1) 0%, rgba(15, 23, 42, 1) 100%);
+  }
+
+  /* Icon Wrapper & Glitch */
+  .icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .avatar-container:hover .icon-wrapper {
+    animation: icon-glitch 2s infinite;
+  }
+
+  /* Holographic Scanline */
+  .scanline {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+      transparent 0%, 
+      rgba(6, 182, 212, 0.4) 50%, 
+      transparent 100%);
+    animation: scan-down 3s linear infinite;
+    pointer-events: none;
+    z-index: 20;
+  }
+
+  /* HUD Overlay Lines */
+  .hud-overlay {
+    position: absolute;
+    inset: 0;
+    background: 
+      linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px) 0 0 / 10px 10px,
+      linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px) 0 0 / 10px 10px;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  /* HUD Corners */
+  .hud-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: rgba(217, 70, 239, 0.6);
+    border-style: solid;
     transition: all 0.3s ease;
+    pointer-events: none;
   }
 
-  .avatar-image:hover {
-    transform: scale(1.05) rotate(5deg);
-    box-shadow: 0 0 30px rgba(217, 70, 239, 0.4);
+  .top-left { top: 0; left: 0; border-width: 2px 0 0 2px; }
+  .top-right { top: 0; right: 0; border-width: 2px 2px 0 0; }
+  .bottom-left { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+  .bottom-right { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+  .avatar-container:hover .hud-corner {
+    width: 25px;
+    height: 25px;
+    border-color: #06b6d4;
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
   }
 
+  /* Status Badge */
   .avatar-status {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #000;
+    border: 1px solid #10b981;
+    color: #10b981;
+    padding: 4px 12px;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
     font-weight: bold;
-    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+    z-index: 30;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+  }
+
+  .status-indicator {
+    width: 6px;
+    height: 6px;
     background: #10b981;
-    color: black;
-    border-radius: 9999px;
-    font-family: 'JetBrains Mono', monospace;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10b981;
+    animation: blink 2s infinite;
+  }
+
+  /* Animations */
+  @keyframes spin-right {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes spin-left {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+  }
+
+  @keyframes scan-down {
+    0% { top: -100%; opacity: 0; }
+    50% { opacity: 1; }
+    100% { top: 200%; opacity: 0; }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  @keyframes glitch-anim {
+    0% { clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); transform: translate(0); }
+    20% { clip-path: polygon(45% 5%, 95% 30%, 100% 75%, 55% 95%, 5% 70%, 5% 25%); transform: translate(-2px, 2px); }
+    40% { clip-path: polygon(55% -5%, 105% 20%, 95% 80%, 45% 105%, -5% 80%, -5% 20%); transform: translate(2px, -2px); }
+    60% { clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); transform: translate(0); }
+    80% { clip-path: polygon(52% 2%, 98% 27%, 98% 73%, 52% 98%, 2% 73%, 2% 27%); transform: translate(-1px, 1px); }
+    100% { clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); transform: translate(0); }
+  }
+
+  @keyframes icon-glitch {
+    0% { transform: translate(0); filter: hue-rotate(0deg); }
+    5% { transform: translate(-2px, 1px); filter: hue-rotate(90deg); }
+    10% { transform: translate(2px, -1px); filter: hue-rotate(-90deg); }
+    15% { transform: translate(0); filter: hue-rotate(0deg); }
+    100% { transform: translate(0); }
   }
 
   .skill-card {
@@ -226,12 +441,13 @@ const t = translations[lang]
   @media (max-width: 768px) {
     .avatar-container {
       margin: 0 auto 24px;
+      width: 120px;
+      height: 120px;
     }
 
-    .avatar-image {
+    .avatar-hexagon-wrapper {
       width: 100px;
       height: 100px;
-      font-size: 3rem;
     }
 
     .skill-card:hover {
