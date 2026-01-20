@@ -1,6 +1,6 @@
-import { createContext, useContext, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useRef, type ReactNode } from 'react';
 import { useStore } from '@nanostores/react';
-import { language as languageAtom, setLanguage as setLanguageStore } from '../stores/languageStore';
+import { initLanguage, language as languageAtom, setLanguage as setLanguageStore } from '../stores/languageStore';
 import { translations, type Language } from '../translations';
 
 interface LanguageContextType {
@@ -11,8 +11,20 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
+interface LanguageProviderProps {
+  children: ReactNode;
+  initialLanguage?: Language;
+}
+
+export const LanguageProvider = ({ children, initialLanguage }: LanguageProviderProps) => {
   const currentLanguage = useStore(languageAtom);
+  const didInitRef = useRef(false);
+
+  useEffect(() => {
+    if (didInitRef.current) return;
+    didInitRef.current = true;
+    initLanguage(initialLanguage);
+  }, [initialLanguage]);
 
   const value = {
     language: currentLanguage,

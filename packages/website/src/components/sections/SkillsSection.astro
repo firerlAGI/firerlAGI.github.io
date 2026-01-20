@@ -99,7 +99,7 @@ const t = translations[lang]
               <span class="text-xs font-mono text-gray-500">{t.skills.quarter}</span>
             </div>
             
-            <div class="w-full overflow-x-auto pb-2 custom-scrollbar flex justify-center lg:justify-start">
+            <div class="w-full overflow-x-auto pb-3 custom-scrollbar">
               {loading ? (
                 <div class="h-40 w-full flex flex-col items-center justify-center font-mono text-cyan-500/50">
                   <ActivityIcon class="animate-spin mb-2" />
@@ -222,7 +222,7 @@ const t = translations[lang]
       })
       calendarHTML += '</div>'
       
-      calendarHTML += '<div class="activity-weeks" style="display: flex; gap: 4px; overflow-x: auto;">'
+      calendarHTML += '<div class="activity-weeks" style="display: flex; gap: 4px;">'
       weeks.forEach(week => {
         calendarHTML += '<div class="activity-week" style="display: flex; flex-direction: column; gap: 4px;">'
         week.forEach(day => {
@@ -231,11 +231,11 @@ const t = translations[lang]
               <div 
                 class="activity-day level-${day.level}" 
                 title="${day.date}: ${day.count} contributions"
-                style="background-color: ${theme[day.level]}; width: 14px; height: 14px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 2px;"
+                style="background-color: ${theme[day.level]}; width: var(--activity-cell-size); height: var(--activity-cell-size); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 2px;"
               ></div>
             `
           } else {
-            calendarHTML += '<div class="activity-day empty" style="width: 14px; height: 14px; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 2px;"></div>'
+            calendarHTML += '<div class="activity-day empty" style="width: var(--activity-cell-size); height: var(--activity-cell-size); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 2px;"></div>'
           }
         })
         calendarHTML += '</div>'
@@ -252,7 +252,7 @@ const t = translations[lang]
             ${[0, 1, 2, 3, 4].map(level => `
               <div 
                 class="legend-color" 
-                style="background-color: ${theme[level]}; width: 12px; height: 12px;"
+                style="background-color: ${theme[level]}; width: var(--activity-legend-size); height: var(--activity-legend-size);"
               ></div>
             `).join('')}
           </div>
@@ -276,6 +276,8 @@ const t = translations[lang]
   .activity-calendar {
     width: 100%;
     min-width: 720px;
+    --activity-cell-size: 48px;
+    --activity-legend-size: 36px;
   }
   
   .activity-calendar-grid {
@@ -291,7 +293,7 @@ const t = translations[lang]
   }
   
   .activity-day-label {
-    width: 14px;
+    width: var(--activity-cell-size);
     font-size: 10px;
     color: #94a3b8;
     font-family: 'JetBrains Mono', monospace;
@@ -300,7 +302,7 @@ const t = translations[lang]
   .activity-weeks {
     display: flex !important;
     gap: 4px !important;
-    overflow-x: auto;
+    overflow-x: visible;
   }
   
   .activity-week {
@@ -310,8 +312,8 @@ const t = translations[lang]
   }
   
   .activity-day {
-    width: 14px !important;
-    height: 14px !important;
+    width: var(--activity-cell-size) !important;
+    height: var(--activity-cell-size) !important;
     border-radius: 2px;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -357,19 +359,23 @@ const t = translations[lang]
   }
   
   .legend-color {
-    width: 12px;
-    height: 12px;
+    width: var(--activity-legend-size);
+    height: var(--activity-legend-size);
     border-radius: 2px;
+  }
+
+  @media (min-width: 1280px) {
+    .activity-calendar {
+      --activity-cell-size: 54px;
+      --activity-legend-size: 42px;
+    }
   }
   
   @media (max-width: 768px) {
     .activity-calendar {
       min-width: 100%;
-    }
-    
-    .activity-day {
-      width: 12px !important;
-      height: 12px !important;
+      --activity-cell-size: 36px;
+      --activity-legend-size: 30px;
     }
   }
 </style>

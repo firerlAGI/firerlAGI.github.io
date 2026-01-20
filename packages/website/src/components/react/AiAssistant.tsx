@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageSquare, X, Send, Cpu } from 'lucide-react';
+import { MessageSquare, X, Send, Cpu, Trash2 } from 'lucide-react';
 import { getAiResponse } from '../../services/aiService';
 import CyberCard from './CyberCard';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -8,6 +8,8 @@ interface Message {
   role: 'user' | 'ai';
   text: string;
 }
+
+const STORAGE_KEY = 'firerlagi_ai_chat_history';
 
 const AiAssistant: React.FC = () => {
   const { t } = useLanguage();
@@ -18,13 +20,38 @@ const AiAssistant: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const hasInitialized = useRef(false);
 
+  // Load history on mount
   useEffect(() => {
-    // Set initial greeting only once or when language changes if empty
-    if (messages.length === 0 || !hasInitialized.current) {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        setMessages(JSON.parse(saved));
+        hasInitialized.current = true;
+      } catch (e) {
+        console.error('Failed to parse chat history', e);
+      }
+    }
+  }, []);
+
+  // Save history when messages change
+  useEffect(() => {
+    if (messages.length > 0) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+    }
+  }, [messages]);
+
+  useEffect(() => {
+    // Set initial greeting only if no messages exist and we haven't initialized
+    if (messages.length === 0 && !hasInitialized.current) {
          setMessages([{ role: 'ai', text: t.ai.greeting }]);
          hasInitialized.current = true;
     }
-  }, [t.ai.greeting]);
+  }, [t.ai.greeting, messages.length]);
+
+  const clearHistory = () => {
+    setMessages([{ role: 'ai', text: t.ai.greeting }]);
+    localStorage.removeItem(STORAGE_KEY);
+  };
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -73,9 +100,18 @@ const AiAssistant: React.FC = () => {
                 <Cpu size={18} className="text-cyan-400" />
                 <span className="font-cyber text-cyan-400 text-sm">{t.ai.header}</span>
               </div>
-              <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white">
-                <X size={18} />
-              </button>
+              <div className="flex items-center gap-2">
+                <button 
+                  onClick={clearHistory} 
+                  className="text-gray-400 hover:text-red-400 transition-colors"
+                  title="Clear History"
+                >
+                  <Trash2 size={16} />
+                </button>
+                <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white transition-colors">
+                  <X size={18} />
+                </button>
+              </div>
             </div>
 
             {/* Chat Area */}

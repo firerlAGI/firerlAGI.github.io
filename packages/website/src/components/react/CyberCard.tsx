@@ -1,51 +1,56 @@
 import React from 'react';
 
 interface CyberCardProps {
-  glowColor?: 'cyan' | 'pink';
-  title?: string;
-  titleI18n?: string;
+  children: React.ReactNode;
   className?: string;
-  children?: React.ReactNode;
+  glowColor?: 'cyan' | 'pink' | 'fuchsia';
+  title?: string;
+  noPadding?: boolean;
 }
 
-const CyberCard: React.FC<CyberCardProps> = ({ 
-  glowColor = 'cyan', 
-  title, 
-  titleI18n,
+const CyberCard: React.FC<CyberCardProps> = ({
+  children,
   className = '',
-  children
+  glowColor = 'cyan',
+  title,
+  noPadding = false,
 }) => {
   const isCyan = glowColor === 'cyan';
-  
-  const clipPathStyle = {
-    clipPath: 'polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))'
-  };
+  const glowShadow = isCyan ? 'group-hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]' : 'group-hover:shadow-[0_0_20px_rgba(217,70,239,0.3)]';
+  const titleColor = isCyan ? 'text-cyan-400' : 'text-fuchsia-400';
+  const cornerColor = isCyan ? 'border-cyan-400' : 'border-fuchsia-400';
 
   return (
     <div className={`relative group ${className}`}>
-      <div 
-        className={`relative overflow-hidden bg-cyber-panel/80 backdrop-blur-sm border p-6 transition-all duration-300 h-full flex flex-col
-          ${isCyan ? 'border-cyan-500/30 hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]' : 'border-fuchsia-500/30 hover:shadow-[0_0_20px_rgba(217,70,239,0.3)]'}
-        `}
-        style={clipPathStyle}
-      >
-        <div className={`absolute top-0 left-0 w-2 h-2 ${isCyan ? 'bg-cyan-400' : 'bg-fuchsia-400'}`} />
-        <div className={`absolute top-0 right-0 w-2 h-2 ${isCyan ? 'bg-cyan-400' : 'bg-fuchsia-400'}`} />
-        <div className={`absolute bottom-0 left-0 w-2 h-2 ${isCyan ? 'bg-cyan-400' : 'bg-fuchsia-400'}`} />
-        <div className={`absolute bottom-0 right-0 w-2 h-2 ${isCyan ? 'bg-cyan-400' : 'bg-fuchsia-400'}`} />
+      <div className={`absolute -inset-[1px] bg-gradient-to-r ${isCyan ? 'from-cyan-500/0 via-cyan-500/50 to-cyan-500/0' : 'from-fuchsia-500/0 via-fuchsia-500/50 to-fuchsia-500/0'} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg blur-sm`} />
+      
+      <div className={`
+        relative h-full overflow-hidden 
+        bg-black/40 backdrop-blur-md 
+        border ${isCyan ? 'border-cyan-500/30' : 'border-fuchsia-500/30'}
+        ${glowShadow}
+        transition-all duration-300
+        ${noPadding ? '' : 'p-6'}
+        rounded-lg
+      `}>
+        <div className={`absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 ${cornerColor} rounded-tl-sm opacity-60 group-hover:opacity-100 transition-opacity`} />
+        <div className={`absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 ${cornerColor} rounded-tr-sm opacity-60 group-hover:opacity-100 transition-opacity`} />
+        <div className={`absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 ${cornerColor} rounded-bl-sm opacity-60 group-hover:opacity-100 transition-opacity`} />
+        <div className={`absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 ${cornerColor} rounded-br-sm opacity-60 group-hover:opacity-100 transition-opacity`} />
 
-        <div className="absolute inset-0 pointer-events-none opacity-5 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[length:100%_4px]" />
-
-        {title && (
-          <h3 
-            className={`font-cyber text-xl font-bold mb-4 uppercase tracking-widest ${isCyan ? 'text-cyan-400' : 'text-fuchsia-400'}`}
-            data-i18n={titleI18n}
-          >
-            {title}
-          </h3>
-        )}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(transparent_50%,rgba(0,0,0,1)_50%)] bg-[length:100%_4px] z-0" />
         
-        <div className="relative z-10 font-mono text-gray-300 flex-grow flex flex-col">
+        {title && (
+          <div className="relative z-10 mb-4 flex items-center gap-2">
+            <div className={`h-1 w-1 ${isCyan ? 'bg-cyan-500' : 'bg-fuchsia-500'}`} />
+            <h3 className={`font-cyber text-lg font-bold uppercase tracking-widest ${titleColor}`}>
+              {title}
+            </h3>
+            <div className={`h-[1px] flex-grow bg-gradient-to-r ${isCyan ? 'from-cyan-500/30 to-transparent' : 'from-fuchsia-500/30 to-transparent'}`} />
+          </div>
+        )}
+
+        <div className="relative z-10">
           {children}
         </div>
       </div>

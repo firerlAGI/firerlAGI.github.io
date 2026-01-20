@@ -2,7 +2,7 @@
 import '../styles/global.css'
 import '../styles/cyberpunk.css'
 import { getTheme } from '../lib/theme'
-import Navbar from '../components/react/Navbar'
+import Navbar from '../components/layout/Navbar.astro'
 import Footer from '../components/layout/Footer.astro'
 import { LanguageProvider } from '../contexts/LanguageContext'
 
@@ -14,7 +14,7 @@ interface Props {
 }
 
 const {
-  title = 'firerlAGI - 计算为了无法计算的价值',
+  title = 'firerlAGI',
   description = '探索 AI、知识管理与创造力边界的个人作品集',
   image = 'https://github.com/firerlAGI/firerlAGI-preview/raw/main/images/hero-bg.png',
   mainClass = '',
@@ -64,7 +64,7 @@ const theme = getTheme()
   </head>
   <body class="flex flex-col min-h-screen antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
     <LanguageProvider client:load>
-      <Navbar client:load />
+      <Navbar />
       <main id="main-content" class={`flex-1 relative w-full min-w-0 isolate flex flex-col items-center ${mainClass}`}>
         <slot />
       </main>

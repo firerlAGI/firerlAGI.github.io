@@ -19,8 +19,8 @@ const { class: className = '' } = Astro.props
     width: 100%;
     display: flex;
     justify-content: center;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    background: #F5F5F7;
+    border-top: 1px solid rgba(0, 255, 255, 0.12);
+    background: rgba(5, 5, 5, 0.96);
     transition: background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
                 border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -33,8 +33,8 @@ const { class: className = '' } = Astro.props
   }
   
   :global(html[data-theme="dark"] .footer) {
-    background: #1C1C1E;
-    border-top-color: rgba(255, 255, 255, 0.1);
+    background: rgba(5, 5, 5, 0.96);
+    border-top-color: rgba(0, 255, 255, 0.12);
   }
   
   :global(.footer p) {

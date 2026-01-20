@@ -145,7 +145,7 @@ const SkillsContent: React.FC<SkillsContentProps> = ({ data, stats }) => {
                 </span>
               </div>
               
-              <div className="w-full overflow-x-auto pb-2 custom-scrollbar flex justify-center lg:justify-start">
+              <div className="w-full overflow-x-auto pb-3 custom-scrollbar">
                 {loading ? (
                   <div className="h-40 w-full flex flex-col items-center justify-center font-mono text-cyan-500/50">
                     <ActivityIcon className="animate-spin mb-2" />

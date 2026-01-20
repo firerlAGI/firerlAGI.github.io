@@ -64,6 +64,45 @@
     },
     "quote": "技术的价值不在于其复杂性，而在于解决实际问题的能力。"
   },
+  "detailed_about": {
+    "title": "关于我.EXE",
+    "initializing": "> 正在初始化档案序列...\n> 正在加载个人数据...\n> 访问已授权。",
+    "core_modules": "核心模块",
+    "bio_data": "生物数据",
+    "experience_log": "专注项目",
+    "experience_note": "正在探索大脑的极限",
+    "academic_records": "学术记录",
+    "location_label": "位置",
+    "status_label": "状态",
+    "status_online": "在线",
+    "location_value": "中国/远程",
+    "experiences": [
+      {
+        "role": "高级全栈开发工程师",
+        "company": "科技巨头集团",
+        "period": "2023 - 至今",
+        "description": "领导下一代 AI 驱动的 Web 应用开发。架构可扩展的微服务，并指导初级开发人员。"
+      },
+      {
+        "role": "前端工程师",
+        "company": "创意工作室",
+        "period": "2021 - 2023",
+        "description": "使用 WebGL 和 Three.js 构建沉浸式 3D Web 体验。优化高流量营销活动的性能。"
+      }
+    ],
+    "education": [
+      {
+        "degree": "计算机科学硕士",
+        "school": "未来科技大学",
+        "period": "2019 - 2021"
+      },
+      {
+        "degree": "软件工程学士",
+        "school": "理工学院",
+        "period": "2015 - 2019"
+      }
+    ]
+  },
   "projects": {
     "title": "部署模块",
     "code": "代码",
@@ -137,5 +176,5 @@
     "processing": "正在处理数据流...",
     "header": "AI 终端"
   },
-  "footer": "© 2024 FIRERLAGI. 系统版本(2.0). 版权所有."
+  "footer": "© 2026 FIRERLAGI. 系统版本(2.0). 版权所有."
 }

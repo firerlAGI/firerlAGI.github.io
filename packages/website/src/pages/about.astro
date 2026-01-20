@@ -1,0 +1,13 @@
+---
+import MainLayout from '../layouts/MainLayout.astro'
+import DetailedAbout from '../components/react/DetailedAbout'
+import ParticleBackground from '../components/react/ParticleBackground'
+import AiAssistant from '../components/react/AiAssistant'
+---
+
+<MainLayout title="关于我 | firerlAGI" description="关于 firerlAGI 的简介、技能方向与理念。">
+  <ParticleBackground client:load />
+  <DetailedAbout client:load />
+  <AiAssistant client:load />
+</MainLayout>
+

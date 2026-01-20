@@ -2,48 +2,48 @@
 import GlitchText from '../ui/GlitchText.astro'
 ---
 
-<section class="hero w-full">
-  <div class="hero-background"></div>
-  <div class="hero-grayscale-filter"></div>
-  <div class="hero-overlay"></div>
+<section class="relative flex items-center justify-center min-h-[90vh] overflow-hidden w-full animate-hero-enter bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.15)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(217,70,239,0.1)_0%,transparent_50%),linear-gradient(180deg,#050505_0%,#0a0a0a_100%)] before:content-[''] before:absolute before:inset-0 before:z-20 before:bg-[linear-gradient(90deg,rgba(0,255,255,0.03)_1px,transparent_1px),linear-gradient(rgba(0,255,255,0.03)_1px,transparent_1px)] before:bg-[size:50px_50px] before:animate-grid-move">
+  <div class="absolute inset-0 bg-[url('/assets/images/hero-bg.png')] bg-cover bg-center bg-no-repeat z-0"></div>
+  <div class="absolute inset-0 bg-[rgba(128,128,128,0.7)] backdrop-grayscale z-10 pointer-events-none"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#050505] via-90% z-30 pointer-events-none"></div>
   
-  <div class="hero-content">
-    <div class="system-status">
-      <svg class="terminal-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <div class="relative z-40 flex flex-col items-center w-full max-w-[1400px] px-5 text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-1 mb-4 bg-cyan-500/10 border border-cyan-500/50 rounded-full animate-pulse-fast">
+      <svg class="w-4 h-4 text-cyan-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="4 17 10 11 4 5"></polyline>
         <line x1="12" y1="19" x2="20" y2="19"></line>
       </svg>
-      <span class="status-text" data-i18n="hero.status">System Online</span>
+      <span class="text-cyan-400 font-mono text-sm font-medium tracking-wider" data-i18n="hero.status">System Online</span>
     </div>
 
-    <h1 class="hero-title">
+    <h1 class="flex flex-col mb-4 text-6xl md:text-[6rem] font-bold leading-[1.1] animate-fade-in-up [animation-delay:200ms]">
       <GlitchText 
         text="FIRERLAGI" 
         as="span"
-        className="hero-title-main"
+        className="text-white font-cyber tracking-widest"
         data-i18n="hero.title"
       />
     </h1>
     
-    <p class="hero-subtitle" id="typewriter-text"></p>
+    <p class="min-h-[2.25rem] mb-4 font-mono text-xl md:text-2xl text-cyan-400 leading-normal animate-fade-in-up [animation-delay:400ms]" id="typewriter-text"></p>
     
-    <p class="hero-description" data-i18n="hero.subtitle">
+    <p class="mb-12 font-mono text-lg text-[#86868B] animate-fade-in-up [animation-delay:500ms]" data-i18n="hero.subtitle">
       Full Stack Engineer | Cyberpunk Enthusiast | AI Integrator
     </p>
     
-    <div class="hero-cta">
-      <a href="#projects" class="cyber-button cyber-button-cyan">
-        <span class="cyber-button-text" data-i18n="hero.cta_work">VIEW WORK</span>
-        <div class="cyber-button-overlay"></div>
+    <div class="flex flex-wrap justify-center gap-4 w-full animate-fade-in-up [animation-delay:600ms]">
+      <a href="#projects" class="group relative px-8 py-3 overflow-hidden font-cyber text-sm font-medium tracking-widest uppercase transition-all duration-250 bg-cyan-500/10 border border-cyan-400 cursor-pointer hover:shadow-[0_0_20px_rgba(0,255,255,0.3)]">
+        <span class="relative z-10 text-cyan-400" data-i18n="hero.cta_work">VIEW WORK</span>
+        <div class="absolute inset-0 w-0 bg-cyan-400 opacity-20 transition-[width] duration-250 ease-out group-hover:w-full"></div>
       </a>
-      <a href="#contact" class="cyber-button cyber-button-fuchsia">
-        <span class="cyber-button-text" data-i18n="hero.cta_contact">CONTACT</span>
-        <div class="cyber-button-overlay"></div>
+      <a href="#contact" class="group relative px-8 py-3 overflow-hidden font-cyber text-sm font-medium tracking-widest uppercase transition-all duration-250 bg-fuchsia-500/10 border border-fuchsia-500 cursor-pointer hover:shadow-[0_0_20px_rgba(255,0,255,0.3)]">
+        <span class="relative z-10 text-fuchsia-500" data-i18n="hero.cta_contact">CONTACT</span>
+        <div class="absolute inset-0 w-0 bg-fuchsia-500 opacity-20 transition-[width] duration-250 ease-out group-hover:w-full"></div>
       </a>
     </div>
   </div>
   
-  <div class="hero-scroll-indicator">
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-cyan-400 text-4xl opacity-50 z-40 animate-bounce">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="6 9 12 15 18 9"></polyline>
     </svg>
@@ -85,321 +85,3 @@ import GlitchText from '../ui/GlitchText.astro'
     startTypewriter(text);
   });
 </script>
-
-<style>
-  :global(.hero) {
-    min-height: 90vh;
-    position: relative;
-    animation: heroEnter 0.75s cubic-bezier(0, 0, 0.2, 1) forwards;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: 
-      radial-gradient(ellipse at top, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse at bottom right, rgba(217, 70, 239, 0.1) 0%, transparent 50%),
-      linear-gradient(180deg, #050505 0%, #0a0a0a 100%);
-  }
-
-  :global(.hero-background) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('/assets/images/hero-bg.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 0;
-  }
-
-  :global(.hero-grayscale-filter) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(128, 128, 128, 0.7);
-    backdrop-filter: grayscale(100%);
-    z-index: 1;
-    pointer-events: none;
-  }
-  
-  :global(.hero)::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: gridMove 20s linear infinite;
-    z-index: 2;
-  }
-  
-  @keyframes gridMove {
-    0% {
-      transform: perspective(500px) rotateX(60deg) translateY(0);
-    }
-    100% {
-      transform: perspective(500px) rotateX(60deg) translateY(50px);
-    }
-  }
-  
-  :global(.hero-video) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translateX(-50%) translateY(-50%);
-    z-index: 0;
-    object-fit: cover;
-    opacity: 0.3;
-    filter: grayscale(100%);
-  }
-  
-  @keyframes heroEnter {
-    0% {
-      opacity: 0;
-      transform: scale(1.02);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
-  :global(.hero-overlay) {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, transparent, #050505 90%);
-    z-index: 3;
-    pointer-events: none;
-  }
-  
-  :global(.hero-content) {
-    text-align: center;
-    z-index: 4;
-    padding: 0 20px;
-    max-width: 1400px;
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  :global(.system-status) {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border: 1px solid rgba(0, 255, 255, 0.5);
-    border-radius: 9999px;
-    padding: 4px 16px;
-    background: rgba(6, 182, 212, 0.1);
-    margin-bottom: 16px;
-    animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-  
-  :global(.terminal-icon) {
-    width: 16px;
-    height: 16px;
-    color: #00ffff;
-  }
-  
-  :global(.status-text) {
-    color: #00ffff;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-  }
-  
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.5;
-    }
-  }
-  
-  :global(.hero-title) {
-    font-size: 6rem;
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 16px;
-    display: flex;
-    flex-direction: column;
-    animation: fadeInUp 1s cubic-bezier(0, 0, 0.2, 1) 0.2s both;
-  }
-  
-  :global(.hero-title-main) {
-    color: #ffffff;
-    font-family: 'Orbitron', sans-serif;
-    letter-spacing: 0.1em;
-  }
-  
-  :global(.hero-subtitle) {
-    font-size: 1.5rem;
-    color: #00ffff;
-    margin-bottom: 16px;
-    line-height: 1.5;
-    animation: fadeInUp 1s cubic-bezier(0, 0, 0.2, 1) 0.4s both;
-    font-family: 'JetBrains Mono', monospace;
-    min-height: 2.25rem;
-  }
-  
-  :global(.hero-description) {
-    font-size: 1.125rem;
-    color: #86868B;
-    margin-bottom: 48px;
-    font-family: 'JetBrains Mono', monospace;
-    animation: fadeInUp 1s cubic-bezier(0, 0, 0.2, 1) 0.5s both;
-  }
-  
-  :global(.hero-cta) {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-    animation: fadeInUp 1s cubic-bezier(0, 0, 0.2, 1) 0.6s both;
-  }
-  
-  :global(.cyber-button) {
-    position: relative;
-    padding: 12px 32px;
-    overflow: hidden;
-    border: 1px solid;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-  }
-  
-  :global(.cyber-button-cyan) {
-    border-color: #00ffff;
-    background: rgba(6, 182, 212, 0.1);
-  }
-  
-  :global(.cyber-button-fuchsia) {
-    border-color: #ff00ff;
-    background: rgba(217, 70, 239, 0.1);
-  }
-  
-  :global(.cyber-button-text) {
-    position: relative;
-    z-index: 1;
-  }
-  
-  :global(.cyber-button-cyan .cyber-button-text) {
-    color: #00ffff;
-  }
-  
-  :global(.cyber-button-fuchsia .cyber-button-text) {
-    color: #ff00ff;
-  }
-  
-  :global(.cyber-button-overlay) {
-    position: absolute;
-    inset: 0;
-    width: 0;
-    transition: width 0.25s ease;
-  }
-  
-  :global(.cyber-button-cyan .cyber-button-overlay) {
-    background: #00ffff;
-    opacity: 0.2;
-  }
-  
-  :global(.cyber-button-fuchsia .cyber-button-overlay) {
-    background: #ff00ff;
-    opacity: 0.2;
-  }
-  
-  :global(.cyber-button:hover .cyber-button-overlay) {
-    width: 100%;
-  }
-  
-  :global(.cyber-button:hover) {
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-  }
-  
-  :global(.cyber-button-fuchsia:hover) {
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
-  }
-  
-  :global(.hero-scroll-indicator) {
-    position: absolute;
-    bottom: 32px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #00ffff;
-    animation: bounce 2s infinite;
-    z-index: 4;
-    font-size: 2rem;
-    opacity: 0.5;
-  }
-  
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateX(-50%) translateY(0);
-    }
-    40% {
-      transform: translateX(-50%) translateY(-10px);
-    }
-    60% {
-      transform: translateX(-50%) translateY(-5px);
-    }
-  }
-  
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @media (max-width: 768px) {
-    :global(.hero-title) {
-      font-size: 3.5rem;
-    }
-    
-    :global(.hero-subtitle) {
-      font-size: 1.125rem;
-    }
-    
-    :global(.hero-description) {
-      font-size: 0.875rem;
-    }
-    
-    :global(.hero-cta) {
-      flex-direction: column;
-      width: 100%;
-    }
-    
-    :global(.cyber-button) {
-      width: 100%;
-    }
-  }
-</style>

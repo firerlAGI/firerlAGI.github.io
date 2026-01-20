@@ -65,6 +65,9 @@ export default {
         'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'glitch': 'glitch 1s linear infinite',
         'shimmer': 'shimmer 2s infinite',
+        'fade-in-up': 'fadeInUp 1s cubic-bezier(0, 0, 0.2, 1) both',
+        'grid-move': 'gridMove 20s linear infinite',
+        'hero-enter': 'heroEnter 0.75s cubic-bezier(0, 0, 0.2, 1) forwards',
       },
       keyframes: {
         glitch: {
@@ -75,6 +78,18 @@ export default {
         shimmer: {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(100%)' },
+        },
+        fadeInUp: {
+          '0%': { opacity: '0', transform: 'translateY(30px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        gridMove: {
+          '0%': { transform: 'perspective(500px) rotateX(60deg) translateY(0)' },
+          '100%': { transform: 'perspective(500px) rotateX(60deg) translateY(50px)' },
+        },
+        heroEnter: {
+          '0%': { opacity: '0', transform: 'scale(1.02)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
         },
       },
     },
