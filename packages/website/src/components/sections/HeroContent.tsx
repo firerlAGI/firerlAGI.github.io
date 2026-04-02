@@ -44,7 +44,7 @@ const HeroContent: React.FC = () => {
       </p>
       
       <div className="hero-cta">
-        <a href="#projects" className="cyber-button cyber-button-cyan">
+        <a href="#repos" className="cyber-button cyber-button-cyan">
           <span className="cyber-button-text">{t('hero.cta_work')}</span>
           <div className="cyber-button-overlay"></div>
         </a>
