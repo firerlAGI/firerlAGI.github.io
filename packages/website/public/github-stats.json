@@ -1,250 +1,329 @@
 {
-  "repositories": 4,
-  "stars": 4,
-  "forks": 0,
-  "followers": 0,
-  "following": 0,
+  "user": {
+    "login": "firerlAGI",
+    "name": "firerl",
+    "avatarUrl": "https://avatars.githubusercontent.com/u/247707408?v=4",
+    "bio": null,
+    "location": "Guangdon ",
+    "company": null,
+    "blog": "",
+    "twitterUsername": null,
+    "joinedAt": "2025-12-04T02:30:47Z"
+  },
+  "stats": {
+    "repositories": 14,
+    "stars": 69,
+    "forks": 15,
+    "followers": 0,
+    "following": 1
+  },
   "recentActivity": [
     {
-      "type": "PushEvent",
-      "repo": "firerlAGI/webnote",
-      "created_at": "2026-01-16T07:22:10Z",
+      "type": "IssueCommentEvent",
+      "repo": "trae-community/trae-demos",
+      "repoUrl": "https://github.com/trae-community/trae-demos",
+      "createdAt": "2026-04-02T01:01:56Z",
       "payload": {
-        "ref": "refs/heads/main"
+        "action": "created",
+        "issue": {
+          "number": 2,
+          "title": "[Demo]",
+          "url": "https://github.com/trae-community/trae-demos/issues/2"
+        },
+        "pull_request": null,
+        "release": null
       }
     },
     {
-      "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-16T05:42:18Z",
+      "type": "IssueCommentEvent",
+      "repo": "trae-community/trae-demos",
+      "repoUrl": "https://github.com/trae-community/trae-demos",
+      "createdAt": "2026-03-31T13:37:07Z",
       "payload": {
-        "ref": "refs/heads/main"
-      }
-    },
-    {
-      "type": "PushEvent",
-      "repo": "firerlAGI/webnote",
-      "created_at": "2026-01-16T05:37:19Z",
-      "payload": {
-        "ref": "refs/heads/main"
-      }
-    },
-    {
-      "type": "PushEvent",
-      "repo": "firerlAGI/webnote",
-      "created_at": "2026-01-16T02:34:50Z",
-      "payload": {
-        "ref": "refs/heads/main"
-      }
-    },
-    {
-      "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-15T09:51:55Z",
-      "payload": {
-        "ref": "refs/heads/main"
-      }
-    },
-    {
-      "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-15T09:05:40Z",
-      "payload": {
-        "ref": "refs/heads/main"
+        "action": "created",
+        "issue": {
+          "number": 2,
+          "title": "[Demo]",
+          "url": "https://github.com/trae-community/trae-demos/issues/2"
+        },
+        "pull_request": null,
+        "release": null
       }
     },
     {
       "type": "IssuesEvent",
-      "repo": "firerlAGI/webnote",
-      "created_at": "2026-01-15T05:41:22Z",
+      "repo": "trae-community/trae-demos",
+      "repoUrl": "https://github.com/trae-community/trae-demos",
+      "createdAt": "2026-03-29T04:22:24Z",
       "payload": {
-        "action": "opened"
+        "action": "opened",
+        "issue": {
+          "number": 2,
+          "title": "[Demo]",
+          "url": "https://github.com/trae-community/trae-demos/issues/2"
+        },
+        "pull_request": null,
+        "release": null
+      }
+    },
+    {
+      "type": "PushEvent",
+      "repo": "firerlAGI/TraeClaw",
+      "repoUrl": "https://github.com/firerlAGI/TraeClaw",
+      "createdAt": "2026-03-29T03:53:55Z",
+      "payload": {
+        "ref": "refs/heads/main",
+        "issue": null,
+        "pull_request": null,
+        "release": null
+      }
+    },
+    {
+      "type": "ForkEvent",
+      "repo": "trae-community/trae-demos",
+      "repoUrl": "https://github.com/trae-community/trae-demos",
+      "createdAt": "2026-03-29T03:24:37Z",
+      "payload": {
+        "action": "forked",
+        "issue": null,
+        "pull_request": null,
+        "release": null
+      }
+    },
+    {
+      "type": "PushEvent",
+      "repo": "firerlAGI/TraeClaw",
+      "repoUrl": "https://github.com/firerlAGI/TraeClaw",
+      "createdAt": "2026-03-29T03:16:47Z",
+      "payload": {
+        "ref": "refs/heads/main",
+        "issue": null,
+        "pull_request": null,
+        "release": null
       }
     },
     {
       "type": "IssuesEvent",
-      "repo": "firerlAGI/webnote",
-      "created_at": "2026-01-15T05:41:07Z",
+      "repo": "firerlAGI/TraeClaw",
+      "repoUrl": "https://github.com/firerlAGI/TraeClaw",
+      "createdAt": "2026-03-29T03:15:53Z",
       "payload": {
-        "action": "opened"
+        "action": "closed",
+        "issue": {
+          "number": 2,
+          "title": "Config warnings:\\n- plugins.entries.trae-ide: plugin trae-ide: plugin id mismatch (manifest uses \"trae-ide\", entry hints \"traeclaw\")",
+          "url": "https://github.com/firerlAGI/TraeClaw/issues/2"
+        },
+        "pull_request": null,
+        "release": null
       }
     },
     {
-      "type": "IssuesEvent",
-      "repo": "firerlAGI/webnote",
-      "created_at": "2026-01-15T05:40:51Z",
+      "type": "IssueCommentEvent",
+      "repo": "firerlAGI/TraeClaw",
+      "repoUrl": "https://github.com/firerlAGI/TraeClaw",
+      "createdAt": "2026-03-29T03:15:49Z",
       "payload": {
-        "action": "opened"
-      }
-    },
-    {
-      "type": "IssuesEvent",
-      "repo": "firerlAGI/webnote",
-      "created_at": "2026-01-15T05:40:36Z",
-      "payload": {
-        "action": "opened"
-      }
-    },
-    {
-      "type": "IssuesEvent",
-      "repo": "firerlAGI/webnote",
-      "created_at": "2026-01-15T05:40:13Z",
-      "payload": {
-        "action": "opened"
-      }
-    },
-    {
-      "type": "IssuesEvent",
-      "repo": "firerlAGI/webnote",
-      "created_at": "2026-01-15T05:37:57Z",
-      "payload": {
-        "action": "opened"
-      }
-    },
-    {
-      "type": "IssuesEvent",
-      "repo": "firerlAGI/webnote",
-      "created_at": "2026-01-15T05:34:44Z",
-      "payload": {
-        "action": "opened"
+        "action": "created",
+        "issue": {
+          "number": 2,
+          "title": "Config warnings:\\n- plugins.entries.trae-ide: plugin trae-ide: plugin id mismatch (manifest uses \"trae-ide\", entry hints \"traeclaw\")",
+          "url": "https://github.com/firerlAGI/TraeClaw/issues/2"
+        },
+        "pull_request": null,
+        "release": null
       }
     },
     {
       "type": "PushEvent",
-      "repo": "firerlAGI/webnote",
-      "created_at": "2026-01-14T03:54:42Z",
+      "repo": "firerlAGI/TraeClaw",
+      "repoUrl": "https://github.com/firerlAGI/TraeClaw",
+      "createdAt": "2026-03-29T03:13:41Z",
       "payload": {
-        "ref": "refs/heads/main"
+        "ref": "refs/heads/main",
+        "issue": null,
+        "pull_request": null,
+        "release": null
+      }
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "firerlAGI/TraeClaw",
+      "repoUrl": "https://github.com/firerlAGI/TraeClaw",
+      "createdAt": "2026-03-27T02:51:10Z",
+      "payload": {
+        "action": "created",
+        "issue": {
+          "number": 2,
+          "title": "Config warnings:\\n- plugins.entries.trae-ide: plugin trae-ide: plugin id mismatch (manifest uses \"trae-ide\", entry hints \"traeclaw\")",
+          "url": "https://github.com/firerlAGI/TraeClaw/issues/2"
+        },
+        "pull_request": null,
+        "release": null
+      }
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "firerlAGI/TraeClaw",
+      "repoUrl": "https://github.com/firerlAGI/TraeClaw",
+      "createdAt": "2026-03-27T01:06:31Z",
+      "payload": {
+        "action": "created",
+        "issue": {
+          "number": 3,
+          "title": "从官方过来的，windows还不支持呢吧",
+          "url": "https://github.com/firerlAGI/TraeClaw/issues/3"
+        },
+        "pull_request": null,
+        "release": null
+      }
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "firerlAGI/TraeClaw",
+      "repoUrl": "https://github.com/firerlAGI/TraeClaw",
+      "createdAt": "2026-03-26T11:40:39Z",
+      "payload": {
+        "action": "created",
+        "issue": {
+          "number": 2,
+          "title": "Config warnings:\\n- plugins.entries.trae-ide: plugin trae-ide: plugin id mismatch (manifest uses \"trae-ide\", entry hints \"traeclaw\")",
+          "url": "https://github.com/firerlAGI/TraeClaw/issues/2"
+        },
+        "pull_request": null,
+        "release": null
       }
     },
     {
       "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-14T03:32:05Z",
+      "repo": "firerlAGI/TraeClaw",
+      "repoUrl": "https://github.com/firerlAGI/TraeClaw",
+      "createdAt": "2026-03-20T06:49:03Z",
       "payload": {
-        "ref": "refs/heads/main"
+        "ref": "refs/heads/main",
+        "issue": null,
+        "pull_request": null,
+        "release": null
       }
     },
     {
       "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-13T07:15:12Z",
+      "repo": "firerlAGI/TraeClaw",
+      "repoUrl": "https://github.com/firerlAGI/TraeClaw",
+      "createdAt": "2026-03-19T08:25:09Z",
       "payload": {
-        "ref": "refs/heads/main"
+        "ref": "refs/heads/main",
+        "issue": null,
+        "pull_request": null,
+        "release": null
       }
     },
     {
       "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-13T07:03:41Z",
+      "repo": "firerlAGI/TraeClaw",
+      "repoUrl": "https://github.com/firerlAGI/TraeClaw",
+      "createdAt": "2026-03-19T08:06:28Z",
       "payload": {
-        "ref": "refs/heads/main"
-      }
-    },
-    {
-      "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-13T06:14:28Z",
-      "payload": {
-        "ref": "refs/heads/main"
-      }
-    },
-    {
-      "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-13T05:49:29Z",
-      "payload": {
-        "ref": "refs/heads/main"
-      }
-    },
-    {
-      "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-13T05:44:46Z",
-      "payload": {
-        "ref": "refs/heads/main"
-      }
-    },
-    {
-      "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-13T05:34:56Z",
-      "payload": {
-        "ref": "refs/heads/main"
-      }
-    },
-    {
-      "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-13T05:26:24Z",
-      "payload": {
-        "ref": "refs/heads/main"
-      }
-    },
-    {
-      "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-13T04:01:26Z",
-      "payload": {
-        "ref": "refs/heads/main"
-      }
-    },
-    {
-      "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-13T03:55:02Z",
-      "payload": {
-        "ref": "refs/heads/main"
-      }
-    },
-    {
-      "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-13T03:51:03Z",
-      "payload": {
-        "ref": "refs/heads/main"
-      }
-    },
-    {
-      "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-13T03:46:11Z",
-      "payload": {
-        "ref": "refs/heads/main"
-      }
-    },
-    {
-      "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-13T03:39:30Z",
-      "payload": {
-        "ref": "refs/heads/main"
-      }
-    },
-    {
-      "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-13T03:33:48Z",
-      "payload": {
-        "ref": "refs/heads/main"
-      }
-    },
-    {
-      "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-13T03:25:50Z",
-      "payload": {
-        "ref": "refs/heads/main"
-      }
-    },
-    {
-      "type": "PushEvent",
-      "repo": "firerlAGI/firerlAGI.github.io",
-      "created_at": "2026-01-13T03:17:02Z",
-      "payload": {
-        "ref": "refs/heads/main"
+        "ref": "refs/heads/main",
+        "issue": null,
+        "pull_request": null,
+        "release": null
       }
     }
   ],
-  "updatedAt": "2026-01-19T06:35:52.810Z"
+  "topLanguages": [
+    {
+      "name": "TypeScript",
+      "color": "#3178c6",
+      "repos": 2,
+      "bytes": 36383
+    },
+    {
+      "name": "Astro",
+      "color": "#ff5d01",
+      "repos": 1,
+      "bytes": 2926
+    },
+    {
+      "name": "JavaScript",
+      "color": "#f1e05a",
+      "repos": 2,
+      "bytes": 381
+    },
+    {
+      "name": "Vue",
+      "color": "#41b883",
+      "repos": 1,
+      "bytes": 83
+    },
+    {
+      "name": "Python",
+      "color": "#3572A5",
+      "repos": 1,
+      "bytes": 47
+    },
+    {
+      "name": "Shell",
+      "color": "#89e051",
+      "repos": 1,
+      "bytes": 42
+    }
+  ],
+  "pinnedRepos": [
+    {
+      "name": "TraeClaw",
+      "description": "",
+      "url": "https://github.com/firerlAGI/TraeClaw",
+      "stars": 54,
+      "forks": 11,
+      "language": "JavaScript",
+      "languageColor": "#f1e05a"
+    },
+    {
+      "name": "TraeClawInstall",
+      "description": "",
+      "url": "https://github.com/firerlAGI/TraeClawInstall",
+      "stars": 11,
+      "forks": 3,
+      "language": "Shell",
+      "languageColor": "#89e051"
+    },
+    {
+      "name": "webnote",
+      "description": "",
+      "url": "https://github.com/firerlAGI/webnote",
+      "stars": 1,
+      "forks": 0,
+      "language": "TypeScript",
+      "languageColor": "#3178c6"
+    },
+    {
+      "name": "firerlAGI.github.io",
+      "description": "",
+      "url": "https://github.com/firerlAGI/firerlAGI.github.io",
+      "stars": 1,
+      "forks": 0,
+      "language": "Astro",
+      "languageColor": "#ff5d01"
+    },
+    {
+      "name": "timeline-web",
+      "description": "",
+      "url": "https://github.com/firerlAGI/timeline-web",
+      "stars": 1,
+      "forks": 0,
+      "language": "Vue",
+      "languageColor": "#41b883"
+    },
+    {
+      "name": "firerlAGI",
+      "description": "My personal GitHub profile",
+      "url": "https://github.com/firerlAGI/firerlAGI",
+      "stars": 1,
+      "forks": 0,
+      "language": null,
+      "languageColor": "#8b949e"
+    }
+  ],
+  "updatedAt": "2026-04-02T01:30:17.237Z"
 }
