@@ -381,6 +381,26 @@ const t = translations[lang]
     100% { transform: translate(0); }
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .ring-outer,
+    .ring-inner,
+    .scanline,
+    .status-indicator,
+    .glitch-effect,
+    .icon-wrapper {
+      animation: none !important;
+    }
+    .avatar-container:hover .avatar-hexagon-wrapper {
+      transform: none;
+    }
+    .skill-card:hover {
+      transform: none;
+    }
+    .skill-card:hover .skill-icon {
+      transform: none;
+    }
+  }
+
   .skill-card {
     transition: all 0.3s ease;
   }

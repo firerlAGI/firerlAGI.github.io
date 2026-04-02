@@ -71,7 +71,7 @@ const t = translations[lang]
       <!-- Dashboard Header -->
       <div class="bg-cyan-950/30 border-b border-cyan-500/30 p-6 flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="flex items-center gap-3">
-          <ActivityIcon size={24} class="text-cyan-400 animate-pulse" />
+          <ActivityIcon size={24} class="text-cyan-400" />
           <h3 class="text-xl font-cyber text-cyan-100 tracking-widest">{t.skills.sync} // DASHBOARD</h3>
         </div>
         <div class="flex gap-4 text-xs font-mono text-cyan-600">
@@ -89,7 +89,7 @@ const t = translations[lang]
               <span class="font-mono text-sm text-fuchsia-400 flex items-center gap-2">
                 <GitCommit size={16} /> {t.skills.github}
               </span>
-              <span class="text-xs font-mono text-gray-500">{t.skills.quarter}</span>
+              <span class="text-xs font-mono text-gray-400">{t.skills.quarter}</span>
             </div>
             
             <div class="w-full overflow-x-auto pb-3 custom-scrollbar">
@@ -165,7 +165,7 @@ const t = translations[lang]
       
       <!-- Footer Detail -->
       <div class="bg-black/50 p-2 border-t border-cyan-900/50 flex justify-between items-center text-[10px] font-mono text-gray-600 px-6">
-        <span>ID: {Math.random().toString(36).substring(7).toUpperCase()}</span>
+        <span>ID: SKILLS-DASH-v2</span>
         <span>{t.skills.secure}</span>
       </div>
     </CyberCard>
@@ -367,8 +367,25 @@ const t = translations[lang]
   @media (max-width: 768px) {
     .activity-calendar {
       min-width: 100%;
-      --activity-cell-size: 36px;
-      --activity-legend-size: 30px;
+      --activity-cell-size: 28px;
+      --activity-legend-size: 22px;
+    }
+
+    .activity-day-label {
+      font-size: 8px;
+    }
+
+    .legend-label {
+      font-size: 8px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .activity-day:hover {
+      transform: none;
+    }
+    .status-indicator {
+      animation: none !important;
     }
   }
 </style>
