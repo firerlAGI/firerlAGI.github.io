@@ -25,18 +25,6 @@ export const projects: Project[] = [
     note: 'VIEW PROJECT'
   },
   {
-    id: 'github-home',
-    icon: 'Home',
-    title: 'GitHub Home',
-    description: 'Personal portfolio website showcasing projects and technical skills, responsive design with dark mode support.',
-    techBadges: ['Astro', 'TypeScript', 'Tailwind CSS'],
-    size: 'small',
-    image: '/images/projects/github-home.svg',
-    cta: 'VIEW PROJECT',
-    ctaHref: 'https://github.com/firerlAGI/githubhome',
-    note: 'VIEW PROJECT'
-  },
-  {
     id: 'ai-assistant',
     icon: 'Bot',
     title: 'AI Assistant',
@@ -48,28 +36,4 @@ export const projects: Project[] = [
     ctaHref: '#',
     note: 'IN DEVELOPMENT'
   },
-  {
-    id: 'data-viz',
-    icon: 'BarChart3',
-    title: 'Data Visualization',
-    description: 'Interactive data visualization tool supporting various chart types, real-time data updates, and export functionality.',
-    techBadges: ['D3.js', 'React', 'TypeScript'],
-    size: 'small',
-    image: '/images/projects/data-viz.svg',
-    cta: 'VIEW PROJECT',
-    ctaHref: '#',
-    note: 'PLANNING'
-  },
-  {
-    id: 'task-manager',
-    icon: 'CheckSquare',
-    title: 'Task Manager',
-    description: 'Efficient task management tool supporting drag-and-drop sorting, tag classification, and team collaboration.',
-    techBadges: ['Vue.js', 'Node.js', 'MongoDB'],
-    size: 'small',
-    image: '/images/projects/task-manager.svg',
-    cta: 'VIEW PROJECT',
-    ctaHref: '#',
-    note: 'PLANNING'
-  }
 ]
