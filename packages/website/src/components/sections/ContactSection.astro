@@ -48,34 +48,6 @@ const t = translations[lang]
           </div>
         </div>
       </CyberCard>
-      
-      <CyberCard glowColor="cyan" class="contact-form-card h-full">
-        <form 
-          class="contact-form" 
-          action="https://formspree.io/f/your-form-id" 
-          method="POST"
-          id="contact-form"
-        >
-          <div class="form-group">
-            <label htmlFor="name" data-i18n="contact.form.identity">{t.contact.form.identity}</label>
-            <input type="text" id="name" name="name" required placeholder={t.contact.form.identityPlaceholder} data-i18n="contact.form.identityPlaceholder" />
-          </div>
-          
-          <div class="form-group">
-            <label htmlFor="email" data-i18n="contact.form.email">{t.contact.form.email}</label>
-            <input type="email" id="email" name="email" required placeholder={t.contact.form.emailPlaceholder} data-i18n="contact.form.emailPlaceholder" />
-          </div>
-          
-          <div class="form-group">
-            <label htmlFor="message" data-i18n="contact.form.message">{t.contact.form.message}</label>
-            <textarea id="message" name="message" rows="5" required placeholder={t.contact.form.messagePlaceholder} data-i18n="contact.form.messagePlaceholder"></textarea>
-          </div>
-          
-          <button type="submit" class="cyber-button">
-            <span class="button-text" data-i18n="contact.form.send">{t.contact.form.send}</span>
-          </button>
-        </form>
-      </CyberCard>
     </div>
   </Container>
 </Section>
