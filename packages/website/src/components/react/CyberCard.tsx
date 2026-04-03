@@ -22,8 +22,6 @@ const CyberCard: React.FC<CyberCardProps> = ({
 
   return (
     <div className={`relative group ${className}`}>
-      <div className={`absolute -inset-[1px] bg-gradient-to-r ${isCyan ? 'from-cyan-500/0 via-cyan-500/50 to-cyan-500/0' : 'from-fuchsia-500/0 via-fuchsia-500/50 to-fuchsia-500/0'} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg blur-sm`} />
-      
       <div className={`
         relative h-full overflow-hidden 
         bg-black/40 backdrop-blur-md 
