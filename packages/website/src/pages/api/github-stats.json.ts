@@ -1,8 +1,19 @@
 import type { APIRoute } from 'astro'
+import githubStatsSnapshot from '../../data/github-stats'
 
 export const GET: APIRoute = async () => {
   const username = 'firerlAGI'
   const GITHUB_TOKEN = import.meta.env.GITHUB_TOKEN
+
+  if (!GITHUB_TOKEN) {
+    return new Response(JSON.stringify(githubStatsSnapshot), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, max-age=300, s-maxage=600',
+      },
+    })
+  }
 
   try {
     const headers: HeadersInit = {
@@ -77,13 +88,15 @@ export const GET: APIRoute = async () => {
         'Cache-Control': 'public, max-age=300, s-maxage=600', // 缓存 5-10 分钟
       },
     })
-  } catch (error) {
-    console.error('GitHub API error:', error)
+  } catch {
     return new Response(
-      JSON.stringify({ error: 'Failed to fetch GitHub stats' }),
+      JSON.stringify(githubStatsSnapshot),
       {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'public, max-age=300, s-maxage=600',
+        },
       }
     )
   }

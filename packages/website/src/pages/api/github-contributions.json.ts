@@ -1,4 +1,6 @@
 import type { APIRoute } from 'astro'
+import contributionsSnapshot from '../../data/contributions'
+import githubStatsSnapshot from '../../data/github-stats'
 
 interface ContributionDay {
   date: string
@@ -23,6 +25,22 @@ interface ContributionData {
 let cachedData: ContributionData | null = null
 let cacheTime: number = 0
 const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
+
+function buildSnapshotContributionData(): ContributionData {
+  const data = contributionsSnapshot as ContributionDay[]
+  const contribs = data.reduce((sum, day) => sum + day.count, 0)
+  const days = data.filter(day => day.count > 0).length
+
+  return {
+    data,
+    stats: {
+      loc: contribs * 42,
+      days,
+      contribs,
+    },
+    updatedAt: githubStatsSnapshot.updatedAt,
+  }
+}
 
 async function fetchContributionsWithGraphQL(): Promise<ContributionData> {
   const username = 'firerlAGI'
@@ -245,13 +263,11 @@ export const GET: APIRoute = async () => {
     if (GITHUB_TOKEN) {
       try {
         data = await fetchContributionsWithGraphQL()
-      } catch (graphqlError) {
-        console.warn('GraphQL API failed, falling back to REST API:', graphqlError)
-        data = await fetchContributionsWithREST()
+      } catch {
+        data = buildSnapshotContributionData()
       }
     } else {
-      console.log('No GitHub token, using REST API (limited data)')
-      data = await fetchContributionsWithREST()
+      data = buildSnapshotContributionData()
     }
 
     // Update cache
@@ -266,9 +282,6 @@ export const GET: APIRoute = async () => {
       },
     })
   } catch (error) {
-    console.error('GitHub contributions API error:', error)
-
-    // Return cached data if available on error
     if (cachedData) {
       console.log('API error, returning cached data')
       return new Response(JSON.stringify({ ...cachedData, cached: true }), {
@@ -280,9 +293,9 @@ export const GET: APIRoute = async () => {
     }
 
     return new Response(
-      JSON.stringify({ error: 'Failed to fetch GitHub contributions' }),
+      JSON.stringify(buildSnapshotContributionData()),
       {
-        status: 500,
+        status: 200,
         headers: { 'Content-Type': 'application/json' },
       }
     )
