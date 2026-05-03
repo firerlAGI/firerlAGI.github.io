@@ -16,6 +16,8 @@ const USERNAME = 'firerlAGI';
 const OUTPUT_STATS_FILE = './public/github-stats.json';
 const OUTPUT_REPOS_FILE = './public/github-repos.json';
 const OUTPUT_CONTRIBS_FILE = './public/github-contributions.json';
+const OUTPUT_STATS_MODULE = './src/data/github-stats.ts';
+const OUTPUT_CONTRIBS_MODULE = './src/data/contributions.ts';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 function fetch(url) {
@@ -86,6 +88,26 @@ function fetchWithGraphQL(query, variables = {}) {
     req.write(body);
     req.end();
   });
+}
+
+function writeJsonFile(outputPath, payload) {
+  const fs = require('fs');
+  const path = require('path');
+
+  fs.writeFileSync(
+    path.join(process.cwd(), outputPath),
+    JSON.stringify(payload, null, 2)
+  );
+}
+
+function writeTsModule(outputPath, payload) {
+  const fs = require('fs');
+  const path = require('path');
+
+  fs.writeFileSync(
+    path.join(process.cwd(), outputPath),
+    `export default ${JSON.stringify(payload, null, 2)}\n`
+  );
 }
 
 async function main() {
@@ -433,27 +455,22 @@ async function main() {
       updatedAt: new Date().toISOString(),
     };
 
-    // Write files
-    const fs = require('fs');
-    const path = require('path');
-
-    fs.writeFileSync(
-      path.join(process.cwd(), OUTPUT_STATS_FILE),
-      JSON.stringify(stats, null, 2)
-    );
+    // Write public JSON files for direct fetch/inspection.
+    writeJsonFile(OUTPUT_STATS_FILE, stats);
     console.log('✅ Stats saved to', OUTPUT_STATS_FILE);
 
-    fs.writeFileSync(
-      path.join(process.cwd(), OUTPUT_REPOS_FILE),
-      JSON.stringify(reposOutput, null, 2)
-    );
+    writeJsonFile(OUTPUT_REPOS_FILE, reposOutput);
     console.log('✅ Repos saved to', OUTPUT_REPOS_FILE);
 
-    fs.writeFileSync(
-      path.join(process.cwd(), OUTPUT_CONTRIBS_FILE),
-      JSON.stringify(contribsOutput, null, 2)
-    );
+    writeJsonFile(OUTPUT_CONTRIBS_FILE, contribsOutput);
     console.log('✅ Contributions saved to', OUTPUT_CONTRIBS_FILE);
+
+    // Keep build-time snapshots in sync with the public JSON files.
+    writeTsModule(OUTPUT_STATS_MODULE, stats);
+    console.log('✅ Stats module saved to', OUTPUT_STATS_MODULE);
+
+    writeTsModule(OUTPUT_CONTRIBS_MODULE, contribsOutput.data);
+    console.log('✅ Contributions module saved to', OUTPUT_CONTRIBS_MODULE);
 
     // Print summary
     console.log('\n' + '='.repeat(50));

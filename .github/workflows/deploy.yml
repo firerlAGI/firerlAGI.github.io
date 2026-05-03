@@ -37,11 +37,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile=false
 
-      - name: Fetch GitHub Stats
+      - name: Refresh GitHub Snapshots
+        continue-on-error: true
         working-directory: ./packages/website
         run: pnpm run fetch-github-stats
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_STATS_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: Build
         working-directory: ./packages/website
