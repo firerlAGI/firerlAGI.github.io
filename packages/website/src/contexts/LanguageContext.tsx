@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useRef, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import { useStore } from '@nanostores/react';
 import { initLanguage, language as languageAtom, setLanguage as setLanguageStore } from '../stores/languageStore';
 import { translations, type Language } from '../translations';
@@ -42,17 +42,20 @@ export const LanguageProvider = ({ children, initialLanguage }: LanguageProvider
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
   const storeLanguage = useStore(languageAtom);
-  
-  // If used inside a provider, return the context
-  if (context !== undefined) {
-    return context;
-  }
+  const [isHydrated, setIsHydrated] = useState(false);
 
-  // If used outside a provider (e.g. in Astro islands), directly use the store
-  // This ensures reactivity even without a common root provider
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  // Keep the first client render aligned with the server-rendered default language.
+  const resolvedLanguage: Language = isHydrated
+    ? (context?.language ?? storeLanguage)
+    : 'zh';
+
   return {
-    language: storeLanguage,
-    setLanguage: setLanguageStore,
-    t: translations[storeLanguage],
+    language: resolvedLanguage,
+    setLanguage: context?.setLanguage ?? setLanguageStore,
+    t: translations[resolvedLanguage],
   };
 };
