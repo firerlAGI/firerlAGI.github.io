@@ -1,119 +1,392 @@
 ---
 import LanguageSwitcher from '../react/LanguageSwitcher'
+
+const pathname = Astro.url.pathname
+
+const navItems = [
+  { href: '/about', label: '/ABOUT', key: 'nav.about', active: pathname === '/about' },
+  { href: '/#skills', label: '/ACTIVITY', key: 'nav.skills', active: false },
+  { href: '/#projects', label: '/PROJECTS', key: 'nav.projects', active: false },
+  { href: '/#blog', label: '/LOGS', key: 'nav.blog', active: false },
+  { href: '/#contact', label: '/CONTACT', key: 'nav.contact', active: false },
+]
 ---
 
-<nav class="fixed top-0 left-0 right-0 h-16 bg-[#050505]/50 backdrop-blur-[20px] border-b border-cyan-400/10 flex items-center justify-between px-6 z-[1000] transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] navbar">
-  <a href="/" class="text-2xl font-bold text-white font-cyber tracking-widest transition-all duration-250 ease-[cubic-bezier(0.25,0.1,0.25,1)]">F<span class="text-cyan-400 drop-shadow-[0_0_10px_rgba(0,255,255,0.5)]">IR</span>ER<span class="text-cyan-400 drop-shadow-[0_0_10px_rgba(0,255,255,0.5)]">LA</span>GI</a>
+<nav class="site-nav" data-site-nav>
+  <div class="site-nav__inner">
+    <a href="/" class="site-nav__brand" aria-label="返回首页">
+      <span class="site-nav__brand-mark">FR</span>
+      <span class="site-nav__brand-copy">
+        <strong>firerlAGI</strong>
+        <small>AI-native builder</small>
+      </span>
+    </a>
 
-  <div class="hidden md:flex gap-8">
-    <a href="/about" class="text-sm text-gray-400 font-mono tracking-widest relative transition-all duration-250 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:text-cyan-400 hover:drop-shadow-[0_0_10px_rgba(0,255,255,0.5)]" data-i18n="nav.about">/ABOUT</a>
-    <a href="/#skills" class="text-sm text-gray-400 font-mono tracking-widest relative transition-all duration-250 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:text-cyan-400 hover:drop-shadow-[0_0_10px_rgba(0,255,255,0.5)]" data-i18n="nav.skills">/ACTIVITY</a>
-    <a href="/#projects" class="text-sm text-gray-400 font-mono tracking-widest relative transition-all duration-250 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:text-cyan-400 hover:drop-shadow-[0_0_10px_rgba(0,255,255,0.5)]" data-i18n="nav.projects">/PROJECTS</a>
-    <a href="/#blog" class="text-sm text-gray-400 font-mono tracking-widest relative transition-all duration-250 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:text-cyan-400 hover:drop-shadow-[0_0_10px_rgba(0,255,255,0.5)]" data-i18n="nav.blog">/LOGS</a>
-    <a href="/#contact" class="text-sm text-gray-400 font-mono tracking-widest relative transition-all duration-250 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:text-cyan-400 hover:drop-shadow-[0_0_10px_rgba(0,255,255,0.5)]" data-i18n="nav.contact">/CONTACT</a>
-  </div>
-
-  <div class="flex gap-4 items-center">
-    <div class="hidden md:block">
-      <LanguageSwitcher client:idle />
+    <div class="site-nav__desktop">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={['site-nav__link', item.active && 'is-active']}
+          data-i18n={item.key}
+        >
+          {item.label}
+        </a>
+      ))}
     </div>
-    <button class="md:hidden flex flex-col justify-around w-8 h-8 bg-transparent border-none cursor-pointer p-0 z-[1001] mobile-menu-toggle" aria-label="打开菜单" aria-expanded="false">
-      <span class="w-full h-0.5 bg-cyan-400 rounded-sm transition-all duration-300 shadow-[0_0_5px_rgba(0,255,255,0.3)]"></span>
-      <span class="w-full h-0.5 bg-cyan-400 rounded-sm transition-all duration-300 shadow-[0_0_5px_rgba(0,255,255,0.3)]"></span>
-      <span class="w-full h-0.5 bg-cyan-400 rounded-sm transition-all duration-300 shadow-[0_0_5px_rgba(0,255,255,0.3)]"></span>
-    </button>
+
+    <div class="site-nav__actions">
+      <div class="hidden md:block">
+        <LanguageSwitcher client:idle />
+      </div>
+      <button
+        class="site-nav__toggle"
+        type="button"
+        aria-label="打开菜单"
+        aria-expanded="false"
+        aria-controls="site-nav-drawer"
+        data-nav-toggle
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
 </nav>
 
-<div class="fixed inset-0 bg-[#050505]/95 backdrop-blur-[20px] translate-x-full transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] z-[999] flex items-center justify-center border-l border-cyan-400/30 mobile-menu">
-  <div class="flex flex-col gap-12 items-center">
-    <a href="/about" class="text-3xl text-white font-cyber tracking-widest transition-all duration-200 hover:text-cyan-400 hover:drop-shadow-[0_0_20px_rgba(0,255,255,0.5)] mobile-nav-link" data-i18n="nav.about">/ABOUT</a>
-    <a href="/#skills" class="text-3xl text-white font-cyber tracking-widest transition-all duration-200 hover:text-cyan-400 hover:drop-shadow-[0_0_20px_rgba(0,255,255,0.5)] mobile-nav-link" data-i18n="nav.skills">/ACTIVITY</a>
-    <a href="/#projects" class="text-3xl text-white font-cyber tracking-widest transition-all duration-200 hover:text-cyan-400 hover:drop-shadow-[0_0_20px_rgba(0,255,255,0.5)] mobile-nav-link" data-i18n="nav.projects">/PROJECTS</a>
-    <a href="/#blog" class="text-3xl text-white font-cyber tracking-widest transition-all duration-200 hover:text-cyan-400 hover:drop-shadow-[0_0_20px_rgba(0,255,255,0.5)] mobile-nav-link" data-i18n="nav.blog">/LOGS</a>
-    <a href="/#contact" class="text-3xl text-white font-cyber tracking-widest transition-all duration-200 hover:text-cyan-400 hover:drop-shadow-[0_0_20px_rgba(0,255,255,0.5)] mobile-nav-link" data-i18n="nav.contact">/CONTACT</a>
+<div class="site-nav__overlay" data-nav-overlay></div>
+<aside class="site-nav__drawer" id="site-nav-drawer" data-nav-drawer aria-hidden="true">
+  <div class="site-nav__drawer-panel">
+    <div class="site-nav__drawer-header">
+      <div>
+        <p class="site-nav__drawer-label">Navigation</p>
+        <p class="site-nav__drawer-title">Explore the interface</p>
+      </div>
+      <div class="md:hidden">
+        <LanguageSwitcher client:idle />
+      </div>
+    </div>
+
+    <div class="site-nav__drawer-links">
+      {navItems.map((item) => (
+        <a href={item.href} class="site-nav__drawer-link" data-nav-link data-i18n={item.key}>
+          {item.label}
+        </a>
+      ))}
+    </div>
   </div>
-</div>
+</aside>
 
 <script>
-  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-  
-  function toggleMobileMenu() {
-    const isOpen = mobileMenu?.classList.contains('translate-x-0');
-    mobileMenuToggle?.classList.toggle('active');
-    
-    // Toggle transform class
-    if (mobileMenu?.classList.contains('translate-x-full')) {
-        mobileMenu.classList.remove('translate-x-full');
-        mobileMenu.classList.add('translate-x-0');
-    } else {
-        mobileMenu?.classList.add('translate-x-full');
-        mobileMenu?.classList.remove('translate-x-0');
-    }
+  const navRoot = document.querySelector('[data-site-nav]');
+  const toggle = document.querySelector('[data-nav-toggle]');
+  const overlay = document.querySelector('[data-nav-overlay]');
+  const drawer = document.querySelector('[data-nav-drawer]');
+  const links = document.querySelectorAll('[data-nav-link]');
 
-    mobileMenuToggle?.setAttribute('aria-expanded', (!isOpen).toString());
-    document.body.style.overflow = !isOpen ? 'hidden' : '';
+  if (navRoot && toggle && overlay && drawer) {
+    const setOpen = (open) => {
+      navRoot.dataset.open = open ? 'true' : 'false';
+      drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
 
-    // Handle hamburger icon animation
-    const spans = mobileMenuToggle?.querySelectorAll('span');
-    if (spans && spans.length === 3) {
-        if (!isOpen) { // Opening
-            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-            spans[0].style.backgroundColor = '#f0f';
-            spans[0].style.boxShadow = '0 0 5px rgba(255, 0, 255, 0.3)';
-            
-            spans[1].style.opacity = '0';
-            
-            spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-            spans[2].style.backgroundColor = '#f0f';
-            spans[2].style.boxShadow = '0 0 5px rgba(255, 0, 255, 0.3)';
-        } else { // Closing
-            spans[0].style.transform = '';
-            spans[0].style.backgroundColor = '#0ff';
-            spans[0].style.boxShadow = '0 0 5px rgba(0, 255, 255, 0.3)';
-            
-            spans[1].style.opacity = '1';
-            
-            spans[2].style.transform = '';
-            spans[2].style.backgroundColor = '#0ff';
-            spans[2].style.boxShadow = '0 0 5px rgba(0, 255, 255, 0.3)';
-        }
-    }
-  }
-  
-  mobileMenuToggle?.addEventListener('click', toggleMobileMenu);
-  
-  mobileNavLinks.forEach(link => {
-    link.addEventListener('click', toggleMobileMenu);
-  });
-  
-  window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 10) {
-      navbar?.classList.add('bg-[#050505]/90');
-      navbar?.classList.add('shadow-[0_0_20px_rgba(0,255,255,0.1)]');
-      navbar?.classList.remove('bg-[#050505]/50');
-    } else {
-      navbar?.classList.remove('bg-[#050505]/90');
-      navbar?.classList.remove('shadow-[0_0_20px_rgba(0,255,255,0.1)]');
-      navbar?.classList.add('bg-[#050505]/50');
-    }
-  });
-  
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      if (!href || href === '#') return;
-      const target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
+    toggle.addEventListener('click', () => {
+      const next = navRoot.dataset.open !== 'true';
+      setOpen(next);
+    });
+
+    overlay.addEventListener('click', () => setOpen(false));
+    links.forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        setOpen(false);
       }
     });
-  });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 16) {
+        navRoot.classList.add('is-scrolled');
+      } else {
+        navRoot.classList.remove('is-scrolled');
+      }
+    });
+  }
 </script>
+
+<style>
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 80;
+    width: 100%;
+    padding: 1.15rem 0 0.75rem;
+    transition: padding 0.25s ease, transform 0.25s ease;
+  }
+
+  .site-nav__inner {
+    width: min(calc(100% - 2rem), var(--container-width));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.82rem 0.95rem 0.82rem 1.1rem;
+    border: 1px solid rgba(126, 154, 218, 0.14);
+    border-radius: 999px;
+    background:
+      linear-gradient(180deg, rgba(10, 14, 26, 0.9), rgba(8, 12, 23, 0.76)),
+      rgba(8, 12, 24, 0.78);
+    backdrop-filter: blur(18px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 18px 42px rgba(2, 6, 23, 0.22);
+    transition:
+      border-color 0.25s ease,
+      background-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .site-nav.is-scrolled .site-nav__inner {
+    border-color: rgba(120, 215, 248, 0.18);
+    background: rgba(8, 12, 24, 0.9);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 22px 54px rgba(2, 6, 23, 0.3);
+  }
+
+  .site-nav__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    min-width: 0;
+  }
+
+  .site-nav__brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.7rem;
+    height: 2.7rem;
+    border-radius: 0.92rem;
+    border: 1px solid rgba(120, 215, 248, 0.16);
+    background:
+      linear-gradient(160deg, rgba(120, 215, 248, 0.14), rgba(217, 141, 203, 0.08)),
+      rgba(255, 255, 255, 0.02);
+    color: var(--text-primary);
+    font-family: var(--font-cyber);
+    font-size: 0.84rem;
+    letter-spacing: 0.16em;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .site-nav__brand-copy {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .site-nav__brand-copy strong {
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .site-nav__brand-copy small {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .site-nav__desktop {
+    display: none;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.26rem;
+    border-radius: 999px;
+    border: 1px solid rgba(126, 154, 218, 0.08);
+    background: rgba(255, 255, 255, 0.015);
+  }
+
+  .site-nav__link {
+    padding: 0.68rem 0.92rem;
+    border-radius: 999px;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .site-nav__link:hover,
+  .site-nav__link.is-active {
+    color: var(--text-primary);
+    background: rgba(120, 215, 248, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .site-nav__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .site-nav__toggle {
+    width: 2.9rem;
+    height: 2.9rem;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.28rem;
+    border: 1px solid rgba(126, 154, 218, 0.14);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.018);
+    color: var(--text-primary);
+  }
+
+  .site-nav__toggle span {
+    width: 1.1rem;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .site-nav[data-open="true"] .site-nav__toggle span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .site-nav[data-open="true"] .site-nav__toggle span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .site-nav[data-open="true"] .site-nav__toggle span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  .site-nav__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(4, 8, 19, 0.7);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 70;
+  }
+
+  .site-nav__drawer {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(100%, 24rem);
+    padding: 1rem;
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+    z-index: 75;
+  }
+
+  .site-nav__drawer-panel {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1.4rem;
+    border: 1px solid rgba(126, 154, 218, 0.14);
+    border-radius: 1.8rem;
+    background: rgba(8, 12, 24, 0.94);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 24px 56px rgba(2, 6, 23, 0.36);
+  }
+
+  .site-nav__drawer-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .site-nav__drawer-label {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .site-nav__drawer-title {
+    margin-top: 0.45rem;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .site-nav__drawer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .site-nav__drawer-link {
+    display: flex;
+    align-items: center;
+    min-height: 3.8rem;
+    padding: 1rem 1.05rem;
+    border: 1px solid rgba(126, 154, 218, 0.12);
+    border-radius: 1.2rem;
+    background: rgba(15, 22, 44, 0.44);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .site-nav__drawer-link:hover {
+    transform: translateX(3px);
+    border-color: rgba(120, 215, 248, 0.24);
+  }
+
+  .site-nav[data-open="true"] + .site-nav__overlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .site-nav[data-open="true"] ~ .site-nav__drawer {
+    transform: translateX(0);
+  }
+
+  @media (min-width: 768px) {
+    .site-nav__desktop {
+      display: inline-flex;
+    }
+
+    .site-nav__toggle {
+      display: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .site-nav {
+      padding-inline: 0.75rem;
+    }
+
+    .site-nav__inner {
+      width: 100%;
+    }
+  }
+</style>

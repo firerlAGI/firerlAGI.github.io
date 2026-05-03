@@ -1,8 +1,8 @@
 import React from 'react';
-import { Star, GitFork, ExternalLink, Code2, Rocket, CircleDot } from 'lucide-react';
+import { ArrowUpRight, CircleDot, GitFork, Star } from 'lucide-react';
 import CyberCard from './CyberCard';
-import GlitchText from './GlitchText';
 import githubStatsData from '../../data/github-stats';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 interface PinnedRepo {
   name: string;
@@ -15,153 +15,112 @@ interface PinnedRepo {
 }
 
 const formatNumber = (num: number) => {
-  if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
-  return num.toString();
+  if (num >= 1000) return `${(num / 1000).toFixed(1)}k`;
+  return String(num);
 };
 
 const PinnedRepos: React.FC = () => {
+  const { t } = useLanguage();
   const repos: PinnedRepo[] = githubStatsData?.pinnedRepos || [];
 
-  if (!repos || repos.length === 0) {
+  if (!repos.length) {
     return null;
   }
 
   return (
-    <section id="repos" className="py-20 px-4">
-      <div className="w-full max-w-[1100px] mx-auto px-4 md:px-8">
-        <div className="mb-12 text-center">
-          <GlitchText
-            text="PINNED_REPOS.EXE"
-            tag="h2"
-            className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight"
-          />
-          <div className="flex justify-center mb-6">
-            <div className="h-1 w-32 bg-gradient-to-r from-fuchsia-500 via-cyan-500 to-fuchsia-500 rounded-full bg-[length:200%_100%] animate-[shimmer_3s_ease-in-out_infinite]" />
-          </div>
-          <p className="text-sm font-mono text-gray-500 max-w-md mx-auto">
-            {'> SCANNING GITHUB REPOSITORIES... FOUND ' + repos.length + ' ACTIVE MODULES'}
+    <section id="repos" className="w-full py-16 md:py-24">
+      <div className="mx-auto w-full max-w-[var(--container-width)] px-5 md:px-8 lg:px-10">
+        <div className="section-heading-block animate-on-scroll">
+          <span className="section-kicker">GitHub</span>
+          <h2 className="section-title" data-i18n="github.title">
+            {t.github.title}
+          </h2>
+          <p className="section-description" data-i18n="github.subtitle">
+            {t.github.subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid gap-5 md:grid-cols-2">
           {repos.map((repo, index) => (
             <a
               key={repo.name}
               href={repo.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/repo block"
+              className="block animate-on-scroll cursor-pointer"
             >
-              <CyberCard
-                glowColor={index % 2 === 0 ? 'cyan' : 'pink'}
-                className="h-full hover:translate-y-[-4px] transition-transform duration-300"
-              >
-                <div className="flex flex-col h-full">
-                  {/* Header */}
-                  <div className="flex items-start justify-between gap-3 mb-3">
-                    <div className="flex items-center gap-2.5 min-w-0 flex-1">
-                      <div className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                        index % 2 === 0
-                          ? 'bg-cyan-900/30 border border-cyan-500/30'
-                          : 'bg-fuchsia-900/30 border border-fuchsia-500/30'
-                      }`}>
-                        <Code2 size={18} className={index % 2 === 0 ? 'text-cyan-400' : 'text-fuchsia-400'} />
+              <CyberCard glowColor={index % 2 === 0 ? 'cyan' : 'pink'} className="h-full">
+                <article className="flex h-full flex-col gap-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <div className="mb-2 flex items-center gap-2">
+                        <span className="inline-flex h-2 w-2 rounded-full bg-cyan-300/80 shadow-[0_0_10px_rgba(125,211,252,0.22)]" />
+                        <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-500" data-i18n="github.openSource">
+                          {t.github.openSource}
+                        </span>
                       </div>
-                      <div className="min-w-0">
-                        <h3 className={`font-mono font-bold text-base truncate group-hover/repo:text-white transition-colors ${
-                          index % 2 === 0 ? 'text-cyan-300' : 'text-fuchsia-300'
-                        }`}>
-                          {repo.name}
-                        </h3>
-                        <div className="flex items-center gap-1.5 mt-0.5">
-                          {repo.language && (
-                            <>
-                              <span
-                                className="w-2.5 h-2.5 rounded-full flex-shrink-0"
-                                style={{ backgroundColor: repo.languageColor || '#8b949e' }}
-                              />
-                              <span className="text-[11px] font-mono text-gray-500">{repo.language}</span>
-                            </>
-                          )}
-                        </div>
-                      </div>
+
+                      <h3 className="truncate text-[1.15rem] font-semibold tracking-[-0.02em] text-slate-50">{repo.name}</h3>
                     </div>
-                    <ExternalLink size={14} className="text-gray-600 flex-shrink-0 mt-1 opacity-0 group-hover/repo:opacity-100 transition-opacity" />
+
+                    <ArrowUpRight size={18} className="mt-1 shrink-0 text-slate-500 transition-colors duration-200 group-hover:text-slate-100" />
                   </div>
 
-                  {/* Description */}
-                  {repo.description && (
-                    <p className="text-sm text-gray-400 leading-relaxed line-clamp-2 mb-4 flex-grow font-mono">
-                      {repo.description}
-                    </p>
-                  )}
+                  {repo.description ? (
+                    <p className="min-h-[3.5rem] text-sm leading-7 text-slate-300/90">{repo.description}</p>
+                  ) : null}
 
-                  {/* Footer Stats */}
-                  <div className="flex items-center gap-4 pt-3 border-t border-gray-800/50">
-                    {repo.stars > 0 && (
-                      <span className="flex items-center gap-1 text-xs font-mono text-yellow-500/80">
-                        <Star size={13} />
+                  <div className="flex flex-wrap gap-3">
+                    {repo.language ? (
+                      <span className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.03] px-3 py-1.5 text-[11px] font-mono uppercase tracking-[0.12em] text-slate-300">
+                        <span
+                          className="h-2 w-2 rounded-full"
+                          style={{ backgroundColor: repo.languageColor || '#8b949e' }}
+                        />
+                        {repo.language}
+                      </span>
+                    ) : null}
+
+                    {repo.stars > 0 ? (
+                      <span className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.03] px-3 py-1.5 text-[11px] font-mono uppercase tracking-[0.12em] text-slate-300">
+                        <Star size={11} className="text-amber-300/90" />
                         {formatNumber(repo.stars)}
                       </span>
-                    )}
-                    {repo.forks > 0 && (
-                      <span className="flex items-center gap-1 text-xs font-mono text-emerald-500/80">
-                        <GitFork size={13} />
+                    ) : null}
+
+                    {repo.forks > 0 ? (
+                      <span className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.03] px-3 py-1.5 text-[11px] font-mono uppercase tracking-[0.12em] text-slate-300">
+                        <GitFork size={11} className="text-emerald-300/90" />
                         {formatNumber(repo.forks)}
                       </span>
-                    )}
-                    <span className="ml-auto text-[10px] font-mono text-gray-600 uppercase tracking-wider flex items-center gap-1">
-                      <CircleDot size={10} className={index % 2 === 0 ? 'text-cyan-600' : 'text-fuchsia-600'} />
-                      Public
-                    </span>
+                    ) : null}
                   </div>
 
-                  {/* Hover glow line */}
-                  <div className={`absolute bottom-0 left-0 right-0 h-[1px] ${
-                    index % 2 === 0
-                      ? 'bg-gradient-to-r from-transparent via-cyan-500/0 group-hover/repo:via-cyan-500/60 to-transparent'
-                      : 'bg-gradient-to-r from-transparent via-fuchsia-500/0 group-hover/repo:via-fuchsia-500/60 to-transparent'
-                  } transition-all duration-500`} />
-                </div>
+                  <div className="mt-auto flex items-center justify-between border-t border-white/8 pt-4 text-[11px] font-mono uppercase tracking-[0.16em] text-slate-500">
+                    <span className="inline-flex items-center gap-2">
+                      <CircleDot size={10} className={index % 2 === 0 ? 'text-cyan-300/90' : 'text-pink-300/90'} />
+                      Public
+                    </span>
+                    <span data-i18n="github.repository">{t.github.repository}</span>
+                  </div>
+                </article>
               </CyberCard>
             </a>
           ))}
         </div>
 
-        {/* View All Link */}
-        <div className="mt-10 text-center">
+        <div className="mt-8 animate-on-scroll">
           <a
             href="https://github.com/firerlAGI?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-black/40 border border-cyan-500/30 text-cyan-400 font-mono text-xs tracking-widest uppercase rounded hover:border-cyan-400 hover:bg-cyan-950/30 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] transition-all duration-300 group/viewall"
+            className="inline-flex min-h-[3rem] items-center gap-2 rounded-full border border-cyan-300/16 bg-cyan-300/[0.08] px-5 text-[11px] font-mono font-semibold uppercase tracking-[0.16em] text-slate-50 transition-all hover:-translate-y-px hover:border-cyan-300/28 hover:bg-cyan-300/[0.12]"
           >
-            <Rocket size={14} className="group-viewall:hover:rotate-12 transition-transform" />
-            VIEW ALL REPOSITORIES
-            <ExternalLink size={12} className="opacity-50 group-viewall:opacity-100 transition-opacity" />
+            {t.github.visit}
+            <ArrowUpRight size={14} />
           </a>
         </div>
       </div>
-
-      <style>{`
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-
-        @keyframes shimmer {
-          0% { background-position: 200% 0; }
-          100% { background-position: -200% 0; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .animate-\\[shimmer_3s_ease-in-out_infinite\\] {
-            animation: none !important;
-          }
-        }
-      `}</style>
     </section>
   );
 };

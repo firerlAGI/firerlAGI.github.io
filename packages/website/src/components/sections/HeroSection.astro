@@ -1,53 +1,121 @@
 ---
-import GlitchText from '../ui/GlitchText.astro'
+import Container from '../ui/Container.astro'
+import { translations, type Language } from '../../translations'
+import githubStatsData from '../../data/github-stats'
+
+const lang: Language = 'en'
+const t = translations[lang]
+
+const user = githubStatsData.user
+const stats = githubStatsData.stats
+
+const quickStats = [
+  {
+    label: t.hero.stats.repositories,
+    key: 'hero.stats.repositories',
+    value: `${stats.repositories}+`,
+  },
+  {
+    label: t.hero.stats.pinned,
+    key: 'hero.stats.pinned',
+    value: `${githubStatsData.pinnedRepos.length}`,
+  },
+  {
+    label: t.hero.stats.base,
+    key: 'hero.stats.base',
+    value: user.location || 'Remote',
+  },
+]
 ---
 
-<section class="relative flex items-center justify-center min-h-[90vh] overflow-hidden w-full animate-hero-enter bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.15)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(217,70,239,0.1)_0%,transparent_50%),linear-gradient(180deg,#050505_0%,#0a0a0a_100%)] before:content-[''] before:absolute before:inset-0 before:z-20 before:bg-[linear-gradient(90deg,rgba(0,255,255,0.03)_1px,transparent_1px),linear-gradient(rgba(0,255,255,0.03)_1px,transparent_1px)] before:bg-[size:50px_50px] before:animate-grid-move">
-  <div class="absolute inset-0 bg-[url('/assets/images/hero-bg.png')] bg-cover bg-[center_30%] bg-no-repeat z-0"></div>
-  <div class="absolute inset-0 bg-[rgba(5,5,5,0.85)] backdrop-grayscale z-10 pointer-events-none"></div>
-  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#050505] via-90% z-30 pointer-events-none"></div>
-  
-  <div class="relative z-40 flex flex-col items-center w-full max-w-[1400px] px-5 text-center">
-    <div class="inline-flex items-center gap-2 px-4 py-1 mb-4 bg-cyan-500/10 border border-cyan-500/50 rounded-full animate-pulse-fast">
-      <svg class="w-4 h-4 text-cyan-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="4 17 10 11 4 5"></polyline>
-        <line x1="12" y1="19" x2="20" y2="19"></line>
-      </svg>
-      <span class="text-cyan-400 font-mono text-sm font-medium tracking-wider" data-i18n="hero.status">System Online</span>
-    </div>
+<section class="hero-section w-full pt-6 pb-14 md:pb-20 lg:pb-24">
+  <Container>
+    <div class="hero-shell animate-on-scroll animate-in">
+      <div class="hero-copy">
+        <span class="eyebrow-chip">
+          <span class="eyebrow-chip__dot"></span>
+          <span data-i18n="hero.status">{t.hero.status}</span>
+        </span>
 
-    <h1 class="flex flex-col mb-4 text-6xl md:text-[6rem] font-bold leading-[1.1] animate-fade-in-up [animation-delay:200ms]">
-      <GlitchText 
-        text="FIRERLAGI" 
-        as="span"
-        className="text-white font-cyber tracking-widest"
-        data-i18n="hero.title"
-      />
-    </h1>
-    
-    <p class="min-h-[2.25rem] mb-4 font-mono text-xl md:text-2xl text-cyan-400 leading-normal animate-fade-in-up [animation-delay:400ms]" id="typewriter-text"></p>
-    
-    <p class="mb-12 font-mono text-lg text-[#86868B] animate-fade-in-up [animation-delay:500ms]" data-i18n="hero.subtitle">
-      Full Stack Engineer | Cyberpunk Enthusiast | AI Integrator
-    </p>
-    
-    <div class="flex flex-wrap justify-center gap-4 w-full animate-fade-in-up [animation-delay:600ms]">
-      <a href="#repos" class="group relative px-8 py-3 overflow-hidden font-cyber text-sm font-medium tracking-widest uppercase transition-all duration-250 bg-cyan-500/10 border border-cyan-400 cursor-pointer hover:shadow-[0_0_20px_rgba(0,255,255,0.3)]">
-        <span class="relative z-10 text-cyan-400" data-i18n="hero.cta_work">VIEW WORK</span>
-        <div class="absolute inset-0 w-0 bg-cyan-400 opacity-20 transition-[width] duration-250 ease-out group-hover:w-full"></div>
-      </a>
-      <a href="#contact" class="group relative px-8 py-3 overflow-hidden font-cyber text-sm font-medium tracking-widest uppercase transition-all duration-250 bg-fuchsia-500/10 border border-fuchsia-500 cursor-pointer hover:shadow-[0_0_20px_rgba(255,0,255,0.3)]">
-        <span class="relative z-10 text-fuchsia-500" data-i18n="hero.cta_contact">CONTACT</span>
-        <div class="absolute inset-0 w-0 bg-fuchsia-500 opacity-20 transition-[width] duration-250 ease-out group-hover:w-full"></div>
-      </a>
+        <div class="hero-heading">
+          <p class="hero-intro" data-i18n="hero.intro">{t.hero.intro}</p>
+          <h1 class="hero-title">
+            <span class="hero-title__name" data-i18n="hero.title">{t.hero.title}</span>
+            <span class="hero-title__accent" data-i18n="hero.accent">{t.hero.accent}</span>
+          </h1>
+        </div>
+
+        <p class="hero-typeline" id="typewriter-text"></p>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">{t.hero.subtitle}</p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="hero-button hero-button--primary" data-i18n="hero.cta_work">{t.hero.cta_work}</a>
+          <a href="#contact" class="hero-button hero-button--secondary" data-i18n="hero.cta_contact">{t.hero.cta_contact}</a>
+        </div>
+
+        <div class="hero-stats">
+          {quickStats.map((item) => (
+            <div class="stat-chip">
+              <span class="stat-chip__label" data-i18n={item.key}>{item.label}</span>
+              <span class="stat-chip__value">{item.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="hero-panel__frame">
+          <div class="hero-panel__header">
+            <span class="hero-panel__tag" data-i18n="hero.panel.snapshot">{t.hero.panel.snapshot}</span>
+            <span class="hero-panel__status" data-i18n="hero.panel.live">{t.hero.panel.live}</span>
+          </div>
+
+          <div class="hero-panel__body">
+            <div class="hero-panel__identity">
+              <div class="hero-panel__avatar">
+                <img src="/assets/images/avatar-cyberpunk.svg" alt="firerlAGI avatar" />
+                <span class="hero-panel__avatar-glass"></span>
+              </div>
+              <div>
+                <p class="hero-panel__label" data-i18n="hero.panel.operator">{t.hero.panel.operator}</p>
+                <h2>{user.name}</h2>
+                <p class="hero-panel__muted">{user.bio}</p>
+              </div>
+            </div>
+
+            <div class="soft-divider"></div>
+
+            <div class="hero-panel__grid">
+              <div>
+                <span class="hero-panel__label" data-i18n="hero.panel.location">{t.hero.panel.location}</span>
+                <strong>{user.location || 'Remote'}</strong>
+              </div>
+              <div>
+                <span class="hero-panel__label" data-i18n="hero.panel.focus">{t.hero.panel.focus}</span>
+                <strong>AI workflows</strong>
+              </div>
+              <div>
+                <span class="hero-panel__label" data-i18n="hero.panel.stars">{t.hero.panel.stars}</span>
+                <strong>{stats.stars}</strong>
+              </div>
+              <div>
+                <span class="hero-panel__label" data-i18n="hero.panel.forks">{t.hero.panel.forks}</span>
+                <strong>{stats.forks}</strong>
+              </div>
+            </div>
+
+            <div class="hero-panel__stack">
+              <span class="tech-pill">Astro</span>
+              <span class="tech-pill">React</span>
+              <span class="tech-pill">TypeScript</span>
+              <span class="tech-pill">OpenAI</span>
+              <span class="tech-pill">Automation</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-cyan-400 text-4xl opacity-50 z-40 animate-bounce">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="6 9 12 15 18 9"></polyline>
-    </svg>
-  </div>
+  </Container>
 </section>
 
 <script>
@@ -55,33 +123,352 @@ import GlitchText from '../ui/GlitchText.astro'
   import { translations } from '../../translations';
 
   const typewriterText = document.getElementById('typewriter-text');
-  let currentTimeout: any = null;
+  let currentTimeout = null;
 
-  function startTypewriter(text: string) {
+  function startTypewriter(text) {
     if (!typewriterText) return;
-    
-    // Clear existing timeout
-    if (currentTimeout) clearTimeout(currentTimeout);
-    
+
+    if (currentTimeout) {
+      clearTimeout(currentTimeout);
+    }
+
     let index = 0;
     typewriterText.textContent = '';
-    
+
     const type = () => {
+      if (!typewriterText) return;
+
       if (index < text.length) {
-        typewriterText.textContent = text.slice(0, index + 1) + '_';
-        index++;
-        currentTimeout = setTimeout(type, 50);
+        typewriterText.textContent = text.slice(0, index + 1) + ' _';
+        index += 1;
+        currentTimeout = setTimeout(type, 42);
       } else {
         typewriterText.textContent = text;
       }
     };
-    
+
     type();
   }
 
-  // Subscribe to language changes
-  language.subscribe(lang => {
-    const text = translations[lang].hero.typewriter;
+  language.subscribe((nextLanguage) => {
+    const text = translations[nextLanguage].hero.typewriter;
     startTypewriter(text);
   });
 </script>
+
+<style>
+  .hero-section {
+    position: relative;
+    min-height: calc(100vh - 5rem);
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-shell {
+    display: grid;
+    gap: 1.6rem;
+    align-items: stretch;
+  }
+
+  .hero-copy,
+  .hero-panel__frame {
+    border: 1px solid rgba(126, 154, 218, 0.14);
+    border-radius: 2rem;
+    background:
+      linear-gradient(180deg, rgba(12, 18, 34, 0.94), rgba(7, 11, 21, 0.82)),
+      rgba(7, 11, 24, 0.84);
+    backdrop-filter: blur(20px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 26px 72px rgba(2, 6, 23, 0.32);
+  }
+
+  .hero-copy {
+    padding: clamp(1.6rem, 4vw, 2.8rem);
+  }
+
+  .hero-heading {
+    margin-top: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .hero-intro {
+    max-width: 38rem;
+    color: color-mix(in srgb, var(--primary) 72%, white 12%);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 48rem;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 6.3rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.065em;
+    color: var(--text-primary);
+  }
+
+  .hero-title__name {
+    display: block;
+    font-family: var(--font-cyber);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .hero-title__accent {
+    display: block;
+    max-width: 13ch;
+    font-size: clamp(1.18rem, 2.8vw, 2.1rem);
+    line-height: 1.14;
+    letter-spacing: -0.03em;
+    color: var(--text-secondary);
+  }
+
+  .hero-typeline {
+    min-height: 1.8rem;
+    margin-top: 1.4rem;
+    color: color-mix(in srgb, var(--primary) 68%, white 8%);
+    font-family: var(--font-mono);
+    font-size: 0.94rem;
+  }
+
+  .hero-subtitle {
+    margin-top: 0.8rem;
+    max-width: 37rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.85rem;
+  }
+
+  .hero-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.25rem;
+    padding: 0 1.3rem;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease,
+      background-color 0.2s ease,
+      color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .hero-button:hover {
+    transform: translateY(-1px);
+  }
+
+  .hero-button--primary {
+    border: 1px solid rgba(120, 215, 248, 0.2);
+    background:
+      linear-gradient(180deg, rgba(120, 215, 248, 0.12), rgba(120, 215, 248, 0.06)),
+      rgba(255, 255, 255, 0.02);
+    color: var(--text-primary);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .hero-button--secondary {
+    border: 1px solid rgba(126, 154, 218, 0.16);
+    background: rgba(255, 255, 255, 0.025);
+    color: var(--text-secondary);
+  }
+
+  .hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.9rem;
+  }
+
+  .hero-panel__frame {
+    position: relative;
+    height: 100%;
+    padding: 1.45rem;
+    overflow: hidden;
+  }
+
+  .hero-panel__frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(120, 215, 248, 0.12), transparent 28%);
+    pointer-events: none;
+  }
+
+  .hero-panel__header,
+  .hero-panel__body {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-panel__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .hero-panel__tag,
+  .hero-panel__status,
+  .hero-panel__label {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+  }
+
+  .hero-panel__tag,
+  .hero-panel__status {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+  }
+
+  .hero-panel__tag {
+    color: var(--text-secondary);
+  }
+
+  .hero-panel__status {
+    color: var(--primary);
+  }
+
+  .hero-panel__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+  }
+
+  .hero-panel__identity {
+    display: grid;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .hero-panel__avatar {
+    position: relative;
+    width: 100%;
+    max-width: 12rem;
+    aspect-ratio: 1;
+    border-radius: 1.35rem;
+    overflow: hidden;
+    border: 1px solid rgba(229, 231, 235, 0.12);
+    background:
+      linear-gradient(135deg, rgba(120, 215, 248, 0.12), rgba(232, 179, 109, 0.06)),
+      #07111f;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 18px 36px rgba(2, 6, 23, 0.26);
+  }
+
+  .hero-panel__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+    transform: scale(1.05);
+    filter: saturate(1.03) contrast(1.04);
+  }
+
+  .hero-panel__avatar::before,
+  .hero-panel__avatar::after,
+  .hero-panel__avatar-glass {
+    position: absolute;
+    inset: 0;
+    content: '';
+    pointer-events: none;
+  }
+
+  .hero-panel__avatar::before {
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 34%),
+      linear-gradient(0deg, rgba(2, 6, 23, 0.18), transparent 48%);
+    mix-blend-mode: screen;
+  }
+
+  .hero-panel__avatar::after {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: inherit;
+    box-shadow: inset 0 -28px 48px rgba(2, 6, 23, 0.24);
+  }
+
+  .hero-panel__avatar-glass {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 100% 8px;
+    opacity: 0.18;
+  }
+
+  .hero-panel__identity h2 {
+    font-size: 1.42rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .hero-panel__muted {
+    margin-top: 0.45rem;
+    color: var(--text-secondary);
+    line-height: 1.82;
+  }
+
+  .hero-panel__label {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--text-tertiary);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+  }
+
+  .hero-panel__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .hero-panel__grid div {
+    padding: 0.92rem 0.98rem;
+    border: 1px solid rgba(126, 154, 218, 0.1);
+    border-radius: 1.05rem;
+    background: rgba(255, 255, 255, 0.018);
+  }
+
+  .hero-panel__grid strong {
+    color: var(--text-primary);
+    font-size: 0.98rem;
+    font-weight: 600;
+  }
+
+  .hero-panel__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  @media (min-width: 960px) {
+    .hero-shell {
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+    }
+
+    .hero-panel__identity {
+      grid-template-columns: 11.2rem minmax(0, 1fr);
+    }
+  }
+</style>
