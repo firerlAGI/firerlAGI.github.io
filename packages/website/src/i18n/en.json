@@ -1,17 +1,17 @@
 {
   "nav": {
-    "about": "/ABOUT",
-    "skills": "/ACTIVITY",
-    "projects": "/PROJECTS",
-    "blog": "/LOGS",
-    "contact": "/CONTACT"
+    "about": "/About",
+    "skills": "/Activity",
+    "projects": "/Projects",
+    "blog": "/Logs",
+    "contact": "/Contact"
   },
   "hero": {
-    "status": "System Online",
+    "status": "Service Online",
     "title": "FIRERLAGI",
-    "subtitle": "Full Stack Engineer | Cyberpunk Enthusiast | AI Integrator",
-    "cta_work": "VIEW WORK",
-    "cta_contact": "CONTACT",
+    "subtitle": "Full Stack Engineer | Product Developer | AI Integrator",
+    "cta_work": "View Work",
+    "cta_contact": "Contact",
     "typewriter": "Building the future, one line of code at a time.",
     "intro": "Designing resilient products with code, AI, and sharp interfaces.",
     "accent": "Builds internet-native systems that feel intentional.",
@@ -21,9 +21,9 @@
       "base": "Base"
     },
     "panel": {
-      "snapshot": "Profile Snapshot",
+      "snapshot": "Profile Overview",
       "live": "Live",
-      "operator": "Operator",
+      "operator": "Developer",
       "location": "Location",
       "focus": "Focus",
       "stars": "Stars",
@@ -31,23 +31,23 @@
     }
   },
   "skills": {
-    "title": "NEURAL ACTIVITY",
-    "subtitle": "A compact view of public contributions, stack signals, and the rhythm behind recent work.",
-    "sync": "SYNCHRONIZED",
+    "title": "Activity Overview",
+    "subtitle": "A clear view of public contributions, tech stacks, and development rhythm.",
+    "sync": "Synchronized",
     "total": "Total Contributions",
-    "loc": "LINES_WRITTEN",
-    "activeDays": "UPTIME_DAYS",
-    "contribs": "DATA_PACKETS",
-    "quarter": "Q1 2026 LOGS",
-    "status": "SYS.STATUS: ONLINE",
-    "latency": "NET.LATENCY: 12ms",
-    "secure": "SECURE_CONNECTION",
-    "github": "GITHUB_MAINNET",
-    "offline": "OFFLINE",
-    "maxLoad": "MAX_LOAD"
+    "loc": "Lines Written",
+    "activeDays": "Active Days",
+    "contribs": "Contributions",
+    "quarter": "Q1 2026 Activity",
+    "status": "Status: Normal",
+    "latency": "Network: Excellent",
+    "secure": "Secure Connection",
+    "github": "GitHub Profile",
+    "offline": "Offline",
+    "maxLoad": "Max Load"
   },
   "github": {
-    "title": "Technical Footprints",
+    "title": "Open Source Footprints",
     "subtitle": "Public repos, active experiments, and the projects that best represent the current direction.",
     "repos": "Repositories",
     "stars": "Stars",
@@ -59,44 +59,44 @@
     "repository": "Repository"
   },
   "about": {
-    "title": "SYSTEM OVERVIEW",
-    "subtitle": "About the operator behind the neural interface.",
-    "role": "CURRENT_ROLE",
+    "title": "System Overview",
+    "subtitle": "Practitioner exploring the boundaries of technology and product innovation.",
+    "role": "Current Role",
     "roleTitle": "Full Stack Engineer",
-    "location": "LOCATION",
-    "locationValue": "Neon City, Sector 7",
-    "experience": "EXPERIENCE",
-    "experienceValue": "5+ years in the grid",
-    "description": "A passionate developer who bridges the gap between futuristic aesthetics and functional code. Specializing in modern web technologies with a cyberpunk aesthetic.",
-    "profile": "OPERATOR PROFILE",
-    "roleBadge": "[FULL_STACK_ENGINEER] // [AI_INTEGRATOR]",
+    "location": "Location",
+    "locationValue": "Remote / Worldwide",
+    "experience": "Experience",
+    "experienceValue": "5+ Years",
+    "description": "A passionate developer who bridges the gap between futuristic aesthetics and functional code. Specializing in modern web technologies with a high-end visual aesthetic.",
+    "profile": "Personal Profile",
+    "roleBadge": "Full Stack Engineer / AI Integrator",
     "summary": "Bringing product thinking, engineering execution, and AI capabilities into a workflow that ships fast and iterates cleanly.",
     "headline": "Building useful systems, not just pretty demos.",
     "description1": "Operating in the digital frontier, specializing in building scalable systems and integrating artificial intelligence into practical applications.",
     "description2": "Passionate about the intersection of human creativity and machine learning, pushing the boundaries of what's possible in web development.",
     "skills": {
-      "architecture": "SYSTEM ARCHITECTURE",
+      "architecture": "System Architecture",
       "architectureDesc": "Designing robust, scalable systems with microservices architecture, cloud-native deployments, and performance optimization strategies.",
-      "fullstack": "FULL_STACK_DEVELOPMENT",
+      "fullstack": "Full Stack Development",
       "fullstackDesc": "Building seamless user experiences with modern frameworks, responsive designs, and pixel-perfect implementations.",
-      "ai": "AI_INTEGRATION",
+      "ai": "AI Integration",
       "aiDesc": "Implementing intelligent features using LLMs, machine learning models, and neural networks to enhance application capabilities.",
-      "prototyping": "RAPID_PROTOTYPING",
+      "prototyping": "Rapid Prototyping",
       "prototypingDesc": "Transforming ideas into functional prototypes quickly, iterating based on feedback, and delivering value fast."
     },
     "quote": "Technology's value lies not in its complexity, but in its ability to solve real-world problems."
   },
   "detailed_about": {
-    "title": "ABOUT_ME.EXE",
-    "initializing": "> INITIALIZING PROFILE SEQUENCE...\n> LOADING PERSONAL DATA...\n> ACCESS GRANTED.",
-    "core_modules": "CORE_MODULES",
-    "bio_data": "BIO_DATA",
-    "experience_log": "FOCUS PROJECTS",
-    "experience_note": "Exploring the limits of the brain",
-    "academic_records": "ACADEMIC_RECORDS",
-    "location_label": "LOC",
-    "status_label": "STATUS",
-    "status_online": "ONLINE",
+    "title": "About Me",
+    "initializing": "Loading profile data...\nWelcome.",
+    "core_modules": "Core Skills",
+    "bio_data": "Basic Info",
+    "experience_log": "Project Experience",
+    "experience_note": "Continuously exploring technological boundaries",
+    "academic_records": "Academic Records",
+    "location_label": "Location",
+    "status_label": "Status",
+    "status_online": "Online",
     "location_value": "CN/Remote",
     "experiences": [
       {
@@ -126,52 +126,52 @@
     ]
   },
   "projects": {
-    "title": "DEPLOYED MODULES",
+    "title": "Selected Works",
     "subtitle": "Selected product builds where AI workflows, interface craft, and practical engineering meet.",
-    "code": "CODE",
-    "demo": "DEMO",
-    "more": "VIEW MORE PROJECTS"
+    "code": "Code",
+    "demo": "Demo",
+    "more": "View More Projects"
   },
   "project_items": {
     "second-brain": {
       "title": "Second Brain",
       "description": "AI-powered personal knowledge management system, helping you build an efficient knowledge network to boost learning and creativity.",
-      "note": "VIEW PROJECT"
+      "note": "View Project"
     },
     "github-home": {
       "title": "GitHub Home",
       "description": "Personal portfolio website showcasing projects and technical skills, responsive design with dark mode support.",
-      "note": "VIEW PROJECT"
+      "note": "View Project"
     },
     "ai-assistant": {
       "title": "AI Assistant",
       "description": "Intelligent conversational assistant supporting multi-turn dialogue and context understanding, providing personalized suggestions and help.",
-      "note": "IN DEVELOPMENT"
+      "note": "In Development"
     },
     "data-viz": {
       "title": "Data Visualization",
       "description": "Interactive data visualization tool supporting various chart types, real-time data updates, and export functionality.",
-      "note": "PLANNING"
+      "note": "Planning"
     },
     "task-manager": {
       "title": "Task Manager",
       "description": "Efficient task management tool supporting drag-and-drop sorting, tag classification, and team collaboration.",
-      "note": "PLANNING"
+      "note": "Planning"
     },
     "traeclaw": {
       "title": "TraeClaw",
       "description": "A powerful CLI tool for automating development workflows with AI assistance.",
-      "note": "VIEW PROJECT"
+      "note": "View Project"
     },
     "traeclaw-install": {
       "title": "TraeClawInstall",
       "description": "Installation scripts and setup guides for TraeClaw, focused on fast onboarding and repeatable setup.",
-      "note": "VIEW PROJECT"
+      "note": "View Project"
     },
     "webnote": {
       "title": "webnote",
       "description": "A modern note-taking web app with real-time collaboration for lightweight writing and shared capture.",
-      "note": "VIEW PROJECT"
+      "note": "View Project"
     }
   },
   "tech": {
@@ -194,14 +194,14 @@
     "Shell": "Shell"
   },
   "blog": {
-    "title": "DATA ARCHIVES",
+    "title": "Featured Articles",
     "subtitle": "Working notes on product thinking, technical experiments, and ideas worth keeping around.",
-    "readMore": "ACCESS NODE"
+    "readMore": "Read Article"
   },
   "contact": {
-    "title": "INITIATE UPLINK",
-    "subtitle": "Available for freelance contracts and classified missions.",
-    "channels": "TRANSMISSION CHANNELS",
+    "title": "Get in Touch",
+    "subtitle": "Open for technical collaborations and product discussions.",
+    "channels": "Contact Channels",
     "summary": "If you are building products, automation workflows, or AI-integrated tools, feel free to reach out directly.",
     "headline": "Open channels for collaborations and product builds.",
     "labels": {
@@ -211,20 +211,20 @@
       "base": "Base"
     },
     "form": {
-      "identity": "IDENTITY",
-      "identityPlaceholder": "Enter your identity",
-      "email": "FREQUENCY (EMAIL)",
-      "emailPlaceholder": "Enter your frequency",
-      "message": "ENCRYPTED MESSAGE",
-      "messagePlaceholder": "Enter encrypted message",
-      "send": "SEND TRANSMISSION"
+      "identity": "Name",
+      "identityPlaceholder": "Enter your name",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "message": "Message",
+      "messagePlaceholder": "Enter your message",
+      "send": "Send Message"
     }
   },
   "ai": {
-    "greeting": "GREETINGS. I AM FIRERLAGI_BOT v2.0. HOW CAN I ASSIST?",
-    "placeholder": "Enter command...",
-    "processing": "PROCESSING DATA STREAM...",
-    "header": "AI TERMINAL"
+    "greeting": "Hello, I am FIRERLAGI's AI Assistant. How can I help you?",
+    "placeholder": "Ask a question...",
+    "processing": "Thinking...",
+    "header": "AI Assistant"
   },
-  "footer": "© 2026 FIRERLAGI. SYSTEM.VERSION(2.0). ALL RIGHTS RESERVED."
+  "footer": "© 2026 FIRERLAGI. All Rights Reserved."
 }

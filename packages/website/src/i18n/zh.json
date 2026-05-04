@@ -7,9 +7,9 @@
     "contact": "/联系"
   },
   "hero": {
-    "status": "系统在线",
+    "status": "服务在线",
     "title": "FIRERLAGI",
-    "subtitle": "全栈工程师 | 赛博朋克爱好者 | AI 集成者",
+    "subtitle": "全栈工程师 | 产品开发者 | AI 集成者",
     "cta_work": "查看作品",
     "cta_contact": "联系我",
     "typewriter": "编写代码，构建未来。",
@@ -21,9 +21,9 @@
       "base": "所在地区"
     },
     "panel": {
-      "snapshot": "档案快照",
+      "snapshot": "数据快照",
       "live": "在线",
-      "operator": "操作者",
+      "operator": "开发者",
       "location": "位置",
       "focus": "方向",
       "stars": "星标",
@@ -31,23 +31,23 @@
     }
   },
   "skills": {
-    "title": "神经活动",
-    "subtitle": "用公开贡献、技术栈和开发节奏，展示最近一段时间的构建状态。",
+    "title": "技术活跃度",
+    "subtitle": "公开贡献、技术栈分布与开发节奏的直观呈现。",
     "sync": "同步率",
     "total": "总贡献",
     "loc": "代码行数",
     "activeDays": "活跃天数",
-    "contribs": "数据包提交",
+    "contribs": "代码提交",
     "quarter": "2026 第一季度日志",
-    "status": "系统状态: 在线",
-    "latency": "网络延迟: 12ms",
+    "status": "系统状态: 正常",
+    "latency": "网络状态: 极佳",
     "secure": "安全连接",
-    "github": "GitHub 主网",
+    "github": "GitHub 主页",
     "offline": "离线",
     "maxLoad": "最大负载"
   },
   "github": {
-    "title": "技术足迹",
+    "title": "开源足迹",
     "subtitle": "公开仓库、活跃项目与最近在做的事情，都集中在这里。",
     "repos": "仓库数",
     "stars": "星标数",
@@ -60,16 +60,16 @@
   },
   "about": {
     "title": "系统概览",
-    "subtitle": "神经网络背后的操作员。",
+    "subtitle": "探索技术边界与产品创新的实践者。",
     "role": "当前角色",
     "roleTitle": "全栈工程师",
     "location": "位置",
-    "locationValue": "霓虹城，第七区",
+    "locationValue": "中国 / 远程",
     "experience": "经验",
-    "experienceValue": "在网格中 5+ 年",
-    "description": "一位充满激情的开发者，致力于将未来主义美学与实用代码相结合。专注于现代 Web 技术和赛博朋克风格。",
-    "profile": "操作员档案",
-    "roleBadge": "[全栈工程师] // [AI 集成者]",
+    "experienceValue": "5+ 年开发经验",
+    "description": "一位充满激情的开发者，致力于将未来主义美学与实用代码相结合。专注于现代 Web 技术和高级视觉体验。",
+    "profile": "个人简介",
+    "roleBadge": "全栈工程师 / AI 集成者",
     "summary": "把产品思路、工程执行和 AI 能力组合成一个能快速落地、持续迭代的工作流。",
     "headline": "做真正有用的系统，而不只是漂亮演示。",
     "description1": "在数字前沿领域运营，专注于构建可扩展的系统并将人工智能集成到实际应用中。",
@@ -87,12 +87,12 @@
     "quote": "技术的价值不在于其复杂性，而在于解决实际问题的能力。"
   },
   "detailed_about": {
-    "title": "关于我.EXE",
-    "initializing": "> 正在初始化档案序列...\n> 正在加载个人数据...\n> 访问已授权。",
-    "core_modules": "核心模块",
-    "bio_data": "生物数据",
-    "experience_log": "专注项目",
-    "experience_note": "正在探索大脑的极限",
+    "title": "关于我",
+    "initializing": "正在加载数据档案...\n欢迎访问。",
+    "core_modules": "核心能力",
+    "bio_data": "基本信息",
+    "experience_log": "项目经验",
+    "experience_note": "持续探索技术的边界",
     "academic_records": "学术记录",
     "location_label": "位置",
     "status_label": "状态",
@@ -126,7 +126,7 @@
     ]
   },
   "projects": {
-    "title": "部署模块",
+    "title": "精选作品",
     "subtitle": "从知识管理到 AI 工具，把想法做成可用、可迭代、可展示的产品原型。",
     "code": "代码",
     "demo": "演示",
@@ -194,14 +194,14 @@
     "Shell": "Shell"
   },
   "blog": {
-    "title": "数据归档",
+    "title": "专栏文章",
     "subtitle": "记录产品思考、技术实验和一些值得长期回看的工作笔记。",
-    "readMore": "访问节点"
+    "readMore": "阅读全文"
   },
   "contact": {
-    "title": "建立连接",
-    "subtitle": "接受自由职业合同与机密任务。",
-    "channels": "传输频道",
+    "title": "联系方式",
+    "subtitle": "欢迎就技术合作或产品共建进行交流。",
+    "channels": "联系渠道",
     "summary": "如果你在做产品、自动化工作流或者 AI 集成相关的项目，欢迎直接联系我。",
     "headline": "面向合作、咨询和产品共建开放交流。",
     "labels": {
@@ -211,20 +211,20 @@
       "base": "所在地"
     },
     "form": {
-      "identity": "身份 (姓名)",
-      "identityPlaceholder": "请输入您的身份",
-      "email": "频率 (邮箱)",
-      "emailPlaceholder": "请输入您的频率",
-      "message": "加密信息 (内容)",
-      "messagePlaceholder": "请输入加密信息",
-      "send": "发送传输"
+      "identity": "姓名",
+      "identityPlaceholder": "请输入您的姓名",
+      "email": "邮箱",
+      "emailPlaceholder": "请输入您的电子邮箱",
+      "message": "留言内容",
+      "messagePlaceholder": "请输入您的留言内容",
+      "send": "发送消息"
     }
   },
   "ai": {
-    "greeting": "你好。我是 FIRERLAGI_BOT v2.0。有什么可以帮你？",
-    "placeholder": "输入指令...",
-    "processing": "正在处理数据流...",
-    "header": "AI 终端"
+    "greeting": "您好，我是 FIRERLAGI 的专属 AI 助手，有什么可以帮您？",
+    "placeholder": "输入您的问题...",
+    "processing": "正在思考...",
+    "header": "AI 助手"
   },
-  "footer": "© 2026 FIRERLAGI. 系统版本(2.0). 版权所有."
+  "footer": "© 2026 FIRERLAGI. 版权所有."
 }
