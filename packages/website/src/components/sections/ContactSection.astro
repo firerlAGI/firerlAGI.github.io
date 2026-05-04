@@ -2,49 +2,85 @@
 import Container from '../ui/Container.astro'
 import Section from '../ui/Section.astro'
 import CyberCard from '../ui/CyberCard.astro'
-import GlitchText from '../ui/GlitchText.astro'
-import { Mail, Github, Twitter, MapPin } from 'lucide-react'
+import { Mail, Github, Twitter, MapPin, ArrowUpRight } from 'lucide-react'
 import { translations, type Language } from '../../translations'
 
 const lang: Language = 'en'
 const t = translations[lang]
+
+const contactItems = [
+  {
+    icon: Mail,
+    label: t.contact.labels.email,
+    key: 'contact.labels.email',
+    value: 'hello@firerlAGI.com',
+    href: 'mailto:hello@firerlAGI.com',
+  },
+  {
+    icon: Github,
+    label: t.contact.labels.github,
+    key: 'contact.labels.github',
+    value: '@firerlAGI',
+    href: 'https://github.com/firerlAGI',
+  },
+  {
+    icon: Twitter,
+    label: t.contact.labels.twitter,
+    key: 'contact.labels.twitter',
+    value: '@firerlAGI',
+    href: 'https://twitter.com/firerlAGI',
+  },
+  {
+    icon: MapPin,
+    label: t.contact.labels.base,
+    key: 'contact.labels.base',
+    value: 'China / Remote',
+  },
+]
 ---
 
-<Section sectionId="contact">
-  <Container class="max-w-[1400px] mx-auto">
-    <div class="contact-header animate-on-scroll">
-      <GlitchText text={t.contact.title} tag="h2" className="section-title" data-i18n="contact.title" />
-    </div>
-    
-    <div class="contact-wrapper animate-on-scroll">
-      <CyberCard glowColor="pink" title={t.contact.channels} titleI18n="contact.channels" class="contact-info h-full">
-        <div class="contact-links">
-          <a href="mailto:hello@firerlAGI.com" class="contact-link">
-            <div class="icon-wrapper">
-              <Mail size={20} />
-            </div>
-            <span class="contact-value font-mono">hello@firerlAGI.com</span>
-          </a>
-          
-          <a href="https://github.com/firerlAGI" target="_blank" rel="noopener noreferrer" class="contact-link">
-            <div class="icon-wrapper">
-              <Github size={20} />
-            </div>
-            <span class="contact-value font-mono">@firerlAGI</span>
-          </a>
-          
-          <a href="https://twitter.com/firerlAGI" target="_blank" rel="noopener noreferrer" class="contact-link">
-            <div class="icon-wrapper">
-              <Twitter size={20} />
-            </div>
-            <span class="contact-value font-mono">@firerlAGI</span>
-          </a>
-          
-          <div class="contact-link">
-            <div class="icon-wrapper">
-              <MapPin size={20} />
-            </div>
-            <span class="contact-value font-mono">Silicon Valley, Sector 7</span>
+<Section sectionId="contact" class="py-16 md:py-24">
+  <Container>
+    <div class="contact-grid">
+      <div class="section-heading-block animate-on-scroll">
+        <span class="section-kicker">Contact</span>
+        <h2 class="section-title" data-i18n="contact.title">{t.contact.title}</h2>
+        <p class="section-description" data-i18n="contact.summary">
+          {t.contact.summary}
+        </p>
+      </div>
+
+      <CyberCard glowColor="pink" class="animate-on-scroll">
+        <div class="contact-card">
+          <div>
+            <p class="contact-card__label" data-i18n="contact.channels">{t.contact.channels}</p>
+            <h3 data-i18n="contact.headline">{t.contact.headline}</h3>
+          </div>
+
+          <div class="contact-list">
+            {contactItems.map((item) => {
+              const Icon = item.icon
+              const content = (
+                <>
+                  <div class="contact-list__icon">
+                    <Icon size={18} />
+                  </div>
+                  <div class="contact-list__copy">
+                    <span data-i18n={item.key}>{item.label}</span>
+                    <strong>{item.value}</strong>
+                  </div>
+                  {item.href ? <ArrowUpRight size={16} /> : null}
+                </>
+              )
+
+              return item.href ? (
+                <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined} class="contact-list__item">
+                  {content}
+                </a>
+              ) : (
+                <div class="contact-list__item">{content}</div>
+              )
+            })}
           </div>
         </div>
       </CyberCard>
@@ -53,256 +89,98 @@ const t = translations[lang]
 </Section>
 
 <style>
-  .contact-header {
-    text-align: center;
-    margin-bottom: 64px;
-  }
-
-  .section-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
-    margin-bottom: 16px;
-    letter-spacing: 0.1em;
-    line-height: 1.2;
-    color: #00ffff;
-    text-shadow: 
-      0 0 10px rgba(0, 255, 255, 0.5),
-      0 0 20px rgba(0, 255, 255, 0.3),
-      0 0 30px rgba(0, 255, 255, 0.2);
-  }
-
-  .contact-subtitle {
-    font-size: 1.1rem;
-    color: #22d3ee;
-    font-family: 'Courier New', monospace;
-    letter-spacing: 0.05em;
-    margin: 0;
-  }
-
-  .contact-wrapper {
+  .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 32px;
-    width: 100%;
-    margin: 0 auto;
+    gap: 1.4rem;
+    align-items: start;
   }
 
-  .contact-info {
+  .contact-card {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 1.4rem;
   }
 
-  .contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .contact-link {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 16px;
-    text-decoration: none;
-    border: 1px solid rgba(217, 70, 239, 0.3);
-    background: rgba(0, 0, 0, 0.3);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .contact-link::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(217, 70, 239, 0.1), transparent);
-    transition: left 0.5s;
-  }
-
-  .contact-link:hover::before {
-    left: 100%;
-  }
-
-  .contact-link:hover {
-    border-color: #d946ef;
-    box-shadow: 0 0 20px rgba(217, 70, 239, 0.3);
-    transform: translateX(4px);
-  }
-
-  .contact-link:hover .icon-wrapper {
-    border-color: #d946ef;
-    color: #d946ef;
-    box-shadow: 0 0 15px rgba(217, 70, 239, 0.4);
-  }
-
-  .icon-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: 1px solid rgba(217, 70, 239, 0.5);
-    border-radius: 4px;
-    background: rgba(217, 70, 239, 0.1);
-    color: #d946ef;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .contact-value {
-    font-size: 1rem;
-    color: #e2e8f0;
-    transition: color 0.3s;
-  }
-
-  .contact-link:hover .contact-value {
-    color: #d946ef;
-  }
-
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .form-group label {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #22d3ee;
+  .contact-card__label {
+    color: var(--primary);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-family: 'Courier New', monospace;
   }
 
-  .form-group input,
-  .form-group textarea {
-    padding: 14px 16px;
-    font-size: 1rem;
-    border: 1px solid rgba(34, 211, 238, 0.3);
-    background: rgba(0, 0, 0, 0.5);
-    color: #e2e8f0;
-    font-family: 'Courier New', monospace;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-  }
-
-  .form-group input:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: #22d3ee;
-    box-shadow: 
-      0 0 20px rgba(34, 211, 238, 0.3),
-      inset 0 0 10px rgba(34, 211, 238, 0.1);
-  }
-
-  .form-group input::placeholder,
-  .form-group textarea::placeholder {
-    color: rgba(148, 163, 184, 0.6);
-  }
-
-  .form-group textarea {
-    resize: vertical;
-    min-height: 120px;
-  }
-
-  .cyber-button {
-    position: relative;
-    padding: 16px 32px;
-    background: rgba(34, 211, 238, 0.1);
-    border: 1px solid #22d3ee;
-    color: #22d3ee;
-    font-family: 'Courier New', monospace;
+  .contact-card h3 {
+    margin-top: 0.7rem;
+    color: var(--text-primary);
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
     font-weight: 700;
-    font-size: 0.875rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
+    line-height: 1.15;
+  }
+
+  .contact-list {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .contact-list__item {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 1.05rem;
+    border: 1px solid rgba(129, 166, 255, 0.12);
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.02);
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease,
+      background-color 0.2s ease;
   }
 
-  .cyber-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.3), transparent);
-    transition: left 0.5s;
-  }
-
-  .cyber-button:hover::before {
-    left: 100%;
-  }
-
-  .cyber-button:hover {
-    background: #22d3ee;
-    color: #000;
-    box-shadow: 
-      0 0 20px rgba(34, 211, 238, 0.5),
-      0 0 40px rgba(34, 211, 238, 0.3);
+  a.contact-list__item:hover {
     transform: translateY(-2px);
+    border-color: rgba(99, 230, 255, 0.26);
+    background: rgba(99, 230, 255, 0.05);
   }
 
-  .cyber-button:active {
-    transform: translateY(0);
+  .contact-list__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(129, 166, 255, 0.14);
+    background: rgba(99, 230, 255, 0.08);
+    color: var(--primary);
+    flex-shrink: 0;
   }
 
-  .button-text {
-    position: relative;
-    z-index: 1;
+  .contact-list__copy {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.2rem;
   }
 
-  /* Cyber glitch effect for section title */
-  @keyframes cyberGlitch {
-    0%, 100% {
-      text-shadow: 
-        0 0 10px rgba(0, 255, 255, 0.5),
-        0 0 20px rgba(0, 255, 255, 0.3);
-    }
-    25% {
-      text-shadow: 
-        -2px 0 10px rgba(255, 0, 255, 0.5),
-        2px 0 10px rgba(0, 255, 255, 0.5);
-    }
-    50% {
-      text-shadow: 
-        2px 0 10px rgba(0, 255, 255, 0.5),
-        -2px 0 10px rgba(255, 0, 255, 0.5);
-    }
-    75% {
-      text-shadow: 
-        -1px 0 10px rgba(255, 0, 255, 0.5),
-        1px 0 10px rgba(0, 255, 255, 0.5);
-    }
+  .contact-list__copy span {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
   }
 
-  .section-title:hover {
-    animation: cyberGlitch 0.5s infinite;
+  .contact-list__copy strong {
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    word-break: break-word;
   }
 
-  @media (max-width: 768px) {
-    .contact-wrapper {
-      grid-template-columns: 1fr;
-    }
-
-    .section-title {
-      font-size: 2rem;
+  @media (min-width: 960px) {
+    .contact-grid {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     }
   }
 </style>

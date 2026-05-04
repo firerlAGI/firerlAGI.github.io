@@ -2,6 +2,8 @@
 interface Props {
   text: string
   tag?: 'h1' | 'h2' | 'h3' | 'p' | 'span'
+  as?: 'h1' | 'h2' | 'h3' | 'p' | 'span'
+  class?: string
   className?: string
   [key: string]: any
 }
@@ -9,33 +11,14 @@ interface Props {
 const { 
   text, 
   tag = 'span', 
+  as,
+  class: classProp = '',
   className = '',
   ...rest
 } = Astro.props
+
+const Tag = as ?? tag
+const classes = `cyber-glitch-effect font-cyber uppercase tracking-[0.18em] ${classProp} ${className}`.trim()
 ---
 
-{tag === 'h1' && (
-  <h1 class={`cyber-glitch-effect font-cyber uppercase tracking-widest ${className}`} data-text={text} {...rest}>
-    {text}
-  </h1>
-)}
-{tag === 'h2' && (
-  <h2 class={`cyber-glitch-effect font-cyber uppercase tracking-widest ${className}`} data-text={text} {...rest}>
-    {text}
-  </h2>
-)}
-{tag === 'h3' && (
-  <h3 class={`cyber-glitch-effect font-cyber uppercase tracking-widest ${className}`} data-text={text} {...rest}>
-    {text}
-  </h3>
-)}
-{tag === 'p' && (
-  <p class={`cyber-glitch-effect font-cyber uppercase tracking-widest ${className}`} data-text={text} {...rest}>
-    {text}
-  </p>
-)}
-{tag === 'span' && (
-  <span class={`cyber-glitch-effect font-cyber uppercase tracking-widest ${className}`} data-text={text} {...rest}>
-    {text}
-  </span>
-)}
+<Tag class={classes} data-text={text} {...rest}>{text}</Tag>

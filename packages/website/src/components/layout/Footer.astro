@@ -6,40 +6,109 @@ interface Props {
 }
 
 const { class: className = '' } = Astro.props
+
+const footerLinks = [
+  { href: '/about', label: 'About' },
+  { href: 'https://github.com/firerlAGI', label: 'GitHub' },
+  { href: 'mailto:hello@firerlAGI.com', label: 'Email' },
+]
 ---
 
-<footer class={`footer ${className}`}>
-  <div class="footer-container">
-    <p data-i18n="footer">&copy; {year} firerlAGI. All rights reserved.</p>
+<footer class={`site-footer ${className}`}>
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <p class="site-footer__eyebrow">FIRERLAGI / DIGITAL WORKSHOP</p>
+      <p class="site-footer__summary">
+        产品工程、AI 工作流与个人实验的长期构建中。
+      </p>
+      <p class="site-footer__legal" data-i18n="footer">&copy; {year} firerlAGI. All rights reserved.</p>
+    </div>
+
+    <div class="site-footer__links">
+      {footerLinks.map((item) => (
+        <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
+          {item.label}
+        </a>
+      ))}
+    </div>
   </div>
 </footer>
 
 <style>
-  :global(.footer) {
+  :global(.site-footer) {
     width: 100%;
     display: flex;
     justify-content: center;
-    border-top: 1px solid rgba(0, 255, 255, 0.12);
-    background: rgba(5, 5, 5, 0.96);
-    transition: background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    border-top: 1px solid rgba(129, 166, 255, 0.12);
+    background: rgba(6, 9, 21, 0.84);
+    backdrop-filter: blur(18px);
   }
-  
-  :global(.footer-container) {
-    width: 100%;
-    max-width: 1400px;
-    padding: 32px 20px;
-    text-align: center;
+
+  :global(.site-footer__inner) {
+    width: min(calc(100% - 2rem), var(--container-width));
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 0 2.4rem;
   }
-  
-  :global(html[data-theme="dark"] .footer) {
-    background: rgba(5, 5, 5, 0.96);
-    border-top-color: rgba(0, 255, 255, 0.12);
+
+  :global(.site-footer__brand) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
   }
-  
-  :global(.footer p) {
-    color: #86868B;
-    font-size: 1.4rem;
-    margin: 0;
+
+  :global(.site-footer__eyebrow) {
+    color: var(--primary);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  :global(.site-footer__summary) {
+    max-width: 32rem;
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    line-height: 1.8;
+  }
+
+  :global(.site-footer__legal) {
+    color: var(--text-tertiary);
+    font-size: 0.86rem;
+  }
+
+  :global(.site-footer__links) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  :global(.site-footer__links a) {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid rgba(129, 166, 255, 0.14);
+    border-radius: 999px;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  :global(.site-footer__links a:hover) {
+    color: var(--text-primary);
+    border-color: rgba(99, 230, 255, 0.3);
+    transform: translateY(-1px);
+  }
+
+  @media (min-width: 900px) {
+    :global(.site-footer__inner) {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
   }
 </style>

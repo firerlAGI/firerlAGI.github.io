@@ -1,100 +1,34 @@
-# GitHub Home Monorepo
+# Hi there, I'm firerlAGI 👋
 
-firerlAGI 个人项目 monorepo，包含多个应用和共享代码库。
+Welcome to my GitHub profile!
 
-## 项目结构
+## 🚀 About Me
 
-```
-githubhome/
-├── packages/                  # 应用和包目录
-│   ├── website/              # 个人作品集网站
-│   └── shared/               # 共享代码库
-├── docs/                     # 文档目录
-└── package.json             # 根 package.json
-```
+I'm a passionate developer focused on building web applications and tools that make life easier.
 
-## 快速开始
+- 🔭 Currently working on web development projects
+- 🌱 Always learning new technologies
+- 💡 Interested in AI, web development, and productivity tools
 
-### 安装依赖
+## 🛠️ Tech Stack
 
-```bash
-pnpm install
-```
+![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Vue.js](https://img.shields.io/badge/-Vue.js-4FC08D?style=flat-square&logo=vue.js&logoColor=white)
+![Git](https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white)
 
-### 开发模式
+## 📊 GitHub Stats
 
-```bash
-# 启动网站开发服务器
-pnpm dev
+![firerlAGI's GitHub stats](https://github-readme-stats.vercel.app/api?username=firerlAGI&show_icons=true&theme=radical)
 
-# 启动特定包的开发模式
-pnpm --filter website dev
-```
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=firerlAGI&layout=compact&theme=radical)
 
-### 构建
+## 🔗 Connect With Me
 
-```bash
-# 构建所有包
-pnpm build
+- 🌐 Website: [firerlagi.github.io](https://firerlagi.github.io)
+- 💼 GitHub: [@firerlAGI](https://github.com/firerlAGI)
 
-# 构建特定包
-pnpm --filter website build
-```
+---
 
-### 其他命令
-
-```bash
-# 清理所有 node_modules 和构建输出
-pnpm clean
-
-# 代码格式化
-pnpm format
-
-# 检查代码格式
-pnpm format:check
-
-# 代码检查
-pnpm lint
-```
-
-## 包说明
-
-### website
-
-个人作品集网站，展示项目和联系方式。
-
-- 技术栈：HTML, CSS, JavaScript
-- 特性：响应式设计、深色模式、多语言支持
-
-### shared
-
-共享代码库，包含通用的工具函数、样式等。
-
-## 开发规范
-
-### 代码风格
-
-使用 Prettier 进行代码格式化：
-
-```bash
-pnpm format
-```
-
-### 提交规范
-
-建议使用 Conventional Commits 规范：
-
-- `feat:` 新功能
-- `fix:` 修复 bug
-- `docs:` 文档更新
-- `style:` 代码格式调整
-- `refactor:` 重构
-- `perf:` 性能优化
-- `test:` 测试相关
-- `chore:` 构建/工具链相关
-
-## License
-
-MIT
-# Test workflow trigger
-# Workflow test Mon Jan 12 14:44:40 CST 2026
+⭐️ From [firerlAGI](https://github.com/firerlAGI)

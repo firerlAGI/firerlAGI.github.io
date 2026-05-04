@@ -2,13 +2,12 @@
 import Container from '../ui/Container.astro'
 import Section from '../ui/Section.astro'
 import CyberCard from '../ui/CyberCard.astro'
-import GlitchText from '../ui/GlitchText.astro'
 import { Activity as ActivityIcon, GitCommit, Code, Calendar as CalendarIcon } from 'lucide-react'
 import { translations } from '../../translations'
+import contributionsData from '../../data/contributions'
 
 type Language = 'en' | 'zh'
 
-// 获取数据
 interface Activity {
   date: string
   count: number
@@ -21,17 +20,6 @@ interface Stats {
   contribs: number
 }
 
-interface ContributionData {
-  data: Activity[]
-  stats: Stats
-  updatedAt?: string
-}
-
-// ========== 从静态 TypeScript 数据文件获取数据（构建时）==========
-// 直接导入 TypeScript 数据文件（Vite/Astro 构建时会自动处理）
-
-import contributionsData from '../../data/contributions'
-
 let data: Activity[] = []
 let stats: Stats = { loc: 0, days: 0, contribs: 0 }
 let loading = false
@@ -41,14 +29,13 @@ try {
   if (contributionsData && Array.isArray(contributionsData) && contributionsData.length > 0) {
     data = contributionsData
     const contribs = data.reduce((sum, day) => sum + day.count, 0)
-    const days = data.filter(day => day.count > 0).length
+    const days = data.filter((day) => day.count > 0).length
     stats = {
       loc: contribs * 25,
       days,
       contribs,
     }
   } else {
-    console.warn('Invalid contributions data format')
     error = true
   }
 } catch (e) {
@@ -60,332 +47,329 @@ const lang: Language = 'en'
 const t = translations[lang]
 ---
 
-<Section sectionId="skills" class="py-20 px-4">
-  <Container class="max-w-[1400px] mx-auto">
-    <div class="mb-12">
-      <GlitchText text={t.skills.title} tag="h2" class="text-4xl md:text-5xl font-bold text-white mb-4" />
-      <div class="h-1 w-24 bg-fuchsia-500" />
+<Section sectionId="skills" class="py-16 md:py-24">
+  <Container>
+    <div class="section-heading-block animate-on-scroll">
+      <span class="section-kicker">Signals</span>
+      <h2 class="section-title" data-i18n="skills.title">{t.skills.title}</h2>
+      <p class="section-description" data-i18n="skills.subtitle">{t.skills.subtitle}</p>
     </div>
 
-    <CyberCard glowColor="cyan" class="p-0 overflow-hidden">
-      <!-- Dashboard Header -->
-      <div class="bg-cyan-950/30 border-b border-cyan-500/30 p-6 flex flex-col md:flex-row justify-between items-center gap-4">
-        <div class="flex items-center gap-3">
-          <ActivityIcon size={24} class="text-cyan-400" />
-          <h3 class="text-xl font-cyber text-cyan-100 tracking-widest">{t.skills.sync} // DASHBOARD</h3>
-        </div>
-        <div class="flex gap-4 text-xs font-mono text-cyan-600">
-          <span class="px-2 py-1 bg-cyan-900/20 border border-cyan-800 rounded">{t.skills.status}</span>
-          <span class="px-2 py-1 bg-cyan-900/20 border border-cyan-800 rounded">{t.skills.latency}</span>
-        </div>
-      </div>
-
-      <!-- Dashboard Content -->
-      <div class="p-6 md:p-8">
-        <div class="flex flex-col xl:flex-row gap-8">
-          <!-- Left: Heatmap Section -->
-          <div class="flex-grow xl:w-2/3">
-            <div class="flex justify-between items-center mb-6">
-              <span class="font-mono text-sm text-fuchsia-400 flex items-center gap-2">
-                <GitCommit size={16} /> {t.skills.github}
-              </span>
-              <span class="text-xs font-mono text-gray-400">{t.skills.quarter}</span>
+    <div class="skills-layout">
+      <CyberCard glowColor="cyan" class="animate-on-scroll">
+        <div class="skills-panel">
+          <div class="skills-panel__header">
+            <div>
+              <p class="skills-panel__eyebrow">{t.skills.github}</p>
+              <h3>{t.skills.sync}</h3>
             </div>
-            
-            <div class="w-full overflow-x-auto pb-3 custom-scrollbar">
-              {loading ? (
-                <div class="h-40 w-full flex flex-col items-center justify-center font-mono text-cyan-500/50">
-                  <ActivityIcon class="animate-spin mb-2" />
-                  LOADING DATA STREAM...
-                </div>
-              ) : error ? (
-                <div class="h-40 w-full flex flex-col items-center justify-center font-mono text-red-400/50">
-                  <div class="text-sm">CONNECTION ERROR</div>
-                  <div class="text-xs mt-2">Unable to fetch GitHub data</div>
-                </div>
-              ) : data.length === 0 ? (
-                <div class="h-40 w-full flex flex-col items-center justify-center font-mono text-gray-500/50">
-                  <div class="text-sm">NO DATA</div>
-                  <div class="text-xs mt-2">No contributions found</div>
-                </div>
-              ) : (
-                <div class="activity-calendar" id="activity-calendar"></div>
-              )}
+            <div class="skills-panel__meta">
+              <span>{t.skills.status}</span>
+              <span>{t.skills.latency}</span>
             </div>
           </div>
 
-          <!-- Right: Stats Grid -->
-          <div class="xl:w-1/3 flex flex-col justify-between gap-4 border-t xl:border-t-0 xl:border-l border-cyan-900/50 pt-8 xl:pt-0 xl:pl-8">
-            <div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-1 gap-4 h-full">
-              <!-- LOC Stat -->
-              <div class="bg-black/40 border border-fuchsia-500/20 p-4 rounded hover:bg-fuchsia-900/10 transition-colors group relative overflow-hidden">
-                <div class="absolute right-2 top-2 opacity-20 group-hover:opacity-100 transition-opacity">
-                  <Code size={16} class="text-fuchsia-400" />
-                </div>
-                <div class="text-3xl font-cyber text-white mb-1 group-hover:text-fuchsia-300 transition-colors">
-                  {loading ? '...' : stats.loc.toLocaleString()}
-                </div>
-                <div class="text-[10px] font-mono text-fuchsia-500/70 tracking-widest uppercase">
-                  {t.skills.loc}
-                </div>
-                <div class="absolute bottom-0 left-0 h-[2px] bg-fuchsia-500 w-0 group-hover:w-full transition-all duration-500" />
+          <div class="skills-panel__calendar">
+            {loading ? (
+              <div class="skills-panel__empty">
+                <ActivityIcon class="animate-spin" />
+                <span>Loading</span>
               </div>
-
-              <!-- Active Days Stat -->
-              <div class="bg-black/40 border border-cyan-500/20 p-4 rounded hover:bg-cyan-900/10 transition-colors group relative overflow-hidden">
-                <div class="absolute right-2 top-2 opacity-20 group-hover:opacity-100 transition-opacity">
-                  <CalendarIcon size={16} class="text-cyan-400" />
-                </div>
-                <div class="text-3xl font-cyber text-white mb-1 group-hover:text-cyan-300 transition-colors">
-                  {loading ? '...' : stats.days}
-                </div>
-                <div class="text-[10px] font-mono text-cyan-500/70 tracking-widest uppercase">
-                  {t.skills.activeDays}
-                </div>
-                <div class="absolute bottom-0 left-0 h-[2px] bg-cyan-500 w-0 group-hover:w-full transition-all duration-500" />
+            ) : error ? (
+              <div class="skills-panel__empty">
+                <span>Unable to load contribution data</span>
               </div>
-
-              <!-- Contributions Stat -->
-              <div class="bg-black/40 border border-cyan-500/20 p-4 rounded hover:bg-cyan-900/10 transition-colors group relative overflow-hidden">
-                <div class="absolute right-2 top-2 opacity-20 group-hover:opacity-100 transition-opacity">
-                  <GitCommit size={16} class="text-white" />
-                </div>
-                <div class="text-3xl font-cyber text-cyan-200 mb-1 group-hover:text-white transition-colors">
-                  {loading ? '...' : stats.contribs.toLocaleString()}
-                </div>
-                <div class="text-[10px] font-mono text-gray-400 tracking-widest uppercase">
-                  {t.skills.contribs}
-                </div>
-                <div class="absolute bottom-0 left-0 h-[2px] bg-white w-0 group-hover:w-full transition-all duration-500" />
-              </div>
-            </div>
+            ) : (
+              <div class="activity-calendar" id="activity-calendar"></div>
+            )}
           </div>
         </div>
+      </CyberCard>
+
+      <div class="skills-stats">
+        <CyberCard glowColor="pink" class="animate-on-scroll">
+          <div class="skills-stat-card">
+            <div class="skills-stat-card__icon"><Code size={18} /></div>
+            <span class="skills-stat-card__label">{t.skills.loc}</span>
+            <strong>{stats.loc.toLocaleString()}</strong>
+          </div>
+        </CyberCard>
+
+        <CyberCard glowColor="cyan" class="animate-on-scroll">
+          <div class="skills-stat-card">
+            <div class="skills-stat-card__icon"><CalendarIcon size={18} /></div>
+            <span class="skills-stat-card__label">{t.skills.activeDays}</span>
+            <strong>{stats.days}</strong>
+          </div>
+        </CyberCard>
+
+        <CyberCard glowColor="pink" class="animate-on-scroll">
+          <div class="skills-stat-card">
+            <div class="skills-stat-card__icon"><GitCommit size={18} /></div>
+            <span class="skills-stat-card__label">{t.skills.contribs}</span>
+            <strong>{stats.contribs.toLocaleString()}</strong>
+          </div>
+        </CyberCard>
       </div>
-      
-      <!-- Footer Detail -->
-      <div class="bg-black/50 p-2 border-t border-cyan-900/50 flex justify-between items-center text-[10px] font-mono text-gray-600 px-6">
-        <span>ID: SKILLS-DASH-v2</span>
-        <span>{t.skills.secure}</span>
-      </div>
-    </CyberCard>
+    </div>
   </Container>
 </Section>
 
 <script define:vars={{ data, lang }}>
   const renderCalendar = () => {
     const calendarContainer = document.getElementById('activity-calendar')
-    if (calendarContainer && data.length > 0) {
-      const theme = {
-        0: '#0f172a',
-        1: '#064e3b',
-        2: '#059669',
-        3: '#10b981',
-        4: '#34d399',
-      }
-      
-      const weeks = []
-      let currentWeek = []
-      let currentDayOfWeek = new Date(data[0].date).getDay()
-      
-      const startOffset = currentDayOfWeek
-      for (let i = 0; i < startOffset; i++) {
-        currentWeek.push(null)
-      }
-      
-      data.forEach((day) => {
-        currentWeek.push(day)
-        const dayOfWeek = new Date(day.date).getDay()
-        if (dayOfWeek === 6) {
-          weeks.push(currentWeek)
-          currentWeek = []
-        }
-      })
-      
-      if (currentWeek.length > 0) {
-        weeks.push(currentWeek)
-      }
-      
-      let calendarHTML = '<div class="activity-calendar-grid" style="display: flex; flex-direction: column; gap: 8px;">'
-      
-      const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-      calendarHTML += '<div class="activity-weekdays" style="display: flex; gap: 4px; margin-left: 32px;">'
-      dayLabels.forEach(day => {
-        calendarHTML += `<div class="activity-day-label">${day}</div>`
-      })
-      calendarHTML += '</div>'
-      
-      calendarHTML += '<div class="activity-weeks" style="display: flex; gap: 4px;">'
-      weeks.forEach(week => {
-        calendarHTML += '<div class="activity-week" style="display: flex; flex-direction: column; gap: 4px;">'
-        week.forEach(day => {
-          if (day) {
-            calendarHTML += `
-              <div 
-                class="activity-day level-${day.level}" 
-                title="${day.date}: ${day.count} contributions"
-                style="background-color: ${theme[day.level]}; width: var(--activity-cell-size); height: var(--activity-cell-size); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 2px;"
-              ></div>
-            `
-          } else {
-            calendarHTML += '<div class="activity-day empty" style="width: var(--activity-cell-size); height: var(--activity-cell-size); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 2px;"></div>'
-          }
-        })
-        calendarHTML += '</div>'
-      })
-      calendarHTML += '</div>'
-      
-      const offlineLabel = lang === 'zh' ? '离线' : 'OFFLINE'
-      const maxLoadLabel = lang === 'zh' ? '最大负载' : 'MAX_LOAD'
-      
-      calendarHTML += `
-        <div class="activity-legend" style="display: flex; align-items: center; justify-content: flex-end; gap: 4px; margin-top: 8px;">
-          <span class="legend-label" data-i18n="skills.offline">${offlineLabel}</span>
-          <div class="legend-colors" style="display: flex; gap: 2px;">
-            ${[0, 1, 2, 3, 4].map(level => `
-              <div 
-                class="legend-color" 
-                style="background-color: ${theme[level]}; width: var(--activity-legend-size); height: var(--activity-legend-size);"
-              ></div>
-            `).join('')}
-          </div>
-          <span class="legend-label" data-i18n="skills.maxLoad">${maxLoadLabel}</span>
-        </div>
-      `
-      
-      calendarHTML += '</div>'
-      calendarContainer.innerHTML = calendarHTML
+    if (!calendarContainer || data.length === 0) return
+
+    const palette = {
+      0: 'var(--heatmap-level-0)',
+      1: 'var(--heatmap-level-1)',
+      2: 'var(--heatmap-level-2)',
+      3: 'var(--heatmap-level-3)',
+      4: 'var(--heatmap-level-4)',
     }
+
+    const weeks = []
+    let currentWeek = []
+    const currentDayOfWeek = new Date(data[0].date).getDay()
+
+    for (let i = 0; i < currentDayOfWeek; i += 1) {
+      currentWeek.push(null)
+    }
+
+    data.forEach((day) => {
+      currentWeek.push(day)
+      const dayOfWeek = new Date(day.date).getDay()
+      if (dayOfWeek === 6) {
+        weeks.push(currentWeek)
+        currentWeek = []
+      }
+    })
+
+    if (currentWeek.length > 0) {
+      weeks.push(currentWeek)
+    }
+
+    const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+
+    let calendarHTML = '<div class="skills-heatmap">'
+    calendarHTML += '<div class="skills-heatmap__weekdays">'
+    dayLabels.forEach((day) => {
+      calendarHTML += `<span>${day}</span>`
+    })
+    calendarHTML += '</div>'
+
+    calendarHTML += '<div class="skills-heatmap__weeks">'
+    weeks.forEach((week) => {
+      calendarHTML += '<div class="skills-heatmap__week">'
+      week.forEach((day) => {
+        if (!day) {
+          calendarHTML += '<span class="skills-heatmap__cell is-empty"></span>'
+          return
+        }
+
+        calendarHTML += `
+          <span
+            class="skills-heatmap__cell"
+            title="${day.date}: ${day.count} contributions"
+            style="background:${palette[day.level]}"
+          ></span>
+        `
+      })
+      calendarHTML += '</div>'
+    })
+    calendarHTML += '</div>'
+
+    const offlineLabel = lang === 'zh' ? '离线' : 'OFFLINE'
+    const maxLoadLabel = lang === 'zh' ? '最大负载' : 'MAX_LOAD'
+    calendarHTML += `
+      <div class="skills-heatmap__legend">
+        <span>${offlineLabel}</span>
+        <div class="skills-heatmap__legend-scale">
+          ${[0, 1, 2, 3, 4].map((level) => `<span style="background:${palette[level]}"></span>`).join('')}
+        </div>
+        <span>${maxLoadLabel}</span>
+      </div>
+    `
+
+    calendarHTML += '</div>'
+    calendarContainer.innerHTML = calendarHTML
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', renderCalendar)
-  } else {
-    renderCalendar()
-  }
+  renderCalendar()
 </script>
 
 <style>
-  .activity-calendar {
-    width: 100%;
-    min-width: 720px;
-    --activity-cell-size: 48px;
-    --activity-legend-size: 36px;
+  .skills-layout {
+    display: grid;
+    gap: 1.2rem;
   }
-  
-  .activity-calendar-grid {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 8px !important;
+
+  .skills-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
   }
-  
-  .activity-weekdays {
-    display: flex !important;
-    gap: 4px !important;
-    margin-left: 32px;
+
+  .skills-panel__header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
-  
-  .activity-day-label {
-    width: var(--activity-cell-size);
-    font-size: 10px;
-    color: #94a3b8;
-    font-family: 'JetBrains Mono', monospace;
-  }
-  
-  .activity-weeks {
-    display: flex !important;
-    gap: 4px !important;
-    overflow-x: visible;
-  }
-  
-  .activity-week {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 4px !important;
-  }
-  
-  .activity-day {
-    width: var(--activity-cell-size) !important;
-    height: var(--activity-cell-size) !important;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    flex-shrink: 0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .activity-day:hover {
-    transform: scale(1.2);
-    box-shadow: 0 0 10px currentColor;
-    border-color: rgba(255, 255, 255, 0.3);
-  }
-  
-  .activity-day.empty {
-    background: transparent !important;
-    cursor: default;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  .activity-day.empty:hover {
-    transform: none;
-    box-shadow: none;
-  }
-  
-  .activity-legend {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-end !important;
-    gap: 4px !important;
-    margin-top: 8px;
-  }
-  
-  .legend-label {
-    font-size: 10px;
-    color: #64748b;
-    font-family: 'JetBrains Mono', monospace;
+
+  .skills-panel__eyebrow {
+    color: var(--primary);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
   }
-  
-  .legend-colors {
-    display: flex !important;
-    gap: 2px !important;
-  }
-  
-  .legend-color {
-    width: var(--activity-legend-size);
-    height: var(--activity-legend-size);
-    border-radius: 2px;
+
+  .skills-panel__header h3 {
+    margin-top: 0.55rem;
+    color: var(--text-primary);
+    font-size: clamp(1.45rem, 3vw, 2.2rem);
+    font-weight: 700;
   }
 
-  @media (min-width: 1280px) {
-    .activity-calendar {
-      --activity-cell-size: 54px;
-      --activity-legend-size: 42px;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .activity-calendar {
-      min-width: 100%;
-      --activity-cell-size: 28px;
-      --activity-legend-size: 22px;
-    }
-
-    .activity-day-label {
-      font-size: 8px;
-    }
-
-    .legend-label {
-      font-size: 8px;
-    }
+  .skills-panel__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .activity-day:hover {
-      transform: none;
-    }
-    .status-indicator {
-      animation: none !important;
+  .skills-panel__meta span {
+    display: inline-flex;
+    min-height: 2.25rem;
+    align-items: center;
+    border-radius: 999px;
+    border: 1px solid rgba(129, 166, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0 0.9rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .skills-panel__calendar {
+    overflow-x: auto;
+  }
+
+  .skills-panel__empty {
+    min-height: 14rem;
+    display: grid;
+    place-items: center;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+
+  .skills-stats {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .skills-stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .skills-stat-card__icon {
+    width: 2.7rem;
+    height: 2.7rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    border: 1px solid rgba(129, 166, 255, 0.14);
+    color: var(--primary);
+    background: rgba(99, 230, 255, 0.08);
+  }
+
+  .skills-stat-card__label {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .skills-stat-card strong {
+    color: var(--text-primary);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+  }
+
+  .skills-heatmap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 48rem;
+  }
+
+  .skills-heatmap__weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.28rem;
+    margin-left: 2.1rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
+
+  .skills-heatmap__weeks {
+    display: flex;
+    gap: 0.28rem;
+  }
+
+  .skills-heatmap__week {
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+  }
+
+  .skills-heatmap__cell {
+    width: 0.78rem;
+    height: 0.78rem;
+    display: inline-block;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .skills-heatmap__cell.is-empty {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .skills-heatmap__legend {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.45rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .skills-heatmap__legend-scale {
+    display: flex;
+    gap: 0.22rem;
+  }
+
+  .skills-heatmap__legend-scale span {
+    width: 0.72rem;
+    height: 0.72rem;
+    display: inline-block;
+    border-radius: 0.2rem;
+  }
+
+  @media (min-width: 980px) {
+    .skills-layout {
+      grid-template-columns: minmax(0, 1.2fr) minmax(17rem, 0.45fr);
+      align-items: start;
     }
   }
 </style>

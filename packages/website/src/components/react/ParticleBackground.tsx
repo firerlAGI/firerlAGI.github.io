@@ -96,6 +96,8 @@ const ParticleBackground: React.FC = () => {
       }
     };
 
+    let animationFrame = 0;
+
     const animate = () => {
       // Clear entire canvas
       ctx.clearRect(0, 0, width, height);
@@ -127,7 +129,7 @@ const ParticleBackground: React.FC = () => {
         }
       });
 
-      requestAnimationFrame(animate);
+      animationFrame = requestAnimationFrame(animate);
     };
 
     // Debounce resize
@@ -155,6 +157,7 @@ const ParticleBackground: React.FC = () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       clearTimeout(resizeTimeout);
+      cancelAnimationFrame(animationFrame);
     };
   }, []);
 
@@ -163,7 +166,8 @@ const ParticleBackground: React.FC = () => {
       <div className="cyber-grid-bg" />
       <canvas
         ref={canvasRef}
-        className="fixed top-0 left-0 w-full h-full -z-10 bg-transparent"
+        className="fixed top-0 left-0 h-full w-full bg-transparent opacity-60"
+        style={{ zIndex: 0 }}
       />
     </>
   );

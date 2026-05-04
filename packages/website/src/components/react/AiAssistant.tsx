@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageSquare, X, Send, Cpu, Trash2 } from 'lucide-react';
+import { X, Send, Cpu, Trash2 } from 'lucide-react';
 import { getAiResponse } from '../../services/aiService';
 import CyberCard from './CyberCard';
 import { useLanguage } from '../../contexts/LanguageContext';
