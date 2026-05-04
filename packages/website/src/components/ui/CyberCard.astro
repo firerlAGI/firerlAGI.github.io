@@ -61,42 +61,19 @@ const rootClassName = `${classProp} ${className}`.trim()
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    border: 1px solid color-mix(in srgb, var(--neo-border) 88%, rgba(255, 255, 255, 0.03));
-    border-radius: 1.6rem;
-    background:
-      linear-gradient(180deg, rgba(14, 20, 37, 0.94), rgba(9, 13, 25, 0.82)),
-      rgba(11, 16, 32, 0.82);
-    backdrop-filter: blur(20px);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.035),
-      0 18px 48px rgba(2, 6, 23, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1.5rem;
+    background: var(--card-bg);
+    backdrop-filter: blur(40px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
     transition:
-      transform 0.25s ease,
-      border-color 0.25s ease,
-      box-shadow 0.25s ease;
-  }
-
-  .neo-card__body::before,
-  .neo-card__body::after {
-    content: '';
-    position: absolute;
-    pointer-events: none;
-  }
-
-  .neo-card__body::before {
-    inset: 0;
-    background:
-      radial-gradient(circle at top right, color-mix(in srgb, var(--neo-accent-soft) 68%, transparent), transparent 26%),
-      linear-gradient(rgba(255, 255, 255, 0.035), transparent 22%);
-    opacity: 0.62;
+      transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .neo-card:hover .neo-card__body {
-    transform: translateY(-2px);
-    border-color: color-mix(in srgb, var(--neo-accent) 28%, rgba(255, 255, 255, 0.05));
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.04),
-      0 22px 58px rgba(2, 6, 23, 0.34);
+    transform: scale(1.01);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
   }
 
   .neo-card__header,
@@ -113,26 +90,19 @@ const rootClassName = `${classProp} ${className}`.trim()
   }
 
   .neo-card__title-dot {
-    width: 0.46rem;
-    height: 0.46rem;
-    border-radius: 999px;
-    background: var(--neo-accent);
-    box-shadow: 0 0 10px color-mix(in srgb, var(--neo-accent) 40%, transparent);
+    display: none;
   }
 
   .neo-card__title {
     color: var(--text-primary);
-    font-family: var(--font-cyber);
-    font-size: 0.96rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
   }
 
   .neo-card__rule {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, color-mix(in srgb, var(--neo-accent) 40%, transparent), transparent);
+    display: none;
   }
 
   .neo-card__content {
@@ -140,6 +110,6 @@ const rootClassName = `${classProp} ${className}`.trim()
     flex: 1;
     flex-direction: column;
     color: var(--text-secondary);
-    font-family: var(--font-mono);
+    font-family: var(--font-family);
   }
 </style>

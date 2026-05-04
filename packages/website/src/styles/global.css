@@ -51,10 +51,7 @@ img {
 
 .site-shell {
   min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, rgba(120, 215, 248, 0.1), transparent 30%),
-    radial-gradient(circle at top right, rgba(217, 141, 203, 0.06), transparent 22%),
-    linear-gradient(180deg, #050813 0%, #08101f 44%, #04070f 100%);
+  background: var(--bg-primary);
 }
 
 .site-main {
@@ -63,38 +60,7 @@ img {
 }
 
 .site-backdrop {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.site-backdrop__grid,
-.site-backdrop__glow {
-  position: absolute;
-  inset: 0;
-}
-
-.site-backdrop__grid {
-  background-image:
-    linear-gradient(rgba(120, 215, 248, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(120, 215, 248, 0.035) 1px, transparent 1px);
-  background-size: 88px 88px;
-  mask-image: radial-gradient(circle at center, black 30%, transparent 90%);
-  opacity: 0.24;
-}
-
-.site-backdrop__glow--one {
-  background: radial-gradient(circle at 12% 18%, rgba(120, 215, 248, 0.15), transparent 24%);
-}
-
-.site-backdrop__glow--two {
-  background: radial-gradient(circle at 85% 10%, rgba(217, 141, 203, 0.08), transparent 18%);
-}
-
-.site-backdrop__glow--three {
-  background: radial-gradient(circle at 50% 100%, rgba(232, 179, 109, 0.05), transparent 28%);
+  display: none; /* Removed for Apple clean style */
 }
 
 .section-heading-block {

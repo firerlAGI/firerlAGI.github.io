@@ -1,31 +1,31 @@
 :root {
-  --primary: #78d7f8;
-  --primary-hover: #9ee7ff;
-  --primary-active: #48bbdf;
-  --secondary: #91a4df;
-  --accent: #e8b36d;
-  --success: #6cf3b3;
-  --warning: #ffd166;
-  --error: #ff7d8d;
-  --info: #7ccfff;
+  --primary: #ffffff;
+  --primary-hover: #f5f5f7;
+  --primary-active: #d2d2d7;
+  --secondary: #86868b;
+  --accent: #2997ff;
+  --success: #34c759;
+  --warning: #ffcc00;
+  --error: #ff3b30;
+  --info: #0066cc;
 
-  --bg-primary: #050813;
-  --bg-secondary: #0a1020;
-  --bg-tertiary: #10172d;
-  --bg-elevated: rgba(13, 19, 34, 0.86);
-  --bg-blur: rgba(8, 12, 24, 0.8);
+  --bg-primary: #000000;
+  --bg-secondary: #000000;
+  --bg-tertiary: #1d1d1f;
+  --bg-elevated: rgba(29, 29, 31, 0.86);
+  --bg-blur: rgba(0, 0, 0, 0.72);
 
-  --text-primary: #f2f6ff;
-  --text-secondary: #adb8d1;
-  --text-tertiary: #76829f;
+  --text-primary: #f5f5f7;
+  --text-secondary: #86868b;
+  --text-tertiary: #6e6e73;
 
-  --border-color: rgba(126, 154, 218, 0.16);
-  --divider-color: rgba(136, 166, 219, 0.1);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --divider-color: rgba(255, 255, 255, 0.08);
 
-  --shadow-sm: 0 10px 24px rgba(2, 6, 23, 0.16);
-  --shadow-md: 0 18px 42px rgba(2, 6, 23, 0.24);
-  --shadow-lg: 0 28px 70px rgba(2, 6, 23, 0.32);
-  --shadow-xl: 0 40px 110px rgba(2, 6, 23, 0.42);
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 16px 42px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.3);
 
   --duration-instant: 0.15s;
   --duration-fast: 0.25s;
@@ -40,8 +40,8 @@
   --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   --ease-minimal: cubic-bezier(0.25, 0.1, 0.25, 1);
 
-  --card-bg: rgba(12, 18, 32, 0.8);
-  --nav-bg: rgba(8, 12, 24, 0.78);
+  --card-bg: #1d1d1f;
+  --nav-bg: rgba(0, 0, 0, 0.72);
 
   --radius-sm: 0.75rem;
   --radius-md: 1rem;
@@ -49,23 +49,23 @@
   --radius-xl: 2rem;
 
   --container-width: 1280px;
-  --font-family: 'Space Grotesk', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-  --font-display: 'Space Grotesk', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-  --font-cyber: 'Orbitron', 'Space Grotesk', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-cyber: 'Inter', -apple-system, sans-serif; /* Fallback for existing classes */
+  --font-mono: 'SF Mono', 'JetBrains Mono', monospace;
 
-  --heatmap-level-0: #13203d;
-  --heatmap-level-1: #1d4f7a;
-  --heatmap-level-2: #1f88b8;
-  --heatmap-level-3: #56d9ff;
-  --heatmap-level-4: #9ef5ff;
+  --heatmap-level-0: #1d1d1f;
+  --heatmap-level-1: #294220;
+  --heatmap-level-2: #34843b;
+  --heatmap-level-3: #3ec44d;
+  --heatmap-level-4: #48ed58;
 
-  --cyber-dark: #050816;
-  --cyber-panel: rgba(11, 16, 32, 0.82);
-  --cyber-grid: rgba(120, 215, 248, 0.06);
-  --cyber-cyan: #78d7f8;
-  --cyber-cyan-dark: #48bbdf;
-  --cyber-fuchsia: #d98dcb;
-  --cyber-fuchsia-dark: #b960a8;
-  --cyber-amber: #e8b36d;
+  --cyber-dark: #000000;
+  --cyber-panel: #1d1d1f;
+  --cyber-grid: transparent;
+  --cyber-cyan: #ffffff;
+  --cyber-cyan-dark: #d2d2d7;
+  --cyber-fuchsia: #ffffff;
+  --cyber-fuchsia-dark: #d2d2d7;
+  --cyber-amber: #2997ff;
 }
