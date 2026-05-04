@@ -8,6 +8,7 @@ export interface Project {
   image?: string
   cta?: string
   ctaHref?: string
+  demoHref?: string
   note?: string
 }
 
@@ -34,6 +35,7 @@ export const projects: Project[] = [
     image: '/images/projects/github-home.svg',
     cta: 'VIEW PROJECT',
     ctaHref: 'https://github.com/firerlAGI/firerlAGI.github.io',
+    demoHref: 'https://firerlagi.github.io',
     note: 'VIEW PROJECT'
   },
   {
@@ -71,5 +73,38 @@ export const projects: Project[] = [
     cta: 'VIEW PROJECT',
     ctaHref: '#',
     note: 'PLANNING'
+  },
+  {
+    id: 'traeclaw',
+    icon: 'Bot',
+    title: 'TraeClaw',
+    description: 'A powerful CLI tool for automating development workflows with AI assistance.',
+    techBadges: ['JavaScript', 'AI'],
+    size: 'small',
+    cta: 'VIEW PROJECT',
+    ctaHref: 'https://github.com/firerlAGI/TraeClaw',
+    note: 'VIEW PROJECT'
+  },
+  {
+    id: 'traeclaw-install',
+    icon: 'Brain',
+    title: 'TraeClawInstall',
+    description: 'Installation scripts and setup guides for TraeClaw, focused on fast onboarding and repeatable setup.',
+    techBadges: ['Shell'],
+    size: 'small',
+    cta: 'VIEW PROJECT',
+    ctaHref: 'https://github.com/firerlAGI/TraeClawInstall',
+    note: 'VIEW PROJECT'
+  },
+  {
+    id: 'webnote',
+    icon: 'Brain',
+    title: 'webnote',
+    description: 'A modern note-taking web app with real-time collaboration for lightweight writing and shared capture.',
+    techBadges: ['TypeScript'],
+    size: 'small',
+    cta: 'VIEW PROJECT',
+    ctaHref: 'https://github.com/firerlAGI/webnote',
+    note: 'VIEW PROJECT'
   },
 ]

@@ -82,10 +82,16 @@ const iconMap = {
                     </span>
                   )}
 
-                  <a href={project.ctaHref || '#'} target={project.ctaHref && project.ctaHref !== '#' ? '_blank' : undefined} rel={project.ctaHref && project.ctaHref !== '#' ? 'noopener noreferrer' : undefined} class="project-card__link project-card__link--secondary">
-                    <span data-i18n="projects.demo">{t.projects.demo}</span>
-                    <ArrowUpRight size={16} />
-                  </a>
+                  {project.demoHref && project.demoHref !== '#' ? (
+                    <a href={project.demoHref} target="_blank" rel="noopener noreferrer" class="project-card__link project-card__link--secondary">
+                      <span data-i18n="projects.demo">{t.projects.demo}</span>
+                      <ArrowUpRight size={16} />
+                    </a>
+                  ) : (
+                    <span class="project-card__link project-card__link--muted">
+                      <span data-i18n="projects.demo">{t.projects.demo}</span>
+                    </span>
+                  )}
                 </div>
               </div>
             </article>
@@ -256,30 +262,35 @@ const iconMap = {
     align-items: center;
     gap: 0.5rem;
     min-height: 2.9rem;
-    padding: 0 1rem;
+    padding: 0 1.25rem;
     border-radius: 999px;
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-family: var(--font-family);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  a.project-card__link:hover {
+    transform: scale(1.02);
   }
 
   .project-card__link--primary {
-    border: 1px solid rgba(99, 230, 255, 0.25);
-    background: rgba(99, 230, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
     color: var(--text-primary);
   }
 
   .project-card__link--secondary {
-    border: 1px solid rgba(255, 119, 221, 0.18);
-    background: rgba(255, 119, 221, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
     color: var(--text-primary);
   }
 
   .project-card__link--muted {
-    border: 1px dashed rgba(129, 166, 255, 0.14);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
     color: var(--text-tertiary);
+    pointer-events: none;
   }
 
   @media (min-width: 720px) {
@@ -305,16 +316,15 @@ const iconMap = {
     align-items: center;
     gap: 0.55rem;
     min-height: 3rem;
-    padding: 0 1.15rem;
-    border: 1px solid rgba(120, 215, 248, 0.16);
+    padding: 0 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 999px;
-    background: rgba(120, 215, 248, 0.06);
+    background: rgba(255, 255, 255, 0.05);
     color: var(--text-primary);
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
     transition:
       transform 0.2s ease,
       border-color 0.2s ease,
@@ -322,8 +332,8 @@ const iconMap = {
   }
 
   .projects-footer__link:hover {
-    transform: translateY(-1px);
-    border-color: rgba(120, 215, 248, 0.28);
-    background: rgba(120, 215, 248, 0.1);
+    transform: scale(1.02);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
   }
 </style>
