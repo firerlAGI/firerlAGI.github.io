@@ -25,11 +25,11 @@ const SkillsContent: React.FC<SkillsContentProps> = ({ data, stats }) => {
     const calendarContainer = document.getElementById('activity-calendar');
     if (calendarContainer && data.length > 0) {
       const theme = {
-        0: '#0f172a',
-        1: '#064e3b',
-        2: '#059669',
-        3: '#10b981',
-        4: '#34d399',
+        0: 'rgba(255, 255, 255, 0.05)',
+        1: 'rgba(255, 255, 255, 0.2)',
+        2: 'rgba(255, 255, 255, 0.4)',
+        3: 'rgba(255, 255, 255, 0.6)',
+        4: 'rgba(255, 255, 255, 0.9)',
       };
       
       const weeks: any[][] = [];
@@ -109,25 +109,24 @@ const SkillsContent: React.FC<SkillsContentProps> = ({ data, stats }) => {
   return (
     <div>
       <div className="mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+        <h2 className="text-4xl md:text-5xl font-bold text-[#f5f5f7] mb-4">
           {t('skills.title')}
         </h2>
-        <div className="h-1 w-24 bg-fuchsia-500" />
       </div>
 
-      <div className="bg-black/40 border border-cyan-500/30 p-0 overflow-hidden rounded-lg">
-        <div className="bg-cyan-950/30 border-b border-cyan-500/30 p-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="bg-[#1d1d1f] border border-white/5 p-0 overflow-hidden rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
+        <div className="bg-white/[0.02] border-b border-white/5 p-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-3">
-            <ActivityIcon size={24} className="text-cyan-400 animate-pulse" />
-            <h3 className="text-xl font-cyber text-cyan-100 tracking-widest">
+            <ActivityIcon size={20} className="text-slate-300" />
+            <h3 className="text-[1.1rem] font-sans font-semibold tracking-tight text-[#f5f5f7]">
               {t('skills.sync')} // DASHBOARD
             </h3>
           </div>
-          <div className="flex gap-4 text-xs font-mono text-cyan-600">
-            <span className="px-2 py-1 bg-cyan-900/20 border border-cyan-800 rounded">
+          <div className="flex gap-4 text-xs font-mono text-slate-500">
+            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full uppercase tracking-wider">
               {t('skills.status')}
             </span>
-            <span className="px-2 py-1 bg-cyan-900/20 border border-cyan-800 rounded">
+            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full uppercase tracking-wider">
               {t('skills.latency')}
             </span>
           </div>
@@ -137,18 +136,18 @@ const SkillsContent: React.FC<SkillsContentProps> = ({ data, stats }) => {
           <div className="flex flex-col xl:flex-row gap-8">
             <div className="flex-grow xl:w-2/3">
               <div className="flex justify-between items-center mb-6">
-                <span className="font-mono text-sm text-fuchsia-400 flex items-center gap-2">
-                  <GitCommit size={16} /> {t('skills.github')}
+                <span className="font-mono text-[11px] text-slate-400 flex items-center gap-2 uppercase tracking-[0.12em]">
+                  <GitCommit size={14} /> {t('skills.github')}
                 </span>
-                <span className="text-xs font-mono text-gray-500">
+                <span className="font-mono text-[11px] text-slate-500 uppercase tracking-[0.12em]">
                   {t('skills.quarter')}
                 </span>
               </div>
               
               <div className="w-full overflow-x-auto pb-3 custom-scrollbar">
                 {loading ? (
-                  <div className="h-40 w-full flex flex-col items-center justify-center font-mono text-cyan-500/50">
-                    <ActivityIcon className="animate-spin mb-2" />
+                  <div className="h-40 w-full flex flex-col items-center justify-center font-mono text-[11px] text-slate-500 uppercase tracking-[0.16em]">
+                    <ActivityIcon className="animate-spin mb-3 text-slate-400" size={20} />
                     LOADING DATA STREAM...
                   </div>
                 ) : (
@@ -157,52 +156,49 @@ const SkillsContent: React.FC<SkillsContentProps> = ({ data, stats }) => {
               </div>
             </div>
 
-            <div className="xl:w-1/3 flex flex-col justify-between gap-4 border-t xl:border-t-0 xl:border-l border-cyan-900/50 pt-8 xl:pt-0 xl:pl-8">
+            <div className="xl:w-1/3 flex flex-col justify-between gap-4 border-t xl:border-t-0 xl:border-l border-white/5 pt-8 xl:pt-0 xl:pl-8">
               <div className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-1 gap-4 h-full">
-                <div className="bg-black/40 border border-fuchsia-500/20 p-4 rounded hover:bg-fuchsia-900/10 transition-colors group relative overflow-hidden">
-                  <div className="absolute right-2 top-2 opacity-20 group-hover:opacity-100 transition-opacity">
-                    <Code size={16} className="text-fuchsia-400" />
+                <div className="bg-white/[0.02] border border-white/5 p-5 rounded-xl hover:bg-white/[0.04] transition-colors group relative overflow-hidden">
+                  <div className="absolute right-4 top-4 opacity-30 group-hover:opacity-100 transition-opacity">
+                    <Code size={16} className="text-slate-400 group-hover:text-slate-200 transition-colors" />
                   </div>
-                  <div className="text-3xl font-cyber text-white mb-1 group-hover:text-fuchsia-300 transition-colors">
+                  <div className="text-3xl font-sans font-semibold text-[#f5f5f7] mb-1">
                     {loading ? '...' : stats.loc.toLocaleString()}
                   </div>
-                  <div className="text-[10px] font-mono text-fuchsia-500/70 tracking-widest uppercase">
+                  <div className="text-[11px] font-mono text-slate-500 tracking-[0.12em] uppercase">
                     {t('skills.loc')}
                   </div>
-                  <div className="absolute bottom-0 left-0 h-[2px] bg-fuchsia-500 w-0 group-hover:w-full transition-all duration-500" />
                 </div>
 
-                <div className="bg-black/40 border border-cyan-500/20 p-4 rounded hover:bg-cyan-900/10 transition-colors group relative overflow-hidden">
-                  <div className="absolute right-2 top-2 opacity-20 group-hover:opacity-100 transition-opacity">
-                    <CalendarIcon size={16} className="text-cyan-400" />
+                <div className="bg-white/[0.02] border border-white/5 p-5 rounded-xl hover:bg-white/[0.04] transition-colors group relative overflow-hidden">
+                  <div className="absolute right-4 top-4 opacity-30 group-hover:opacity-100 transition-opacity">
+                    <CalendarIcon size={16} className="text-slate-400 group-hover:text-slate-200 transition-colors" />
                   </div>
-                  <div className="text-3xl font-cyber text-white mb-1 group-hover:text-cyan-300 transition-colors">
+                  <div className="text-3xl font-sans font-semibold text-[#f5f5f7] mb-1">
                     {loading ? '...' : stats.days}
                   </div>
-                  <div className="text-[10px] font-mono text-cyan-500/70 tracking-widest uppercase">
+                  <div className="text-[11px] font-mono text-slate-500 tracking-[0.12em] uppercase">
                     {t('skills.activeDays')}
                   </div>
-                  <div className="absolute bottom-0 left-0 h-[2px] bg-cyan-500 w-0 group-hover:w-full transition-all duration-500" />
                 </div>
 
-                <div className="bg-black/40 border border-cyan-500/20 p-4 rounded hover:bg-cyan-900/10 transition-colors group relative overflow-hidden">
-                  <div className="absolute right-2 top-2 opacity-20 group-hover:opacity-100 transition-opacity">
-                    <GitCommit size={16} className="text-white" />
+                <div className="bg-white/[0.02] border border-white/5 p-5 rounded-xl hover:bg-white/[0.04] transition-colors group relative overflow-hidden">
+                  <div className="absolute right-4 top-4 opacity-30 group-hover:opacity-100 transition-opacity">
+                    <GitCommit size={16} className="text-slate-400 group-hover:text-slate-200 transition-colors" />
                   </div>
-                  <div className="text-3xl font-cyber text-cyan-200 mb-1 group-hover:text-white transition-colors">
+                  <div className="text-3xl font-sans font-semibold text-[#f5f5f7] mb-1">
                     {loading ? '...' : stats.contribs.toLocaleString()}
                   </div>
-                  <div className="text-[10px] font-mono text-gray-400 tracking-widest uppercase">
+                  <div className="text-[11px] font-mono text-slate-500 tracking-[0.12em] uppercase">
                     {t('skills.contribs')}
                   </div>
-                  <div className="absolute bottom-0 left-0 h-[2px] bg-white w-0 group-hover:w-full transition-all duration-500" />
                 </div>
               </div>
             </div>
           </div>
         </div>
         
-        <div className="bg-black/50 p-2 border-t border-cyan-900/50 flex justify-between items-center text-[10px] font-mono text-gray-600 px-6">
+        <div className="bg-black/20 p-3 border-t border-white/5 flex justify-between items-center text-[10px] font-mono text-slate-500 px-6 uppercase tracking-widest">
           <span>ID: {Math.random().toString(36).substring(7).toUpperCase()}</span>
           <span>{t('skills.secure')}</span>
         </div>

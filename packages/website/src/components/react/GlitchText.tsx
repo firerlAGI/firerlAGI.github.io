@@ -16,7 +16,7 @@ const GlitchText: React.FC<GlitchTextProps> = ({
   const Tag = tag;
   return (
     <Tag 
-      className={`cyber-glitch-effect font-cyber uppercase tracking-widest ${className}`} 
+      className={`font-sans tracking-tight ${className}`} 
       data-text={text} 
       {...rest}
     >
