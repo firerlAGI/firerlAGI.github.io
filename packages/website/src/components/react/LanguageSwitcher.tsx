@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
-import type { Language } from '../../translations';
 
 const LanguageSwitcher: React.FC = () => {
   const { language, setLanguage } = useLanguage();
@@ -12,7 +11,7 @@ const LanguageSwitcher: React.FC = () => {
   return (
     <button
       onClick={toggleLanguage}
-      className="px-3 py-1.5 border border-cyan-500/50 bg-black/50 hover:bg-cyan-900/30 text-cyan-400 text-sm font-mono transition-all rounded hover:shadow-[0_0_10px_rgba(34,211,238,0.3)]"
+      className="inline-flex min-h-[2.8rem] items-center rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-sm font-sans text-slate-200 transition-all hover:scale-105 hover:border-white/20 hover:bg-white/10"
       title={language === 'en' ? 'Switch to 中文' : 'Switch to English'}
     >
       {language === 'en' ? 'EN' : '中文'}

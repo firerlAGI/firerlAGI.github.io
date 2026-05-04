@@ -117,29 +117,27 @@ img {
   gap: 0.5rem;
   width: fit-content;
   padding: 0.42rem 0.88rem;
-  border: 1px solid rgba(120, 215, 248, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 999px;
-  background: rgba(120, 215, 248, 0.05);
-  color: var(--primary);
-  font-family: var(--font-mono);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  font-family: var(--font-family);
   font-size: 0.72rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .eyebrow-chip__dot {
   width: 0.42rem;
   height: 0.42rem;
   border-radius: 999px;
-  background: currentColor;
-  box-shadow: 0 0 10px color-mix(in srgb, currentColor 48%, transparent);
+  background: var(--text-primary);
 }
 
 .soft-divider {
   height: 1px;
   width: 100%;
-  background: linear-gradient(90deg, transparent, rgba(126, 154, 218, 0.26), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
 }
 
 .stat-chip {
@@ -148,40 +146,37 @@ img {
   gap: 0.3rem;
   min-width: 8.7rem;
   padding: 1rem 1.05rem;
-  border: 1px solid rgba(126, 154, 218, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 1.1rem;
-  background:
-    linear-gradient(180deg, rgba(14, 20, 36, 0.88), rgba(10, 15, 28, 0.76)),
-    rgba(9, 14, 29, 0.62);
+  background: var(--card-bg);
   backdrop-filter: blur(20px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .stat-chip__label {
-  color: var(--text-tertiary);
-  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  font-family: var(--font-family);
   font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .stat-chip__value {
   color: var(--text-primary);
   font-size: 1.02rem;
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .tech-pill {
   display: inline-flex;
   align-items: center;
   padding: 0.5rem 0.82rem;
-  border: 1px solid rgba(126, 154, 218, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
-  background: rgba(11, 16, 32, 0.78);
+  background: rgba(255, 255, 255, 0.03);
   color: var(--text-secondary);
-  font-family: var(--font-mono);
+  font-family: var(--font-family);
   font-size: 0.76rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.02em;
   transition:
     transform var(--duration-fast) var(--ease-standard),
     border-color var(--duration-fast) var(--ease-standard),
@@ -190,9 +185,9 @@ img {
 }
 
 .tech-pill:hover {
-  transform: translateY(-1px);
-  border-color: rgba(120, 215, 248, 0.26);
-  background: rgba(14, 21, 40, 0.92);
+  transform: scale(1.02);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
   color: var(--text-primary);
 }
 
@@ -252,10 +247,14 @@ img {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(4, 8, 19, 0.8);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(99, 230, 255, 0.72), rgba(255, 119, 221, 0.6));
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }

@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css'
 import '../styles/cyberpunk.css'
-import { getTheme } from '../lib/theme'
 import Navbar from '../components/layout/Navbar.astro'
 import Footer from '../components/layout/Footer.astro'
 import { LanguageProvider } from '../contexts/LanguageContext'
@@ -19,20 +18,21 @@ const {
   image = 'https://github.com/firerlAGI/firerlAGI-preview/raw/main/images/hero-bg.png',
   mainClass = '',
 } = Astro.props
-
-const theme = getTheme()
 ---
 
-<!DOCTYPE html>
-<html lang="zh-CN" data-theme={theme}>
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&family=Orbitron:wght@400..900&family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
@@ -47,40 +47,24 @@ const theme = getTheme()
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
 
-    <meta name="theme-color" content="#007AFF" />
-
-    <script is:inline>
-      (function() {
-        try {
-          const savedTheme = localStorage.getItem('theme');
-          if (savedTheme) {
-            document.documentElement.setAttribute('data-theme', savedTheme);
-          }
-        } catch (e) {
-          console.warn('无法读取localStorage中的主题设置');
-        }
-      })();
-    </script>
+    <meta name="theme-color" content="#000000" />
   </head>
-  <body class="flex flex-col min-h-screen antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
+  <body class="site-shell flex min-h-screen flex-col antialiased selection:bg-white/20 selection:text-white">
     <LanguageProvider client:load>
       <Navbar />
-      <main id="main-content" class={`flex-1 relative w-full min-w-0 isolate flex flex-col items-center ${mainClass}`}>
+      <main id="main-content" class={`site-main flex-1 relative isolate flex w-full min-w-0 flex-col items-center ${mainClass}`}>
         <slot />
       </main>
       <Footer />
     </LanguageProvider>
-    
+
     <script>
       import '../scripts/i18n';
-      import { initThemeToggle } from '../scripts/theme-toggle'
       import { initSmoothScroll } from '../scripts/smooth-scroll'
-      import { initScrollAnimations, initHeroAnimations } from '../scripts/animations'
-      
-      initThemeToggle()
+      import { initScrollAnimations } from '../scripts/animations'
+
       initSmoothScroll()
       initScrollAnimations()
-      initHeroAnimations()
     </script>
   </body>
 </html>

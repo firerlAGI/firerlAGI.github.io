@@ -54,7 +54,7 @@ const PinnedRepos: React.FC = () => {
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
                       <div className="mb-2 flex items-center gap-2">
-                        <span className="inline-flex h-2 w-2 rounded-full bg-cyan-300/80 shadow-[0_0_10px_rgba(125,211,252,0.22)]" />
+                        <span className="inline-flex h-2 w-2 rounded-full bg-white/80 shadow-[0_0_10px_rgba(255,255,255,0.2)]" />
                         <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-500" data-i18n="github.openSource">
                           {t.github.openSource}
                         </span>
@@ -72,7 +72,7 @@ const PinnedRepos: React.FC = () => {
 
                   <div className="flex flex-wrap gap-3">
                     {repo.language ? (
-                      <span className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.03] px-3 py-1.5 text-[11px] font-mono uppercase tracking-[0.12em] text-slate-300">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] font-mono uppercase tracking-[0.12em] text-slate-300">
                         <span
                           className="h-2 w-2 rounded-full"
                           style={{ backgroundColor: repo.languageColor || '#8b949e' }}
@@ -82,21 +82,21 @@ const PinnedRepos: React.FC = () => {
                     ) : null}
 
                     {repo.stars > 0 ? (
-                      <span className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.03] px-3 py-1.5 text-[11px] font-mono uppercase tracking-[0.12em] text-slate-300">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] font-mono uppercase tracking-[0.12em] text-slate-300">
                         <Star size={11} className="text-amber-300/90" />
                         {formatNumber(repo.stars)}
                       </span>
                     ) : null}
 
                     {repo.forks > 0 ? (
-                      <span className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.03] px-3 py-1.5 text-[11px] font-mono uppercase tracking-[0.12em] text-slate-300">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] font-mono uppercase tracking-[0.12em] text-slate-300">
                         <GitFork size={11} className="text-emerald-300/90" />
                         {formatNumber(repo.forks)}
                       </span>
                     ) : null}
                   </div>
 
-                  <div className="mt-auto flex items-center justify-between border-t border-white/8 pt-4 text-[11px] font-mono uppercase tracking-[0.16em] text-slate-500">
+                  <div className="mt-auto flex items-center justify-between border-t border-white/10 pt-4 text-[11px] font-mono uppercase tracking-[0.16em] text-slate-500">
                     <span className="inline-flex items-center gap-2">
                       <CircleDot size={10} className={index % 2 === 0 ? 'text-cyan-300/90' : 'text-pink-300/90'} />
                       Public
@@ -114,7 +114,7 @@ const PinnedRepos: React.FC = () => {
             href="https://github.com/firerlAGI?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-[3rem] items-center gap-2 rounded-full border border-cyan-300/16 bg-cyan-300/[0.08] px-5 text-[11px] font-mono font-semibold uppercase tracking-[0.16em] text-slate-50 transition-all hover:-translate-y-px hover:border-cyan-300/28 hover:bg-cyan-300/[0.12]"
+            className="inline-flex min-h-[3rem] items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-5 text-[11px] font-mono font-semibold uppercase tracking-[0.16em] text-slate-50 transition-all hover:scale-105 hover:border-white/20 hover:bg-white/[0.1]"
           >
             {t.github.visit}
             <ArrowUpRight size={14} />
