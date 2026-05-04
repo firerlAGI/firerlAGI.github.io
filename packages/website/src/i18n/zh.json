@@ -12,10 +12,27 @@
     "subtitle": "全栈工程师 | 赛博朋克爱好者 | AI 集成者",
     "cta_work": "查看作品",
     "cta_contact": "联系我",
-    "typewriter": "编写代码，构建未来。"
+    "typewriter": "编写代码，构建未来。",
+    "intro": "以代码、AI 与精致界面构建可靠产品。",
+    "accent": "构建真正可长期使用、节奏清晰的互联网原生系统。",
+    "stats": {
+      "repositories": "仓库数量",
+      "pinned": "精选项目",
+      "base": "所在地区"
+    },
+    "panel": {
+      "snapshot": "档案快照",
+      "live": "在线",
+      "operator": "操作者",
+      "location": "位置",
+      "focus": "方向",
+      "stars": "星标",
+      "forks": "复刻"
+    }
   },
   "skills": {
     "title": "神经活动",
+    "subtitle": "用公开贡献、技术栈和开发节奏，展示最近一段时间的构建状态。",
     "sync": "同步率",
     "total": "总贡献",
     "loc": "代码行数",
@@ -31,12 +48,15 @@
   },
   "github": {
     "title": "技术足迹",
+    "subtitle": "公开仓库、活跃项目与最近在做的事情，都集中在这里。",
     "repos": "仓库数",
     "stars": "星标数",
     "forks": "复刻数",
     "followers": "关注者",
     "recent": "最近活动",
-    "visit": "访问我的 GitHub"
+    "visit": "访问我的 GitHub",
+    "openSource": "开源项目",
+    "repository": "仓库"
   },
   "about": {
     "title": "系统概览",
@@ -50,6 +70,8 @@
     "description": "一位充满激情的开发者，致力于将未来主义美学与实用代码相结合。专注于现代 Web 技术和赛博朋克风格。",
     "profile": "操作员档案",
     "roleBadge": "[全栈工程师] // [AI 集成者]",
+    "summary": "把产品思路、工程执行和 AI 能力组合成一个能快速落地、持续迭代的工作流。",
+    "headline": "做真正有用的系统，而不只是漂亮演示。",
     "description1": "在数字前沿领域运营，专注于构建可扩展的系统并将人工智能集成到实际应用中。",
     "description2": "热衷于人类创造力与机器学习的交汇，突破 Web 开发的可能性边界。",
     "skills": {
@@ -105,8 +127,10 @@
   },
   "projects": {
     "title": "部署模块",
+    "subtitle": "从知识管理到 AI 工具，把想法做成可用、可迭代、可展示的产品原型。",
     "code": "代码",
-    "demo": "演示"
+    "demo": "演示",
+    "more": "查看更多项目"
   },
   "project_items": {
     "second-brain": {
@@ -133,6 +157,21 @@
       "title": "任务管理器",
       "description": "高效的任务管理工具，支持拖拽排序、标签分类、团队协作等功能。",
       "note": "项目规划中"
+    },
+    "traeclaw": {
+      "title": "TraeClaw",
+      "description": "面向 AI 辅助开发流程的命令行工具，用来加快自动化执行与工程协作。",
+      "note": "查看项目"
+    },
+    "traeclaw-install": {
+      "title": "TraeClawInstall",
+      "description": "为 TraeClaw 准备的安装脚本与初始化指南，强调快速接入和可重复配置。",
+      "note": "查看项目"
+    },
+    "webnote": {
+      "title": "webnote",
+      "description": "支持实时协作的现代笔记 Web 应用，适合轻量记录、同步整理与共享内容。",
+      "note": "查看项目"
     }
   },
   "tech": {
@@ -143,6 +182,7 @@
     "Astro": "Astro",
     "TypeScript": "TypeScript",
     "Tailwind CSS": "Tailwind CSS",
+    "JavaScript": "JavaScript",
     "LLM": "LLM",
     "Python": "Python",
     "FastAPI": "FastAPI",
@@ -150,16 +190,26 @@
     "React": "React",
     "Vue.js": "Vue.js",
     "Node.js": "Node.js",
-    "MongoDB": "MongoDB"
+    "MongoDB": "MongoDB",
+    "Shell": "Shell"
   },
   "blog": {
     "title": "数据归档",
+    "subtitle": "记录产品思考、技术实验和一些值得长期回看的工作笔记。",
     "readMore": "访问节点"
   },
   "contact": {
     "title": "建立连接",
     "subtitle": "接受自由职业合同与机密任务。",
     "channels": "传输频道",
+    "summary": "如果你在做产品、自动化工作流或者 AI 集成相关的项目，欢迎直接联系我。",
+    "headline": "面向合作、咨询和产品共建开放交流。",
+    "labels": {
+      "email": "邮箱",
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "base": "所在地"
+    },
     "form": {
       "identity": "身份 (姓名)",
       "identityPlaceholder": "请输入您的身份",

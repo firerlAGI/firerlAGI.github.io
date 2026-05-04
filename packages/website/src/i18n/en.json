@@ -12,10 +12,27 @@
     "subtitle": "Full Stack Engineer | Cyberpunk Enthusiast | AI Integrator",
     "cta_work": "VIEW WORK",
     "cta_contact": "CONTACT",
-    "typewriter": "Building the future, one line of code at a time."
+    "typewriter": "Building the future, one line of code at a time.",
+    "intro": "Designing resilient products with code, AI, and sharp interfaces.",
+    "accent": "Builds internet-native systems that feel intentional.",
+    "stats": {
+      "repositories": "Repositories",
+      "pinned": "Pinned Projects",
+      "base": "Base"
+    },
+    "panel": {
+      "snapshot": "Profile Snapshot",
+      "live": "Live",
+      "operator": "Operator",
+      "location": "Location",
+      "focus": "Focus",
+      "stars": "Stars",
+      "forks": "Forks"
+    }
   },
   "skills": {
     "title": "NEURAL ACTIVITY",
+    "subtitle": "A compact view of public contributions, stack signals, and the rhythm behind recent work.",
     "sync": "SYNCHRONIZED",
     "total": "Total Contributions",
     "loc": "LINES_WRITTEN",
@@ -31,12 +48,15 @@
   },
   "github": {
     "title": "Technical Footprints",
+    "subtitle": "Public repos, active experiments, and the projects that best represent the current direction.",
     "repos": "Repositories",
     "stars": "Stars",
     "forks": "Forks",
     "followers": "Followers",
     "recent": "Recent Activity",
-    "visit": "Visit My GitHub"
+    "visit": "Visit My GitHub",
+    "openSource": "Open Source",
+    "repository": "Repository"
   },
   "about": {
     "title": "SYSTEM OVERVIEW",
@@ -50,6 +70,8 @@
     "description": "A passionate developer who bridges the gap between futuristic aesthetics and functional code. Specializing in modern web technologies with a cyberpunk aesthetic.",
     "profile": "OPERATOR PROFILE",
     "roleBadge": "[FULL_STACK_ENGINEER] // [AI_INTEGRATOR]",
+    "summary": "Bringing product thinking, engineering execution, and AI capabilities into a workflow that ships fast and iterates cleanly.",
+    "headline": "Building useful systems, not just pretty demos.",
     "description1": "Operating in the digital frontier, specializing in building scalable systems and integrating artificial intelligence into practical applications.",
     "description2": "Passionate about the intersection of human creativity and machine learning, pushing the boundaries of what's possible in web development.",
     "skills": {
@@ -105,8 +127,10 @@
   },
   "projects": {
     "title": "DEPLOYED MODULES",
+    "subtitle": "Selected product builds where AI workflows, interface craft, and practical engineering meet.",
     "code": "CODE",
-    "demo": "DEMO"
+    "demo": "DEMO",
+    "more": "VIEW MORE PROJECTS"
   },
   "project_items": {
     "second-brain": {
@@ -133,6 +157,21 @@
       "title": "Task Manager",
       "description": "Efficient task management tool supporting drag-and-drop sorting, tag classification, and team collaboration.",
       "note": "PLANNING"
+    },
+    "traeclaw": {
+      "title": "TraeClaw",
+      "description": "A powerful CLI tool for automating development workflows with AI assistance.",
+      "note": "VIEW PROJECT"
+    },
+    "traeclaw-install": {
+      "title": "TraeClawInstall",
+      "description": "Installation scripts and setup guides for TraeClaw, focused on fast onboarding and repeatable setup.",
+      "note": "VIEW PROJECT"
+    },
+    "webnote": {
+      "title": "webnote",
+      "description": "A modern note-taking web app with real-time collaboration for lightweight writing and shared capture.",
+      "note": "VIEW PROJECT"
     }
   },
   "tech": {
@@ -143,6 +182,7 @@
     "Astro": "Astro",
     "TypeScript": "TypeScript",
     "Tailwind CSS": "Tailwind CSS",
+    "JavaScript": "JavaScript",
     "LLM": "LLM",
     "Python": "Python",
     "FastAPI": "FastAPI",
@@ -150,16 +190,26 @@
     "React": "React",
     "Vue.js": "Vue.js",
     "Node.js": "Node.js",
-    "MongoDB": "MongoDB"
+    "MongoDB": "MongoDB",
+    "Shell": "Shell"
   },
   "blog": {
     "title": "DATA ARCHIVES",
+    "subtitle": "Working notes on product thinking, technical experiments, and ideas worth keeping around.",
     "readMore": "ACCESS NODE"
   },
   "contact": {
     "title": "INITIATE UPLINK",
     "subtitle": "Available for freelance contracts and classified missions.",
     "channels": "TRANSMISSION CHANNELS",
+    "summary": "If you are building products, automation workflows, or AI-integrated tools, feel free to reach out directly.",
+    "headline": "Open channels for collaborations and product builds.",
+    "labels": {
+      "email": "Email",
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "base": "Base"
+    },
     "form": {
       "identity": "IDENTITY",
       "identityPlaceholder": "Enter your identity",
